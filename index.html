@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Neo Malesa — Technologist, consultant, and algorithmic trader. Port Moresby, Papua New Guinea." />
+  <title>Neo Malesa</title>
+
+  <!--
+    No-flash theme: runs synchronously before any paint.
+    Reads localStorage, falls back to prefers-color-scheme.
+  -->
+  <script>
+    (function () {
+      var stored = localStorage.getItem('theme');
+      var prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+      var theme = stored || (prefersDark ? 'dark' : 'light');
+      document.documentElement.setAttribute('data-theme', theme);
+    }());
+  </script>
+
+  <!-- Emoji favicon — no file needed -->
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚡</text></svg>" />
+
+  <!-- Fonts: Barlow Condensed (display) + Space Grotesk (body) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@700;800;900&family=Space+Grotesk:wght@300;400;500;600&display=swap"
+    rel="stylesheet"
+  />
+
+  <link rel="stylesheet" href="css/style.css" />
+
+  <noscript>
+    <style>
+      [data-reveal], [data-gsap-reveal], .project-card, .connect__link { opacity: 1 !important; }
+    </style>
+  </noscript>
+</head>
+<body>
+
+  <!-- Theme toggle — fixed, keyboard-accessible -->
+  <button
+    class="theme-toggle"
+    id="themeToggle"
+    aria-label="Switch to dark mode"
+    title="Toggle theme"
+  >
+    <!-- Sun icon (visible in dark mode — click to go light) -->
+    <svg class="icon icon--sun" aria-hidden="true" viewBox="0 0 24 24" fill="none"
+         stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <circle cx="12" cy="12" r="5"/>
+      <line x1="12" y1="1" x2="12" y2="3"/>
+      <line x1="12" y1="21" x2="12" y2="23"/>
+      <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/>
+      <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/>
+      <line x1="1" y1="12" x2="3" y2="12"/>
+      <line x1="21" y1="12" x2="23" y2="12"/>
+      <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/>
+      <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
+    </svg>
+    <!-- Moon icon (visible in light mode — click to go dark) -->
+    <svg class="icon icon--moon" aria-hidden="true" viewBox="0 0 24 24" fill="none"
+         stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+    </svg>
+  </button>
+
+  <main>
+
+    <!-- ===== HERO ===== -->
+    <section class="hero" id="hero" aria-label="Introduction">
+
+      <!-- Resonating wave canvas — purely decorative, behind all content -->
+      <canvas class="hero__canvas" id="heroCanvas" aria-hidden="true"></canvas>
+
+      <div class="hero__inner">
+
+        <p class="hero__handle" data-reveal="0">$N30 &middot; @n30dyn4m1c</p>
+
+        <h1 class="hero__name" data-reveal="1" aria-label="Neo Malesa">
+          <span class="name-line">Neo</span>
+          <span class="name-line">Malesa</span>
+        </h1>
+
+        <p
+          class="hero__manifesto"
+          data-reveal="2"
+          aria-label="Super Colossal, Prolific Polymath, Maximum Execution"
+        >
+          <span class="manifesto-chunk">Super Colossal</span><span class="pipe" aria-hidden="true">|</span><span
+            class="manifesto-chunk">Prolific Polymath</span><span class="pipe" aria-hidden="true">|</span><span
+            class="manifesto-chunk">Maximum Execution</span>
+        </p>
+
+        <p class="hero__descriptor" data-reveal="3">
+          Technologist, consultant, and algorithmic trader.
+        </p>
+
+        <span class="hero__location pill" data-reveal="4" role="note">
+          <span aria-hidden="true">📍</span> Port Moresby, PNG
+        </span>
+
+      </div>
+    </section>
+
+
+    <!-- ===== ABOUT ===== -->
+    <section class="section section--about" id="about" aria-labelledby="about-heading">
+      <div class="section__inner">
+
+        <h2 class="section__heading" id="about-heading" data-gsap-reveal>About</h2>
+
+        <div class="about__body">
+          <p data-gsap-reveal>
+            Work across software, applied AI, and the markets. Online Services at the University of
+            Papua New Guinea. AbideTech — an independent consulting practice.
+          </p>
+          <p data-gsap-reveal>
+            The reading runs wider than the work: biblical languages, the history and institutions
+            of Papua New Guinea. Different subjects, one method — disciplined enquiry, executed.
+          </p>
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- ===== WORK ===== -->
+    <section class="section section--work" id="work" aria-labelledby="work-heading">
+      <div class="section__inner">
+
+        <h2 class="section__heading" id="work-heading" data-gsap-reveal>Work</h2>
+
+        <ul class="work__list" role="list">
+          <li class="work__item" data-gsap-reveal>
+            <p class="work__role">Online Services</p>
+            <p class="work__org">University of Papua New Guinea</p>
+            <p class="work__desc">Leading the division's web and digital systems.</p>
+          </li>
+          <li class="work__item" data-gsap-reveal>
+            <p class="work__role">AbideTech</p>
+            <p class="work__org">Independent Consulting Practice</p>
+            <p class="work__desc">Build, train, consult.</p>
+          </li>
+        </ul>
+
+      </div>
+    </section>
+
+
+    <!-- ===== PROJECTS ===== -->
+    <section class="section section--projects" id="projects" aria-labelledby="projects-heading">
+      <div class="section__inner">
+
+        <h2 class="section__heading" id="projects-heading" data-gsap-reveal>Projects</h2>
+
+        <ul class="projects__grid" role="list">
+          <li>
+            <a
+              href="#"
+              class="project-card"
+              aria-label="UPNG Website Redevelopment — A complete rebuild of a national university's web presence"
+            >
+              <h3 class="project-card__title">UPNG Website Redevelopment</h3>
+              <p class="project-card__desc">A complete rebuild of a national university's web presence.</p>
+              <span class="project-card__arrow" aria-hidden="true">→</span>
+            </a>
+          </li>
+          <li>
+            <a
+              href="#"
+              class="project-card"
+              aria-label="TFH Songbook — A fast, offline-capable worship lyric application"
+            >
+              <h3 class="project-card__title">TFH Songbook</h3>
+              <p class="project-card__desc">A fast, offline-capable worship lyric application.</p>
+              <span class="project-card__arrow" aria-hidden="true">→</span>
+            </a>
+          </li>
+          <li>
+            <a
+              href="#"
+              class="project-card"
+              aria-label="Trading Systems — Ichimoku and Turtle Expert Advisors for MetaTrader 5, validated through extensive backtesting"
+            >
+              <h3 class="project-card__title">Trading Systems</h3>
+              <p class="project-card__desc">Ichimoku and Turtle Expert Advisors for MetaTrader 5. Validated through extensive backtesting.</p>
+              <span class="project-card__arrow" aria-hidden="true">→</span>
+            </a>
+          </li>
+          <li>
+            <a
+              href="#"
+              class="project-card"
+              aria-label="AI Tooling — Custom agentic tools for research, planning, and analysis"
+            >
+              <h3 class="project-card__title">AI Tooling</h3>
+              <p class="project-card__desc">Custom agentic tools for research, planning, and analysis.</p>
+              <span class="project-card__arrow" aria-hidden="true">→</span>
+            </a>
+          </li>
+        </ul>
+
+      </div>
+    </section>
+
+
+    <!-- ===== WRITING ===== -->
+    <section class="section section--writing" id="writing" aria-labelledby="writing-heading">
+      <div class="section__inner">
+
+        <h2 class="section__heading" id="writing-heading" data-gsap-reveal>Writing</h2>
+
+        <div class="writing__body" data-gsap-reveal>
+          <p class="writing__lead">
+            Essays published under $N30. Three subjects: the culture and history of Papua New
+            Guinea, emerging technology, and the markets.
+          </p>
+          <p class="writing__sub">
+            Reference work — written to fill gaps in the record.
+          </p>
+          <a href="#" class="writing__cta" aria-label="Read essays on Medium (opens Medium)">
+            Read on Medium <span aria-hidden="true">→</span>
+          </a>
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- ===== CONNECT ===== -->
+    <section class="section section--connect" id="connect" aria-labelledby="connect-heading">
+      <div class="section__inner">
+
+        <h2 class="section__heading" id="connect-heading" data-gsap-reveal>Connect</h2>
+
+        <ul class="connect__list" role="list">
+          <li>
+            <a href="#" class="connect__link" aria-label="Follow on X (formerly Twitter)">
+              <span>X</span>
+              <span class="connect__arrow" aria-hidden="true">→</span>
+            </a>
+          </li>
+          <li>
+            <a href="#" class="connect__link" aria-label="Read on Medium">
+              <span>Medium</span>
+              <span class="connect__arrow" aria-hidden="true">→</span>
+            </a>
+          </li>
+          <li>
+            <a href="#" class="connect__link" aria-label="View code on GitHub">
+              <span>GitHub</span>
+              <span class="connect__arrow" aria-hidden="true">→</span>
+            </a>
+          </li>
+          <li>
+            <a href="#" class="connect__link" aria-label="Watch on TikTok">
+              <span>TikTok</span>
+              <span class="connect__arrow" aria-hidden="true">→</span>
+            </a>
+          </li>
+          <li>
+            <a href="#" class="connect__link" aria-label="Message on WhatsApp">
+              <span>WhatsApp</span>
+              <span class="connect__arrow" aria-hidden="true">→</span>
+            </a>
+          </li>
+        </ul>
+
+      </div>
+    </section>
+
+  </main>
+
+
+  <!-- ===== FOOTER ===== -->
+  <footer class="footer" role="contentinfo">
+    <div class="footer__inner">
+      <p class="footer__copy">© 2026 Neo Malesa &middot; Port Moresby, Papua New Guinea</p>
+      <a href="#hero" class="back-to-top" aria-label="Back to top of page">
+        <span aria-hidden="true">↑</span> Top
+      </a>
+    </div>
+  </footer>
+
+
+  <!-- GSAP + ScrollTrigger loaded before main.js so they're available synchronously -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>
