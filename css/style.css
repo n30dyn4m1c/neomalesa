@@ -9,17 +9,17 @@
   --color-surface: #F4F1EA;   /* cotton ivory — raised panels, portrait base */
 
   /* --- Text --- */
-  --color-ink:       #16191E; /* near-black */
-  --color-ink-muted: #5A5E66; /* restrained secondary */
+  --color-ink:       #0D0D0E; /* deep cinematic obsidian */
+  --color-ink-muted: #5A5A5C; /* bureaucracy grey — institutional subtext */
 
   /* --- Accent: struck gold, a single mark of prestige.
          Slightly deepened from #8A6A1F to clear WCAG AA on the
          small uppercase labels it appears on. --- */
-  --color-accent:     #7E5F18;
-  --color-accent-rgb: 126, 95, 24; /* used by JS for rgba() construction */
+  --color-accent:     #B08E59; /* muted old-money brass */
+  --color-accent-rgb: 176, 142, 89; /* used by JS for rgba() construction */
 
   /* --- UI chrome --- */
-  --color-border: rgba(22, 25, 30, 0.14);
+  --color-border: rgba(13, 13, 14, 0.08); /* crisp hairline ledger lines */
 
   /* --- Typography --- */
   --font-display: 'Cormorant Garamond', 'Georgia', 'Times New Roman', serif;
@@ -384,8 +384,12 @@ img, canvas, svg { display: block; }
 }
 
 .work__item {
+  /* Dossier entry: a hard left anchor plus the existing top hairline. */
   padding-block: clamp(1.75rem, 3.5vw, 2.75rem);
+  padding-left: 2rem;
   border-top: 1px solid var(--color-border);
+  border-left: 2px solid var(--color-ink);
+  max-width: 32rem;
 }
 
 .work__item:last-child {
@@ -405,19 +409,22 @@ img, canvas, svg { display: block; }
 }
 
 .work__org {
-  font-family: var(--font-body);
+  /* Strict, commanding subheader — not the gold accent. */
+  display: block;
+  font-family: var(--font-display);
   font-size: 0.75rem;
-  font-weight: 500;
+  font-weight: 600;
   text-transform: uppercase;
-  letter-spacing: 0.2em;
-  color: var(--color-accent);
+  letter-spacing: 0.15em;
+  color: var(--color-ink-muted);
+  margin-top: 0.5rem;
   margin-bottom: var(--space-sm);
 }
 
 .work__desc {
-  font-size: 1.1rem;
+  font-size: 0.95rem;
   color: var(--color-ink-muted);
-  line-height: 1.7;
+  line-height: 1.6;
   max-width: 52ch;
 }
 
@@ -528,22 +535,25 @@ img, canvas, svg { display: block; }
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding-block: clamp(0.8rem, 2vw, 1.15rem);
+  /* Downsized from the giant variant for a tighter ledger grip. */
+  padding-block: clamp(0.9rem, 2vw, 1.5rem);
   border-bottom: 1px solid var(--color-border);
   text-decoration: none;
   color: var(--color-ink);
   font-family: var(--font-display);
-  font-size: clamp(2.5rem, 7.5vw, 5rem);
+  font-size: clamp(1.5rem, 4vw, 1.9rem);
   font-weight: 600;
   text-transform: uppercase;
-  letter-spacing: 0.01em;
+  letter-spacing: 0.05em;
   line-height: 1.05;
-  transition: color 0.25s ease;
+  transition: padding-left 0.2s ease, border-color 0.2s ease, color 0.2s ease;
 }
 
+/* High-contrast hover: indent + darken the divider to full ink. */
 .connect__link:hover,
 .connect__link:focus-visible {
-  color: var(--color-accent);
+  padding-left: 1rem;
+  border-bottom-color: var(--color-ink);
 }
 
 .connect__link:focus-visible {
@@ -553,14 +563,16 @@ img, canvas, svg { display: block; }
 }
 
 .connect__arrow {
-  font-size: 0.4em;
+  font-size: 1.2rem;
+  color: var(--color-ink-muted);
   flex-shrink: 0;
-  transition: transform 0.3s var(--ease-out-expo);
+  transition: transform 0.2s ease, color 0.2s ease;
 }
 
 .connect__link:hover .connect__arrow,
 .connect__link:focus-visible .connect__arrow {
-  transform: translate(0.3em, -0.2em);
+  color: var(--color-ink);
+  transform: translateX(5px);
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -576,8 +588,12 @@ img, canvas, svg { display: block; }
    ============================================================ */
 
 .footer {
-  border-top: 1px solid var(--color-border);
-  padding-block: clamp(1.75rem, 3vw, 2.25rem);
+  /* Stark dark band that anchors the whole page. Full-bleed by design; the
+     centered flex row lives on .footer__inner. */
+  background-color: var(--color-ink);
+  color: #8E8E93; /* muted silver against the obsidian */
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+  padding-block: clamp(2.5rem, 5vw, 4rem);
 }
 
 .footer__inner {
@@ -592,9 +608,10 @@ img, canvas, svg { display: block; }
 }
 
 .footer__copy {
-  font-size: 0.85rem;
-  letter-spacing: 0.04em;
-  color: var(--color-ink-muted);
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: #8E8E93;
 }
 
 .back-to-top {
@@ -602,28 +619,29 @@ img, canvas, svg { display: block; }
   align-items: center;
   gap: 0.4em;
   font-family: var(--font-body);
-  font-size: 0.72rem;
+  font-size: 0.75rem;
   font-weight: 500;
   text-transform: uppercase;
-  letter-spacing: 0.18em;
-  color: var(--color-ink-muted);
+  letter-spacing: 0.12em;
+  color: var(--color-accent);
   text-decoration: none;
-  padding: 0.45em 1.1em;
-  border: 1px solid var(--color-border);
-  border-radius: 999px;
-  background: var(--color-surface);
-  transition: border-color 0.2s ease, color 0.2s ease;
+  padding: 0.5rem 1rem;
+  border: 1px solid rgba(var(--color-accent-rgb), 0.3);
+  border-radius: 2px;
+  background: transparent;
+  transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
 }
 
 .back-to-top:hover {
+  background-color: var(--color-accent);
+  color: var(--color-ink);
   border-color: var(--color-accent);
-  color: var(--color-accent);
 }
 
 .back-to-top:focus-visible {
   outline: 2px solid var(--color-accent);
   outline-offset: 4px;
-  border-radius: 999px;
+  border-radius: 2px;
 }
 
 
@@ -632,10 +650,6 @@ img, canvas, svg { display: block; }
    ============================================================ */
 
 @media (max-width: 380px) {
-  .connect__link {
-    font-size: 2.15rem;
-  }
-
   .section__heading {
     font-size: 2.1rem;
   }
