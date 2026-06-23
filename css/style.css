@@ -12,12 +12,11 @@
   --color-ink:       #16191E; /* near-black */
   --color-ink-muted: #5A5E66; /* restrained secondary */
 
-  /* --- Accent: struck gold, a single mark of prestige --- */
-  --color-accent:     #8A6A1F;
-  --color-accent-rgb: 138, 106, 31; /* used by JS for rgba() construction */
-
-  /* --- Seal: oxblood, used sparingly as a state mark --- */
-  --color-seal: #7A2024;
+  /* --- Accent: struck gold, a single mark of prestige.
+         Slightly deepened from #8A6A1F to clear WCAG AA on the
+         small uppercase labels it appears on. --- */
+  --color-accent:     #7E5F18;
+  --color-accent-rgb: 126, 95, 24; /* used by JS for rgba() construction */
 
   /* --- UI chrome --- */
   --color-border: rgba(22, 25, 30, 0.14);
@@ -317,13 +316,16 @@ img, canvas, svg { display: block; }
   display: flex;
   flex-direction: column;
   font-family: var(--font-display);
-  font-size: clamp(2.5rem, 6vw, 4.5rem);
+  /* Floor lowered to 2rem so the longest single-word heading
+     ("CORRESPONDENCE") fits 390–414px phones without clipping. */
+  font-size: clamp(2rem, 7vw, 4.5rem);
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 0.01em;
   line-height: 0.95;
   color: var(--color-ink);
   margin-bottom: clamp(2.5rem, 5vw, 3.75rem);
+  overflow-wrap: break-word;
 }
 
 /* Roman-numeral section index — small gold overline above the heading */
@@ -360,6 +362,18 @@ img, canvas, svg { display: block; }
   color: var(--color-ink-muted);
 }
 
+/* Desktop: the two paragraphs sit side by side and fill the measure,
+   rather than clustering against the left edge. */
+@media (min-width: 900px) {
+  .about__body {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: clamp(2.5rem, 5vw, 5rem);
+    max-width: none;
+  }
+  .about__body p { margin: 0; }
+}
+
 
 /* ============================================================
    WORK
@@ -380,11 +394,12 @@ img, canvas, svg { display: block; }
 
 .work__role {
   font-family: var(--font-display);
-  font-size: clamp(2rem, 4.5vw, 3.5rem);
+  /* Stepped down so the section heading clearly outranks its items. */
+  font-size: clamp(1.6rem, 3vw, 2.4rem);
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 0.01em;
-  line-height: 1;
+  line-height: 1.05;
   color: var(--color-ink);
   margin-bottom: 0.45em;
 }
@@ -404,6 +419,18 @@ img, canvas, svg { display: block; }
   color: var(--color-ink-muted);
   line-height: 1.7;
   max-width: 52ch;
+}
+
+/* Desktop: the two posts sit side by side, sharing a single top hairline. */
+@media (min-width: 900px) {
+  .work__list {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    column-gap: clamp(2.5rem, 5vw, 5rem);
+  }
+  .work__item:last-child {
+    border-bottom: none;
+  }
 }
 
 
@@ -471,6 +498,20 @@ img, canvas, svg { display: block; }
     transition: none;
     transform: none !important;
   }
+}
+
+/* Desktop: prose on the left, the call to action carried out to the right. */
+@media (min-width: 900px) {
+  .writing__body {
+    display: grid;
+    grid-template-columns: 1.4fr 1fr;
+    column-gap: clamp(2.5rem, 5vw, 5rem);
+    align-items: start;
+    max-width: none;
+  }
+  .writing__lead { grid-column: 1; grid-row: 1; }
+  .writing__sub  { grid-column: 1; grid-row: 2; margin-bottom: 0; }
+  .writing__cta  { grid-column: 2; grid-row: 1; align-self: start; }
 }
 
 
