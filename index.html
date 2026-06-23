@@ -1,108 +1,140 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="light">
+<html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Neo Malesa — Technologist, consultant, and algorithmic trader. Port Moresby, Papua New Guinea." />
   <title>Neo Malesa</title>
 
-  <!--
-    No-flash theme: runs synchronously before any paint.
-    Reads localStorage, falls back to prefers-color-scheme.
-  -->
-  <script>
-    (function () {
-      var stored = localStorage.getItem('theme');
-      var prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-      var theme = stored || (prefersDark ? 'dark' : 'light');
-      document.documentElement.setAttribute('data-theme', theme);
-    }());
-  </script>
+  <meta
+    name="description"
+    content="Neo Malesa — technologist, consultant, and algorithmic trader. Online Services at the University of Papua New Guinea; principal of Abide Tech. Port Moresby, Papua New Guinea."
+  />
+  <meta name="author" content="Neo Malesa" />
+  <meta name="theme-color" content="#FFFFFF" />
+  <link rel="canonical" href="https://neomalesa.com/" />
 
-  <!-- Emoji favicon — no file needed -->
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚡</text></svg>" />
+  <!-- Open Graph — link previews on social and chat -->
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Neo Malesa" />
+  <meta property="og:title" content="Neo Malesa" />
+  <meta
+    property="og:description"
+    content="Technologist, consultant, and algorithmic trader. Online Services at the University of Papua New Guinea; principal of Abide Tech. Port Moresby, Papua New Guinea."
+  />
+  <meta property="og:url" content="https://neomalesa.com/" />
+  <meta property="og:image" content="https://neomalesa.com/assets/og-image.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:image:alt" content="Neo Malesa — Port Moresby, Papua New Guinea" />
+  <meta property="og:locale" content="en" />
 
-  <!-- Fonts: Barlow Condensed (display) + Space Grotesk (body) -->
+  <!-- Twitter / X card -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Neo Malesa" />
+  <meta
+    name="twitter:description"
+    content="Technologist, consultant, and algorithmic trader. Online Services at the University of Papua New Guinea; principal of Abide Tech."
+  />
+  <meta name="twitter:image" content="https://neomalesa.com/assets/og-image.png" />
+  <meta name="twitter:site" content="@n30dyn4m1c" />
+  <meta name="twitter:creator" content="@n30dyn4m1c" />
+
+  <!-- Favicon — a gold seal monogram, drawn inline; no file required -->
+  <link
+    rel="icon"
+    href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><circle cx='50' cy='50' r='44' fill='none' stroke='%238A6A1F' stroke-width='4'/><text x='50' y='52' font-family='Georgia,serif' font-size='52' font-weight='600' fill='%238A6A1F' text-anchor='middle' dominant-baseline='central'>N</text></svg>"
+  />
+
+  <!-- Fonts: Cormorant Garamond (display) + Spectral (body) -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link
-    href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@700;800;900&family=Space+Grotesk:wght@300;400;500;600&display=swap"
+    href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Spectral:ital,wght@0,300;0,400;0,500;1,400&display=swap"
     rel="stylesheet"
   />
 
   <link rel="stylesheet" href="css/style.css" />
 
+  <!-- Structured data — helps search engines connect the name to the work -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Neo Malesa",
+    "url": "https://neomalesa.com/",
+    "image": "https://neomalesa.com/assets/og-image.png",
+    "jobTitle": "Technologist, Consultant, Algorithmic Trader",
+    "worksFor": {
+      "@type": "Organization",
+      "name": "University of Papua New Guinea"
+    },
+    "affiliation": {
+      "@type": "Organization",
+      "name": "Abide Tech"
+    },
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Port Moresby",
+      "addressCountry": "PG"
+    },
+    "sameAs": [
+      "https://x.com/n30dyn4m1c",
+      "https://medium.com/@n30dyn4m1c",
+      "https://github.com/n30dyn4m1c",
+      "https://www.tiktok.com/@n30dyn4m1c"
+    ]
+  }
+  </script>
+
   <noscript>
     <style>
-      [data-reveal], [data-gsap-reveal], .project-card, .connect__link { opacity: 1 !important; }
+      [data-reveal], [data-gsap-reveal], .connect__link { opacity: 1 !important; }
     </style>
   </noscript>
 </head>
 <body>
-
-  <!-- Theme toggle — fixed, keyboard-accessible -->
-  <button
-    class="theme-toggle"
-    id="themeToggle"
-    aria-label="Switch to dark mode"
-    title="Toggle theme"
-  >
-    <!-- Sun icon (visible in dark mode — click to go light) -->
-    <svg class="icon icon--sun" aria-hidden="true" viewBox="0 0 24 24" fill="none"
-         stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-      <circle cx="12" cy="12" r="5"/>
-      <line x1="12" y1="1" x2="12" y2="3"/>
-      <line x1="12" y1="21" x2="12" y2="23"/>
-      <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/>
-      <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/>
-      <line x1="1" y1="12" x2="3" y2="12"/>
-      <line x1="21" y1="12" x2="23" y2="12"/>
-      <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/>
-      <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
-    </svg>
-    <!-- Moon icon (visible in light mode — click to go dark) -->
-    <svg class="icon icon--moon" aria-hidden="true" viewBox="0 0 24 24" fill="none"
-         stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-      <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
-    </svg>
-  </button>
 
   <main>
 
     <!-- ===== HERO ===== -->
     <section class="hero" id="hero" aria-label="Introduction">
 
-      <!-- Resonating wave canvas — purely decorative, behind all content -->
-      <canvas class="hero__canvas" id="heroCanvas" aria-hidden="true"></canvas>
+      <!-- Text column -->
+      <div class="hero__text">
 
-      <div class="hero__inner">
+        <!-- Slow horizon canvas — purely decorative, behind the text -->
+        <canvas class="hero__canvas" id="heroCanvas" aria-hidden="true"></canvas>
 
-        <p class="hero__handle" data-reveal="0">$N30 &middot; @n30dyn4m1c</p>
+        <div class="hero__inner">
 
-        <h1 class="hero__name" data-reveal="1" aria-label="Neo Malesa">
-          <span class="name-line">Neo</span>
-          <span class="name-line">Malesa</span>
-        </h1>
+          <p class="hero__kicker" data-reveal="0">Port Moresby &middot; Papua New Guinea</p>
 
-        <p
-          class="hero__manifesto"
-          data-reveal="2"
-          aria-label="Super Colossal, Prolific Polymath, Maximum Execution"
-        >
-          <span class="manifesto-chunk">Super Colossal</span><span class="pipe" aria-hidden="true">|</span><span
-            class="manifesto-chunk">Prolific Polymath</span><span class="pipe" aria-hidden="true">|</span><span
-            class="manifesto-chunk">Maximum Execution</span>
-        </p>
+          <h1 class="hero__name" data-reveal="1" aria-label="Neo Malesa">
+            <span class="name-line">Neo</span>
+            <span class="name-line">Malesa</span>
+          </h1>
 
-        <p class="hero__descriptor" data-reveal="3">
-          Technologist, consultant, and algorithmic trader.
-        </p>
+          <span class="hero__rule" data-reveal="2" aria-hidden="true"></span>
 
-        <span class="hero__location pill" data-reveal="4" role="note">
-          <span aria-hidden="true">📍</span> Port Moresby, PNG
-        </span>
+          <p class="hero__role" data-reveal="3">
+            Technologist &middot; Consultant &middot; Algorithmic Trader
+          </p>
 
+        </div>
       </div>
+
+      <!-- Portrait column -->
+      <figure class="hero__portrait" data-reveal="2">
+        <img
+          class="hero__portrait-img"
+          src="assets/images/neo_profilepic.jpg"
+          alt="Portrait of Neo Malesa"
+          width="1799"
+          height="1799"
+          decoding="async"
+        />
+      </figure>
+
     </section>
 
 
@@ -110,16 +142,21 @@
     <section class="section section--about" id="about" aria-labelledby="about-heading">
       <div class="section__inner">
 
-        <h2 class="section__heading" id="about-heading" data-gsap-reveal>About</h2>
+        <h2 class="section__heading" id="about-heading" data-gsap-reveal>
+          <span class="section__index" aria-hidden="true">I</span>
+          About
+        </h2>
 
         <div class="about__body">
           <p data-gsap-reveal>
-            Work across software, applied AI, and the markets. Online Services at the University of
-            Papua New Guinea. AbideTech — an independent consulting practice.
+            Neo Malesa works at the meeting point of software, applied intelligence, and the
+            markets. He leads Online Services at the University of Papua New Guinea and directs
+            Abide Tech, an independent consulting practice.
           </p>
           <p data-gsap-reveal>
-            The reading runs wider than the work: biblical languages, the history and institutions
-            of Papua New Guinea. Different subjects, one method — disciplined enquiry, executed.
+            His study extends well beyond the work — the biblical languages, the history and
+            institutions of Papua New Guinea. Different subjects, a single method: disciplined
+            enquiry, carried through to execution.
           </p>
         </div>
 
@@ -131,75 +168,25 @@
     <section class="section section--work" id="work" aria-labelledby="work-heading">
       <div class="section__inner">
 
-        <h2 class="section__heading" id="work-heading" data-gsap-reveal>Work</h2>
+        <h2 class="section__heading" id="work-heading" data-gsap-reveal>
+          <span class="section__index" aria-hidden="true">II</span>
+          Office &amp; Practice
+        </h2>
 
         <ul class="work__list" role="list">
           <li class="work__item" data-gsap-reveal>
             <p class="work__role">Online Services</p>
             <p class="work__org">University of Papua New Guinea</p>
-            <p class="work__desc">Leading the division's web and digital systems.</p>
+            <p class="work__desc">
+              Charged with the direction of the institution's web presence and digital systems.
+            </p>
           </li>
           <li class="work__item" data-gsap-reveal>
-            <p class="work__role">AbideTech</p>
+            <p class="work__role">Abide Tech</p>
             <p class="work__org">Independent Consulting Practice</p>
-            <p class="work__desc">Build, train, consult.</p>
-          </li>
-        </ul>
-
-      </div>
-    </section>
-
-
-    <!-- ===== PROJECTS ===== -->
-    <section class="section section--projects" id="projects" aria-labelledby="projects-heading">
-      <div class="section__inner">
-
-        <h2 class="section__heading" id="projects-heading" data-gsap-reveal>Projects</h2>
-
-        <ul class="projects__grid" role="list">
-          <li>
-            <a
-              href="#"
-              class="project-card"
-              aria-label="UPNG Website Redevelopment — A complete rebuild of a national university's web presence"
-            >
-              <h3 class="project-card__title">UPNG Website Redevelopment</h3>
-              <p class="project-card__desc">A complete rebuild of a national university's web presence.</p>
-              <span class="project-card__arrow" aria-hidden="true">→</span>
-            </a>
-          </li>
-          <li>
-            <a
-              href="#"
-              class="project-card"
-              aria-label="TFH Songbook — A fast, offline-capable worship lyric application"
-            >
-              <h3 class="project-card__title">TFH Songbook</h3>
-              <p class="project-card__desc">A fast, offline-capable worship lyric application.</p>
-              <span class="project-card__arrow" aria-hidden="true">→</span>
-            </a>
-          </li>
-          <li>
-            <a
-              href="#"
-              class="project-card"
-              aria-label="Trading Systems — Ichimoku and Turtle Expert Advisors for MetaTrader 5, validated through extensive backtesting"
-            >
-              <h3 class="project-card__title">Trading Systems</h3>
-              <p class="project-card__desc">Ichimoku and Turtle Expert Advisors for MetaTrader 5. Validated through extensive backtesting.</p>
-              <span class="project-card__arrow" aria-hidden="true">→</span>
-            </a>
-          </li>
-          <li>
-            <a
-              href="#"
-              class="project-card"
-              aria-label="AI Tooling — Custom agentic tools for research, planning, and analysis"
-            >
-              <h3 class="project-card__title">AI Tooling</h3>
-              <p class="project-card__desc">Custom agentic tools for research, planning, and analysis.</p>
-              <span class="project-card__arrow" aria-hidden="true">→</span>
-            </a>
+            <p class="work__desc">
+              Counsel and delivery across software, applied intelligence, and strategy.
+            </p>
           </li>
         </ul>
 
@@ -211,18 +198,21 @@
     <section class="section section--writing" id="writing" aria-labelledby="writing-heading">
       <div class="section__inner">
 
-        <h2 class="section__heading" id="writing-heading" data-gsap-reveal>Writing</h2>
+        <h2 class="section__heading" id="writing-heading" data-gsap-reveal>
+          <span class="section__index" aria-hidden="true">III</span>
+          Writing
+        </h2>
 
         <div class="writing__body" data-gsap-reveal>
           <p class="writing__lead">
-            Essays published under $N30. Three subjects: the culture and history of Papua New
-            Guinea, emerging technology, and the markets.
+            Essays on three subjects: the culture and history of Papua New Guinea, emerging
+            technology, and the markets.
           </p>
           <p class="writing__sub">
-            Reference work — written to fill gaps in the record.
+            Written as reference — to fill gaps in the record, and to set them down with care.
           </p>
-          <a href="#" class="writing__cta" aria-label="Read essays on Medium (opens Medium)">
-            Read on Medium <span aria-hidden="true">→</span>
+          <a href="https://medium.com/@n30dyn4m1c" class="writing__cta" target="_blank" rel="noopener noreferrer" aria-label="Read the essays on Medium (opens in a new tab)">
+            Read the essays <span aria-hidden="true">→</span>
           </a>
         </div>
 
@@ -234,36 +224,33 @@
     <section class="section section--connect" id="connect" aria-labelledby="connect-heading">
       <div class="section__inner">
 
-        <h2 class="section__heading" id="connect-heading" data-gsap-reveal>Connect</h2>
+        <h2 class="section__heading" id="connect-heading" data-gsap-reveal>
+          <span class="section__index" aria-hidden="true">IV</span>
+          Correspondence
+        </h2>
 
         <ul class="connect__list" role="list">
           <li>
-            <a href="#" class="connect__link" aria-label="Follow on X (formerly Twitter)">
+            <a href="https://x.com/n30dyn4m1c" class="connect__link" target="_blank" rel="noopener noreferrer" aria-label="Follow on X (opens in a new tab)">
               <span>X</span>
               <span class="connect__arrow" aria-hidden="true">→</span>
             </a>
           </li>
           <li>
-            <a href="#" class="connect__link" aria-label="Read on Medium">
+            <a href="https://medium.com/@n30dyn4m1c" class="connect__link" target="_blank" rel="noopener noreferrer" aria-label="Read on Medium (opens in a new tab)">
               <span>Medium</span>
               <span class="connect__arrow" aria-hidden="true">→</span>
             </a>
           </li>
           <li>
-            <a href="#" class="connect__link" aria-label="View code on GitHub">
+            <a href="https://github.com/n30dyn4m1c" class="connect__link" target="_blank" rel="noopener noreferrer" aria-label="View code on GitHub (opens in a new tab)">
               <span>GitHub</span>
               <span class="connect__arrow" aria-hidden="true">→</span>
             </a>
           </li>
           <li>
-            <a href="#" class="connect__link" aria-label="Watch on TikTok">
+            <a href="https://www.tiktok.com/@n30dyn4m1c" class="connect__link" target="_blank" rel="noopener noreferrer" aria-label="Watch on TikTok (opens in a new tab)">
               <span>TikTok</span>
-              <span class="connect__arrow" aria-hidden="true">→</span>
-            </a>
-          </li>
-          <li>
-            <a href="#" class="connect__link" aria-label="Message on WhatsApp">
-              <span>WhatsApp</span>
               <span class="connect__arrow" aria-hidden="true">→</span>
             </a>
           </li>
@@ -278,7 +265,7 @@
   <!-- ===== FOOTER ===== -->
   <footer class="footer" role="contentinfo">
     <div class="footer__inner">
-      <p class="footer__copy">© 2026 Neo Malesa &middot; Port Moresby, Papua New Guinea</p>
+      <p class="footer__copy">© <span id="year">2026</span> Neo Malesa &middot; Port Moresby, Papua New Guinea</p>
       <a href="#hero" class="back-to-top" aria-label="Back to top of page">
         <span aria-hidden="true">↑</span> Top
       </a>

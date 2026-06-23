@@ -49,15 +49,25 @@ Once the domain is purchased:
 ## Structure
 
 ```
-index.html        entry point — all sections on a single page
-css/style.css     design tokens, all styles, both themes
-js/main.js        theme toggle, wave animation, hero reveals, GSAP scroll animations
-assets/           images (lazy-loaded when added)
-CNAME             custom domain — leave empty until domain is ready
+index.html               entry point — all sections on a single page
+404.html                 branded not-found page (served by GitHub Pages)
+css/style.css            design tokens and all styles (single light scheme)
+js/main.js               horizon canvas, hero reveals, GSAP scroll animations, footer year
+assets/images/           photography — neo_profilepic.jpg is the hero portrait
+assets/og-image.png      1200×630 social link-preview card
+CNAME                    custom domain — leave empty until domain is ready
 ```
+
+To change the hero portrait, replace `assets/images/neo_profilepic.jpg` (a
+square image works best) and update the `width`/`height` on the `.hero__portrait-img`
+in `index.html`. Regenerate `assets/og-image.png` if the photo changes.
+
+The canonical URL and the Open Graph / Twitter image URLs in `index.html` point to
+`https://neomalesa.com/`. Update them if the site is hosted elsewhere.
 
 ## Stack
 
-- **Fonts** — Barlow Condensed (display), Space Grotesk (body) via Google Fonts
+- **Fonts** — Cormorant Garamond (display), Spectral (body) via Google Fonts
 - **Animation** — GSAP 3 + ScrollTrigger (CDN, the only external dependency)
+- **SEO** — Open Graph + Twitter cards, canonical URL, JSON-LD `Person` schema
 - No build tools, no `node_modules`

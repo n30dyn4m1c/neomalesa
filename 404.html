@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Not Found — Neo Malesa</title>
+  <meta name="robots" content="noindex" />
+  <meta name="theme-color" content="#FFFFFF" />
+
+  <link
+    rel="icon"
+    href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><circle cx='50' cy='50' r='44' fill='none' stroke='%238A6A1F' stroke-width='4'/><text x='50' y='52' font-family='Georgia,serif' font-size='52' font-weight='600' fill='%238A6A1F' text-anchor='middle' dominant-baseline='central'>N</text></svg>"
+  />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Spectral:ital,wght@0,400;1,400&display=swap"
+    rel="stylesheet"
+  />
+
+  <style>
+    :root {
+      --color-bg: #FFFFFF;
+      --color-ink: #16191E;
+      --color-ink-muted: #5A5E66;
+      --color-accent: #8A6A1F;
+      --font-display: 'Cormorant Garamond', Georgia, serif;
+      --font-body: 'Spectral', Georgia, serif;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      min-height: 100svh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem;
+      background: var(--color-bg);
+      color: var(--color-ink);
+      font-family: var(--font-body);
+      -webkit-font-smoothing: antialiased;
+    }
+    .nf { max-width: 32rem; text-align: center; }
+    .nf__code {
+      font-family: var(--font-body);
+      font-size: 0.75rem;
+      font-weight: 500;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--color-accent);
+      margin-bottom: 1.5rem;
+    }
+    .nf__title {
+      font-family: var(--font-display);
+      font-size: clamp(2.5rem, 8vw, 4.5rem);
+      font-weight: 600;
+      text-transform: uppercase;
+      line-height: 0.95;
+      margin-bottom: 1.25rem;
+    }
+    .nf__body {
+      font-size: 1.1rem;
+      font-style: italic;
+      color: var(--color-ink-muted);
+      line-height: 1.7;
+      margin-bottom: 2.25rem;
+    }
+    .nf__home {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5em;
+      font-family: var(--font-display);
+      font-size: 1.4rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      color: var(--color-accent);
+      text-decoration: none;
+      border-bottom: 1.5px solid currentColor;
+      padding-bottom: 0.1em;
+      transition: opacity 0.2s ease;
+    }
+    .nf__home:hover { opacity: 0.7; }
+    .nf__home:focus-visible {
+      outline: 2px solid var(--color-accent);
+      outline-offset: 4px;
+    }
+  </style>
+</head>
+<body>
+  <main class="nf">
+    <p class="nf__code">Error 404</p>
+    <h1 class="nf__title">Page Not Found</h1>
+    <p class="nf__body">The page you sought is not in the record.</p>
+    <a class="nf__home" href="/">Return home <span aria-hidden="true">→</span></a>
+  </main>
+</body>
+</html>

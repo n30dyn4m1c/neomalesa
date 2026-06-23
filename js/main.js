@@ -1,28 +1,11 @@
 /* ============================================================
-   THEME TOGGLE
+   FOOTER YEAR — keep the copyright current
    ============================================================ */
 
-const html = document.documentElement;
-const themeToggle = document.getElementById('themeToggle');
-
-function applyTheme(theme) {
-  html.setAttribute('data-theme', theme);
-  localStorage.setItem('theme', theme);
-  themeToggle.setAttribute(
-    'aria-label',
-    theme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode'
-  );
+const yearEl = document.getElementById('year');
+if (yearEl) {
+  yearEl.textContent = new Date().getFullYear();
 }
-
-// Sync aria-label with whatever the inline script already set
-applyTheme(html.getAttribute('data-theme') || 'light');
-
-themeToggle.addEventListener('click', () => {
-  const next = html.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
-  applyTheme(next);
-  // Re-read accent RGB for wave on theme change
-  if (wave) wave.refreshColor();
-});
 
 
 /* ============================================================
@@ -49,8 +32,8 @@ function initReveal() {
 /* ============================================================
    GSAP SCROLL ANIMATIONS
    Gated behind prefers-reduced-motion and GSAP availability.
-   Reveals section headings, body blocks, project cards, and
-   connect links as they scroll into view.
+   Reveals section headings, body blocks, and connect links as
+   they scroll into view.
    ============================================================ */
 
 function initScrollAnimations() {
@@ -58,7 +41,7 @@ function initScrollAnimations() {
 
   // If motion is off or GSAP failed to load, unhide everything immediately
   if (prefersReduced || typeof gsap === 'undefined' || typeof ScrollTrigger === 'undefined') {
-    document.querySelectorAll('[data-gsap-reveal], .project-card, .connect__link').forEach((el) => {
+    document.querySelectorAll('[data-gsap-reveal], .connect__link').forEach((el) => {
       el.style.opacity = '1';
     });
     return;
@@ -84,26 +67,6 @@ function initScrollAnimations() {
     );
   });
 
-  // Project cards — staggered from the grid trigger
-  const projectsGrid = document.querySelector('.projects__grid');
-  if (projectsGrid) {
-    gsap.fromTo(
-      '.project-card',
-      { opacity: 0, y: 28 },
-      {
-        opacity: 1,
-        y: 0,
-        duration: 0.7,
-        ease: 'power3.out',
-        stagger: 0.1,
-        scrollTrigger: {
-          trigger: projectsGrid,
-          start: 'top 84%',
-        },
-      }
-    );
-  }
-
   // Connect links — staggered slide-in from left
   const connectList = document.querySelector('.connect__list');
   if (connectList) {
@@ -127,8 +90,9 @@ function initScrollAnimations() {
 
 
 /* ============================================================
-   RESONATING WAVE CANVAS ANIMATION
-   Multiple layered sine waves rendered in the gold accent.
+   SLOW HORIZON CANVAS ANIMATION
+   A few low, slow sine lines in the gold accent — a quiet,
+   solemn undertone behind the hero rather than a lively wave.
    Positioned behind the hero text. Pauses when tab is hidden.
    Gated behind prefers-reduced-motion in init.
    ============================================================ */
@@ -141,13 +105,14 @@ class ResonatingWave {
     this.ctx = canvas.getContext('2d');
     this.tick = 0;
     this.animId = null;
+    this.dpr = Math.min(window.devicePixelRatio || 1, 2);
     this.rgb = this._readAccentRgb();
 
+    // Lower amplitudes, slower speeds, restrained opacity — measured, not animated.
     this.layers = [
-      { amp: 30,  freq: 0.0070, phase: 0.0,  speed: 0.013, opacity: 0.38, width: 1.8 },
-      { amp: 18,  freq: 0.0115, phase: 2.1,  speed: 0.020, opacity: 0.22, width: 1.2 },
-      { amp: 46,  freq: 0.0038, phase: 4.6,  speed: 0.008, opacity: 0.12, width: 2.8 },
-      { amp: 11,  freq: 0.0190, phase: 1.3,  speed: 0.028, opacity: 0.16, width: 0.9 },
+      { amp: 22,  freq: 0.0060, phase: 0.0,  speed: 0.0050, opacity: 0.16, width: 1.4 },
+      { amp: 13,  freq: 0.0100, phase: 2.1,  speed: 0.0075, opacity: 0.09, width: 1.0 },
+      { amp: 40,  freq: 0.0032, phase: 4.6,  speed: 0.0032, opacity: 0.06, width: 2.2 },
     ];
 
     this._resize();
@@ -155,25 +120,30 @@ class ResonatingWave {
   }
 
   _readAccentRgb() {
-    const val = getComputedStyle(html)
+    const val = getComputedStyle(document.documentElement)
       .getPropertyValue('--color-accent-rgb')
       .trim();
-    return val || '166, 124, 34';
-  }
-
-  refreshColor() {
-    this.rgb = this._readAccentRgb();
+    return val || '138, 106, 31';
   }
 
   _resize() {
-    const { canvas } = this;
-    canvas.width  = canvas.offsetWidth  || canvas.parentElement.offsetWidth;
-    canvas.height = canvas.offsetHeight || canvas.parentElement.offsetHeight;
+    const { canvas, ctx, dpr } = this;
+    const w = canvas.offsetWidth  || canvas.parentElement.offsetWidth;
+    const h = canvas.offsetHeight || canvas.parentElement.offsetHeight;
+
+    // Back the canvas at device resolution so lines stay crisp on HiDPI screens
+    canvas.width  = Math.round(w * dpr);
+    canvas.height = Math.round(h * dpr);
+
+    // Draw in CSS pixels; the transform maps them to device pixels
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+
+    this.cssWidth  = w;
+    this.cssHeight = h;
   }
 
   _draw() {
-    const { ctx, canvas, layers, tick, rgb } = this;
-    const { width, height } = canvas;
+    const { ctx, layers, tick, rgb, cssWidth: width, cssHeight: height } = this;
 
     ctx.clearRect(0, 0, width, height);
 
@@ -236,13 +206,26 @@ document.addEventListener('DOMContentLoaded', () => {
   initReveal();
   initScrollAnimations();
 
-  // Wave — only if motion is acceptable
-  const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)');
-  if (!prefersReduced.matches) {
-    const canvas = document.getElementById('heroCanvas');
-    if (canvas) {
-      wave = new ResonatingWave(canvas);
-      wave.start();
-    }
+  const motionQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
+  const canvas = document.getElementById('heroCanvas');
+
+  function startWave() {
+    if (wave || !canvas) return;
+    wave = new ResonatingWave(canvas);
+    wave.start();
   }
+
+  // Wave — only if motion is acceptable
+  if (!motionQuery.matches) {
+    startWave();
+  }
+
+  // Respond if the user changes their motion preference mid-session
+  motionQuery.addEventListener('change', (e) => {
+    if (e.matches) {
+      if (wave) wave.stop();
+    } else {
+      wave ? wave.start() : startWave();
+    }
+  });
 });
