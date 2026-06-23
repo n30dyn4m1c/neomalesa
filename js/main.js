@@ -20,7 +20,7 @@ function initReveal() {
 
   elements.forEach((el) => {
     const index = parseInt(el.getAttribute('data-reveal'), 10) || 0;
-    const delay = prefersReduced ? 0 : 180 + index * 130;
+    const delay = prefersReduced ? 0 : 220 + index * 180;
 
     setTimeout(() => {
       el.classList.add('is-visible');
@@ -53,11 +53,11 @@ function initScrollAnimations() {
   document.querySelectorAll('[data-gsap-reveal]').forEach((el) => {
     gsap.fromTo(
       el,
-      { opacity: 0, y: 36 },
+      { opacity: 0, y: 28 },
       {
         opacity: 1,
         y: 0,
-        duration: 0.8,
+        duration: 1.1,
         ease: 'power3.out',
         scrollTrigger: {
           trigger: el,
@@ -76,9 +76,9 @@ function initScrollAnimations() {
       {
         opacity: 1,
         x: 0,
-        duration: 0.55,
+        duration: 0.85,
         ease: 'power3.out',
-        stagger: 0.07,
+        stagger: 0.1,
         scrollTrigger: {
           trigger: connectList,
           start: 'top 86%',
