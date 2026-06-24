@@ -103,7 +103,9 @@ img, canvas, svg { display: block; }
 .hero {
   position: relative;
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
+  align-items: stretch;
+  min-height: 60vw;
   overflow: hidden;
   background-color: var(--color-bg);
   border-bottom: 1px solid var(--color-border);
@@ -112,14 +114,14 @@ img, canvas, svg { display: block; }
 /* ---- Text column ---- */
 .hero__text {
   position: relative;
-  flex: 1 1 auto;
+  flex: 1 1 55%;
   display: flex;
   flex-direction: column;
   justify-content: center;
   padding:
-    var(--hero-pad-top)
-    var(--content-pad-x)
-    var(--hero-pad-bottom);
+    clamp(1.25rem, 4vw, var(--hero-pad-top))
+    clamp(0.875rem, 3.5vw, var(--content-pad-x))
+    clamp(1.25rem, 4vw, var(--hero-pad-bottom));
 }
 
 /* Slow horizon canvas — hidden */
@@ -137,9 +139,8 @@ img, canvas, svg { display: block; }
 .hero__portrait {
   position: relative;
   z-index: 1;
-  flex: 0 0 auto;
-  width: 100%;
-  aspect-ratio: 4 / 3;
+  flex: 0 0 42%;
+  align-self: stretch;
   overflow: hidden;
   margin: 0;
   background: var(--color-surface);
@@ -160,21 +161,24 @@ img, canvas, svg { display: block; }
   object-position: center 20%;
 }
 
-/* Desktop: side-by-side, portrait fills full right column height */
+/* Mobile: scale name down so it fits the narrower text column */
+@media (max-width: 899px) {
+  .hero__name {
+    font-size: clamp(1.6rem, 8vw, 3.2rem);
+  }
+  .hero__kicker {
+    font-size: clamp(0.6rem, 1.8vw, 0.72rem);
+    margin-bottom: clamp(0.5rem, 2vw, 1.25rem);
+  }
+  .hero__role {
+    font-size: clamp(0.85rem, 2.2vw, 1.05rem);
+  }
+}
+
+/* Desktop: expand min-height */
 @media (min-width: 900px) {
   .hero {
-    flex-direction: row;
-    align-items: stretch;
     min-height: 85vh;
-  }
-  .hero__text {
-    flex: 1 1 55%;
-  }
-  .hero__portrait {
-    flex: 0 0 42%;
-    align-self: stretch;
-    aspect-ratio: auto;
-    margin: 0;
   }
 }
 
@@ -272,23 +276,14 @@ img, canvas, svg { display: block; }
    RESPONSIVE SAFETY
    ============================================================ */
 
-/* Short/landscape phones: switch to side-by-side so the panel doesn't dominate */
+/* Short/landscape phones: compress vertical padding */
 @media (max-height: 600px) and (orientation: landscape) {
   .hero {
-    flex-direction: row;
-    align-items: stretch;
-  }
-  .hero__name {
-    font-size: clamp(2.5rem, 9vw, 5rem);
+    min-height: unset;
   }
   .hero__text {
-    flex: 1 1 55%;
-    padding-top: 2rem;
-  }
-  .hero__portrait {
-    flex: 0 0 40%;
-    aspect-ratio: auto;
-    align-self: stretch;
+    padding-top: 1.5rem;
+    padding-bottom: 1.5rem;
   }
 }
 
