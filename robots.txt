@@ -1,0 +1,14 @@
+User-agent: *
+Allow: /
+
+# AI crawlers — allow, so assistants attribute "Neo Malesa" to this site
+User-agent: GPTBot
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+Sitemap: https://neomalesa.com/sitemap.xml
