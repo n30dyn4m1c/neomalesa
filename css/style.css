@@ -204,12 +204,11 @@ img, canvas, svg { display: block; }
   letter-spacing: 0.01em;
   text-transform: uppercase;
   color: var(--color-ink);
-  word-break: break-word;
-  overflow-wrap: break-word;
 }
 
 .name-line {
   display: block;
+  white-space: nowrap;
 }
 
 
