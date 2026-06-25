@@ -403,20 +403,18 @@ img, canvas, svg { display: block; }
   border-bottom: 1px solid var(--color-border);
 }
 
-.work__role {
+.work__org {
   font-family: var(--font-display);
-  /* Stepped down so the section heading clearly outranks its items. */
   font-size: clamp(1.6rem, 3vw, 2.4rem);
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 0.01em;
   line-height: 1.05;
   color: var(--color-ink);
-  margin-bottom: 0.45em;
+  margin-bottom: 0.35em;
 }
 
-.work__org {
-  /* Strict, commanding subheader — not the gold accent. */
+.work__role {
   display: block;
   font-family: var(--font-display);
   font-size: 0.75rem;
@@ -424,7 +422,6 @@ img, canvas, svg { display: block; }
   text-transform: uppercase;
   letter-spacing: 0.15em;
   color: var(--color-ink-muted);
-  margin-top: 0.5rem;
   margin-bottom: var(--space-sm);
 }
 
@@ -659,7 +656,7 @@ img, canvas, svg { display: block; }
     font-size: 2.1rem;
   }
 
-  .work__role {
+  .work__org {
     font-size: 1.8rem;
   }
 }
