@@ -1,6 +1,6 @@
 /* ============================================================
    DESIGN TOKENS — CSS CUSTOM PROPERTIES
-   "Cold statehouse" register, on white. Single light scheme.
+   "Cold statehouse" register on near-black. Single dark scheme.
    ============================================================ */
 
 :root {
@@ -82,7 +82,7 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-img, canvas, svg { display: block; }
+img, picture, canvas, svg { display: block; }
 
 
 /* ============================================================
@@ -97,16 +97,15 @@ img, canvas, svg { display: block; }
 
 
 /* ============================================================
-   HERO SECTION — split: text column + full-height portrait
+   HERO SECTION
+   Mobile: stacked — full-width portrait above the text.
+   Desktop (≥900px): split — text column + full-height portrait.
    ============================================================ */
 
 .hero {
   position: relative;
   display: flex;
-  flex-direction: row;
-  align-items: stretch;
-  min-height: 60vw;
-  overflow: hidden;
+  flex-direction: column;
   background-color: var(--color-bg);
   border-bottom: 1px solid var(--color-border);
 }
@@ -114,19 +113,13 @@ img, canvas, svg { display: block; }
 /* ---- Text column ---- */
 .hero__text {
   position: relative;
-  flex: 1 1 55%;
   display: flex;
   flex-direction: column;
   justify-content: center;
   padding:
-    clamp(1.25rem, 4vw, var(--hero-pad-top))
-    clamp(0.875rem, 3.5vw, var(--content-pad-x))
-    clamp(1.25rem, 4vw, var(--hero-pad-bottom));
-}
-
-/* Slow horizon canvas — hidden */
-.hero__canvas {
-  display: none;
+    clamp(2.25rem, 9vw, var(--hero-pad-top))
+    clamp(1.25rem, 5vw, var(--content-pad-x))
+    clamp(2.25rem, 9vw, var(--hero-pad-bottom));
 }
 
 .hero__inner {
@@ -135,12 +128,13 @@ img, canvas, svg { display: block; }
   width: 100%;
 }
 
-/* ---- Portrait column — full-bleed panel ---- */
+/* ---- Portrait — full-width panel above the text on mobile ---- */
 .hero__portrait {
   position: relative;
   z-index: 1;
-  flex: 0 0 42%;
-  align-self: stretch;
+  order: -1;
+  width: 100%;
+  aspect-ratio: 1 / 1;
   overflow: hidden;
   margin: 0;
   background: var(--color-surface);
@@ -154,6 +148,10 @@ img, canvas, svg { display: block; }
   pointer-events: none;
 }
 
+.hero__portrait picture {
+  height: 100%;
+}
+
 .hero__portrait-img {
   width: 100%;
   height: 100%;
@@ -161,24 +159,41 @@ img, canvas, svg { display: block; }
   object-position: center 20%;
 }
 
-/* Mobile: scale name down so it fits the narrower text column */
+/* Mobile: full-width text column — the name can stay monumental */
 @media (max-width: 899px) {
   .hero__name {
-    font-size: clamp(1.6rem, 8vw, 3.2rem);
+    font-size: clamp(3rem, 13.5vw, 5rem);
   }
   .hero__kicker {
-    font-size: clamp(0.6rem, 1.8vw, 0.72rem);
-    margin-bottom: clamp(0.5rem, 2vw, 1.25rem);
+    font-size: clamp(0.65rem, 2.6vw, 0.8rem);
+    margin-bottom: clamp(0.75rem, 3vw, 1.25rem);
   }
   .hero__role {
-    font-size: clamp(0.85rem, 2.2vw, 1.05rem);
+    font-size: clamp(0.95rem, 3.2vw, 1.2rem);
   }
 }
 
-/* Desktop: expand min-height */
+/* Desktop: side-by-side split, portrait stretching the full height */
 @media (min-width: 900px) {
   .hero {
+    flex-direction: row;
+    align-items: stretch;
     min-height: 85vh;
+    overflow: hidden;
+  }
+  .hero__text {
+    flex: 1 1 55%;
+    padding:
+      clamp(1.25rem, 4vw, var(--hero-pad-top))
+      clamp(0.875rem, 3.5vw, var(--content-pad-x))
+      clamp(1.25rem, 4vw, var(--hero-pad-bottom));
+  }
+  .hero__portrait {
+    order: 0;
+    flex: 0 0 42%;
+    width: auto;
+    aspect-ratio: auto;
+    align-self: stretch;
   }
 }
 
@@ -251,8 +266,10 @@ img, canvas, svg { display: block; }
   }
 }
 
-/* All reveal elements start invisible */
-[data-reveal] {
+/* Reveal elements start invisible only when JS is confirmed running
+   (the .js class is set by an inline script in <head>), so a failed
+   script or disabled JS never leaves the page blank. */
+.js [data-reveal] {
   opacity: 0;
 }
 
@@ -291,14 +308,14 @@ img, canvas, svg { display: block; }
    GSAP SCROLL REVEAL — initial hidden state
    ============================================================ */
 
-[data-gsap-reveal],
-.connect__list .connect__link {
+.js [data-gsap-reveal],
+.js .connect__list .connect__link {
   opacity: 0;
 }
 
 @media (prefers-reduced-motion: reduce) {
-  [data-gsap-reveal],
-  .connect__list .connect__link {
+  .js [data-gsap-reveal],
+  .js .connect__list .connect__link {
     opacity: 1 !important;
   }
 }
@@ -431,12 +448,29 @@ img, canvas, svg { display: block; }
   max-width: 52ch;
 }
 
-/* Desktop: the two posts sit side by side, sharing a single top hairline. */
+/* Desktop: UPNG leads as the large block on the left, spanning both
+   rows; the two smaller posts stack in the right column. */
 @media (min-width: 900px) {
   .work__list {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1.4fr 1fr;
     column-gap: clamp(2.5rem, 5vw, 5rem);
+  }
+  .work__item--lead {
+    grid-column: 1;
+    grid-row: 1 / span 2;
+    max-width: none;
+    padding-right: clamp(1rem, 3vw, 3rem);
+  }
+  .work__item--lead .work__org {
+    font-size: clamp(2.2rem, 3.8vw, 3.4rem);
+  }
+  .work__item--lead .work__desc {
+    font-size: 1.05rem;
+    max-width: 56ch;
+  }
+  .work__item:not(.work__item--lead) {
+    grid-column: 2;
   }
   .work__item:last-child {
     border-bottom: none;
@@ -448,23 +482,11 @@ img, canvas, svg { display: block; }
    WRITING
    ============================================================ */
 
-.writing__body {
-  max-width: 54ch;
-}
-
 .writing__lead {
   font-size: clamp(1.1rem, 1.7vw, 1.3rem);
   color: var(--color-ink);
   line-height: 1.8;
   margin-bottom: var(--space-sm);
-}
-
-.writing__sub {
-  font-size: clamp(1.1rem, 1.7vw, 1.3rem);
-  font-style: italic;
-  color: var(--color-ink-muted);
-  line-height: 1.8;
-  margin-bottom: var(--space-lg);
 }
 
 .writing__cta {
@@ -508,20 +530,6 @@ img, canvas, svg { display: block; }
     transition: none;
     transform: none !important;
   }
-}
-
-/* Desktop: prose on the left, the call to action carried out to the right. */
-@media (min-width: 900px) {
-  .writing__body {
-    display: grid;
-    grid-template-columns: 1.4fr 1fr;
-    column-gap: clamp(2.5rem, 5vw, 5rem);
-    align-items: start;
-    max-width: none;
-  }
-  .writing__lead { grid-column: 1; grid-row: 1; }
-  .writing__sub  { grid-column: 1; grid-row: 2; margin-bottom: 0; }
-  .writing__cta  { grid-column: 2; grid-row: 1; align-self: start; }
 }
 
 
@@ -633,9 +641,10 @@ img, canvas, svg { display: block; }
   transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
 }
 
+/* Dark text on the brass fill — light-on-brass fails contrast */
 .back-to-top:hover {
   background-color: var(--color-accent);
-  color: var(--color-ink);
+  color: var(--color-bg);
   border-color: var(--color-accent);
 }
 
@@ -690,17 +699,28 @@ img, canvas, svg { display: block; }
 .capabilities__title {
   font-family: var(--font-body);
   font-size: 0.72rem;
-  font-weight: 600;
+  font-weight: 500;
   letter-spacing: 0.22em;
   text-transform: uppercase;
   color: var(--color-accent);
   margin-bottom: 1.25rem;
 }
 
-.capabilities__text {
+/* Ledger of disciplines — one per hairline row, easy to scan */
+.capabilities__list {
+  list-style: none;
+}
+
+.capabilities__list li {
   font-size: clamp(1rem, 1.5vw, 1.15rem);
   color: var(--color-ink);
-  line-height: 1.8;
+  line-height: 1.6;
+  padding-block: 0.65rem;
+  border-top: 1px solid var(--color-border);
+}
+
+.capabilities__list li:last-child {
+  border-bottom: 1px solid var(--color-border);
 }
 
 .credentials__list {
@@ -732,56 +752,11 @@ img, canvas, svg { display: block; }
 
 
 /* ============================================================
-   AREAS OF ENQUIRY
-   ============================================================ */
-
-.enquiry__body {
-  max-width: 54ch;
-}
-
-.enquiry__lead {
-  font-size: clamp(1rem, 1.5vw, 1.15rem);
-  font-style: italic;
-  color: var(--color-ink-muted);
-  line-height: 1.8;
-  margin-bottom: var(--space-md);
-}
-
-.enquiry__list {
-  list-style: none;
-  display: flex;
-  flex-direction: column;
-  gap: 1.25rem;
-}
-
-.enquiry__list li {
-  font-size: clamp(1rem, 1.5vw, 1.1rem);
-  color: var(--color-ink);
-  line-height: 1.7;
-  padding-left: 1.25rem;
-  border-left: 2px solid var(--color-border);
-}
-
-.enquiry__list strong {
-  color: var(--color-ink);
-  font-weight: 600;
-}
-
-
-/* ============================================================
    OPERATIONAL METHODOLOGY
    ============================================================ */
 
 .methodology__body {
   max-width: 64ch;
-}
-
-.methodology__lead {
-  font-size: clamp(1.05rem, 1.6vw, 1.2rem);
-  font-style: italic;
-  color: var(--color-ink-muted);
-  line-height: 1.8;
-  margin-bottom: var(--space-lg);
 }
 
 .methodology__list {
@@ -837,7 +812,7 @@ img, canvas, svg { display: block; }
 
 
 /* ============================================================
-   WRITING — ARTICLE DOSSIER
+   WRITING — INTRO + ARCHIVE LINK
    ============================================================ */
 
 .writing__intro {
@@ -845,57 +820,8 @@ img, canvas, svg { display: block; }
   margin-bottom: var(--space-lg);
 }
 
-.writing__articles {
-  list-style: none;
-  border-top: 1px solid var(--color-border);
-  margin-bottom: var(--space-lg);
-}
-
-.writing__article {
-  padding-block: clamp(1.5rem, 3vw, 2.25rem);
-  border-bottom: 1px solid var(--color-border);
-  max-width: 64ch;
-}
-
-.writing__article-title {
-  font-family: var(--font-display);
-  font-size: clamp(1.2rem, 2vw, 1.55rem);
-  font-weight: 600;
-  font-style: italic;
-  color: var(--color-ink);
-  line-height: 1.2;
-  margin-bottom: 0.6em;
-}
-
-.writing__article-desc {
-  font-size: clamp(0.9rem, 1.3vw, 1rem);
-  color: var(--color-ink-muted);
-  line-height: 1.65;
-}
-
 .writing__archive {
   display: flex;
-}
-
-@media (min-width: 900px) {
-  .writing__articles {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    border-top: 1px solid var(--color-border);
-  }
-  .writing__article {
-    border-bottom: none;
-    border-right: 1px solid var(--color-border);
-    padding-right: clamp(1.5rem, 3vw, 2.5rem);
-    max-width: none;
-  }
-  .writing__article:last-child {
-    border-right: none;
-    padding-right: 0;
-  }
-  .writing__article:not(:first-child) {
-    padding-left: clamp(1.5rem, 3vw, 2.5rem);
-  }
 }
 
 
@@ -950,38 +876,6 @@ img, canvas, svg { display: block; }
   line-height: 1.65;
 }
 
-.mandates__contact {
-  font-size: clamp(0.9rem, 1.3vw, 1rem);
-  color: var(--color-ink-muted);
-  line-height: 1.8;
-  border-top: 1px solid var(--color-border);
-  padding-top: var(--space-md);
-}
-
-.mandates__email {
-  display: inline-block;
-  margin-top: 0.4em;
-  font-family: var(--font-display);
-  font-size: clamp(1.1rem, 1.8vw, 1.4rem);
-  font-weight: 600;
-  color: var(--color-accent);
-  text-decoration: none;
-  border-bottom: 1px solid rgba(197, 168, 128, 0.4);
-  padding-bottom: 0.05em;
-  transition: border-color 0.2s ease, color 0.2s ease;
-}
-
-.mandates__email:hover {
-  color: var(--color-ink);
-  border-bottom-color: var(--color-ink);
-}
-
-.mandates__email:focus-visible {
-  outline: 2px solid var(--color-accent);
-  outline-offset: 4px;
-  border-radius: 2px;
-}
-
 @media (min-width: 900px) {
   .mandates__list {
     display: grid;
@@ -999,5 +893,69 @@ img, canvas, svg { display: block; }
   }
   .mandates__item:last-child {
     border-bottom: 1px solid var(--color-border);
+  }
+}
+
+
+/* ============================================================
+   SECTION RAIL — fixed roman-numeral index, desktop only.
+   Hidden over the hero; fades in once the reader scrolls past.
+   ============================================================ */
+
+.rail {
+  position: fixed;
+  right: clamp(1rem, 2vw, 2rem);
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 10;
+  display: none;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.5s ease;
+}
+
+@media (min-width: 1200px) {
+  .rail {
+    display: block;
+  }
+}
+
+.rail.is-visible {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.rail__list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  text-align: center;
+}
+
+.rail__link {
+  display: block;
+  padding: 0.1rem 0.4rem;
+  font-family: var(--font-body);
+  font-size: 0.68rem;
+  font-weight: 500;
+  letter-spacing: 0.18em;
+  color: var(--color-ink-muted);
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.rail__link:hover,
+.rail__link:focus-visible {
+  color: var(--color-accent);
+}
+
+.rail__link[aria-current='true'] {
+  color: var(--color-accent);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .rail {
+    transition: none;
   }
 }
