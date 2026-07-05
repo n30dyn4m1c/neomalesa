@@ -98,15 +98,14 @@ img, picture, canvas, svg { display: block; }
 
 /* ============================================================
    HERO SECTION
-   Mobile: split — text column + rectangular portrait, side by side.
+   Mobile: stacked — full-width portrait above the text.
    Desktop (≥900px): split — text column + full-height portrait.
    ============================================================ */
 
 .hero {
   position: relative;
   display: flex;
-  flex-direction: row;
-  align-items: center;
+  flex-direction: column;
   background-color: var(--color-bg);
   border-bottom: 1px solid var(--color-border);
 }
@@ -117,12 +116,10 @@ img, picture, canvas, svg { display: block; }
   display: flex;
   flex-direction: column;
   justify-content: center;
-  flex: 1 1 auto;
-  min-width: 0;
   padding:
-    clamp(1.5rem, 6vw, var(--hero-pad-top))
-    clamp(1rem, 4vw, var(--content-pad-x))
-    clamp(1.5rem, 6vw, var(--hero-pad-bottom));
+    clamp(2.25rem, 9vw, var(--hero-pad-top))
+    clamp(1.25rem, 5vw, var(--content-pad-x))
+    clamp(2.25rem, 9vw, var(--hero-pad-bottom));
 }
 
 .hero__inner {
@@ -131,18 +128,15 @@ img, picture, canvas, svg { display: block; }
   width: 100%;
 }
 
-/* ---- Portrait — rectangular panel beside the text on mobile ---- */
+/* ---- Portrait — full-width panel above the text on mobile ---- */
 .hero__portrait {
   position: relative;
   z-index: 1;
-  order: 0;
-  flex: 0 0 38%;
-  width: auto;
-  aspect-ratio: 3 / 4;
-  align-self: center;
+  order: -1;
+  width: 100%;
+  aspect-ratio: 1 / 1;
   overflow: hidden;
-  margin: 0 clamp(1rem, 4vw, 1.5rem) 0 0;
-  border-radius: 2px;
+  margin: 0;
   background: var(--color-surface);
 }
 
@@ -165,9 +159,24 @@ img, picture, canvas, svg { display: block; }
   object-position: center 20%;
 }
 
+/* Mobile: full-width text column — the name can stay monumental */
+@media (max-width: 899px) {
+  .hero__name {
+    font-size: clamp(3rem, 13.5vw, 5rem);
+  }
+  .hero__kicker {
+    font-size: clamp(0.65rem, 2.6vw, 0.8rem);
+    margin-bottom: clamp(0.75rem, 3vw, 1.25rem);
+  }
+  .hero__role {
+    font-size: clamp(0.95rem, 3.2vw, 1.2rem);
+  }
+}
+
 /* Desktop: side-by-side split, portrait stretching the full height */
 @media (min-width: 900px) {
   .hero {
+    flex-direction: row;
     align-items: stretch;
     min-height: 85vh;
     overflow: hidden;
@@ -180,11 +189,11 @@ img, picture, canvas, svg { display: block; }
       clamp(1.25rem, 4vw, var(--hero-pad-bottom));
   }
   .hero__portrait {
+    order: 0;
     flex: 0 0 42%;
+    width: auto;
     aspect-ratio: auto;
     align-self: stretch;
-    margin: 0;
-    border-radius: 0;
   }
 }
 
@@ -238,24 +247,6 @@ img, picture, canvas, svg { display: block; }
   color: var(--color-ink);
   line-height: 1.5;
   max-width: 40ch;
-}
-
-/* Mobile: text column shares the row with the portrait, so the name
-   scales against its own (narrower) column, not the full viewport. */
-@media (max-width: 899px) {
-  .hero__name {
-    font-size: clamp(1.7rem, 8.8vw, 3.1rem);
-  }
-  .hero__kicker {
-    font-size: clamp(0.6rem, 2.4vw, 0.75rem);
-    margin-bottom: clamp(0.6rem, 2.5vw, 1rem);
-  }
-  .hero__role {
-    font-size: clamp(0.8rem, 2.6vw, 1rem);
-  }
-  .hero__rule {
-    margin: clamp(0.9rem, 2vw, 1.5rem) 0 clamp(0.75rem, 1.5vw, 1.25rem);
-  }
 }
 
 
