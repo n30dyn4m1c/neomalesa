@@ -732,106 +732,96 @@ img, canvas, svg { display: block; }
 
 
 /* ============================================================
-   AREAS OF ENQUIRY
+   BUILT — Gemini Gems
    ============================================================ */
 
-.enquiry__body {
-  max-width: 54ch;
-}
-
-.enquiry__lead {
-  font-size: clamp(1rem, 1.5vw, 1.15rem);
-  font-style: italic;
-  color: var(--color-ink-muted);
-  line-height: 1.8;
-  margin-bottom: var(--space-md);
-}
-
-.enquiry__list {
-  list-style: none;
-  display: flex;
-  flex-direction: column;
-  gap: 1.25rem;
-}
-
-.enquiry__list li {
-  font-size: clamp(1rem, 1.5vw, 1.1rem);
-  color: var(--color-ink);
-  line-height: 1.7;
-  padding-left: 1.25rem;
-  border-left: 2px solid var(--color-border);
-}
-
-.enquiry__list strong {
-  color: var(--color-ink);
-  font-weight: 600;
-}
-
-
-/* ============================================================
-   OPERATIONAL METHODOLOGY
-   ============================================================ */
-
-.methodology__body {
-  max-width: 64ch;
-}
-
-.methodology__lead {
-  font-size: clamp(1.05rem, 1.6vw, 1.2rem);
-  font-style: italic;
-  color: var(--color-ink-muted);
-  line-height: 1.8;
+.built__intro {
   margin-bottom: var(--space-lg);
 }
 
-.methodology__list {
-  list-style: none;
-  display: flex;
-  flex-direction: column;
-  gap: 0;
+.built__lead {
+  font-size: clamp(1.05rem, 1.6vw, 1.2rem);
+  color: var(--color-ink-muted);
+  line-height: 1.8;
 }
 
-.methodology__item {
-  padding-block: clamp(1.5rem, 3vw, 2.25rem);
+.built__list {
+  list-style: none;
   border-top: 1px solid var(--color-border);
 }
 
-.methodology__item:last-child {
+.built__link {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: clamp(1rem, 3vw, 2.5rem);
+  padding-block: clamp(1.5rem, 3vw, 2.25rem);
   border-bottom: 1px solid var(--color-border);
+  text-decoration: none;
+  color: var(--color-ink);
+  transition: padding-left 0.2s ease, border-color 0.2s ease;
 }
 
-.methodology__title {
+.built__link:hover,
+.built__link:focus-visible {
+  padding-left: 1rem;
+  border-bottom-color: var(--color-ink);
+}
+
+.built__link:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 4px;
+  border-radius: 2px;
+}
+
+.built__title {
+  display: block;
   font-family: var(--font-display);
   font-size: clamp(1.2rem, 2vw, 1.6rem);
   font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 0.02em;
-  color: var(--color-accent);
-  margin-bottom: 0.5em;
+  color: var(--color-ink);
+  line-height: 1.2;
+  margin-bottom: 0.3em;
+  flex: 0 0 auto;
 }
 
-.methodology__desc {
-  font-size: clamp(0.95rem, 1.4vw, 1.05rem);
+.built__desc {
+  display: block;
+  font-size: clamp(0.9rem, 1.3vw, 1rem);
   color: var(--color-ink-muted);
-  line-height: 1.7;
+  line-height: 1.6;
+}
+
+.built__arrow {
+  font-size: 1.2rem;
+  color: var(--color-ink-muted);
+  flex-shrink: 0;
+  transition: transform 0.2s ease, color 0.2s ease;
+}
+
+.built__link:hover .built__arrow,
+.built__link:focus-visible .built__arrow {
+  color: var(--color-ink);
+  transform: translateX(5px);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .built__arrow {
+    transition: none;
+    transform: none !important;
+  }
 }
 
 @media (min-width: 900px) {
-  .methodology__body {
-    max-width: none;
+  .built__link {
+    align-items: baseline;
   }
-  .methodology__list {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    gap: 0;
-    column-gap: clamp(2.5rem, 4vw, 4rem);
+  .built__title {
+    width: 22rem;
+    margin-bottom: 0;
   }
-  .methodology__item {
-    border-top: 2px solid var(--color-accent);
-    border-bottom: none;
-  }
-  .methodology__item:last-child {
-    border-bottom: none;
+  .built__desc {
+    flex: 1 1 auto;
   }
 }
 
