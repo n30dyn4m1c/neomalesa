@@ -752,25 +752,25 @@ img, picture, canvas, svg { display: block; }
 
 
 /* ============================================================
-   BUILT — Gemini Gems
+   RESOURCES — free public tools
    ============================================================ */
 
-.built__intro {
+.resources__intro {
   margin-bottom: var(--space-lg);
 }
 
-.built__lead {
+.resources__lead {
   font-size: clamp(1.05rem, 1.6vw, 1.2rem);
   color: var(--color-ink-muted);
   line-height: 1.8;
 }
 
-.built__list {
+.resources__list {
   list-style: none;
   border-top: 1px solid var(--color-border);
 }
 
-.built__link {
+.resources__link {
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -782,19 +782,19 @@ img, picture, canvas, svg { display: block; }
   transition: padding-left 0.2s ease, border-color 0.2s ease;
 }
 
-.built__link:hover,
-.built__link:focus-visible {
+.resources__link:hover,
+.resources__link:focus-visible {
   padding-left: 1rem;
   border-bottom-color: var(--color-ink);
 }
 
-.built__link:focus-visible {
+.resources__link:focus-visible {
   outline: 2px solid var(--color-accent);
   outline-offset: 4px;
   border-radius: 2px;
 }
 
-.built__title {
+.resources__title {
   display: block;
   font-family: var(--font-display);
   font-size: clamp(1.2rem, 2vw, 1.6rem);
@@ -805,42 +805,42 @@ img, picture, canvas, svg { display: block; }
   flex: 0 0 auto;
 }
 
-.built__desc {
+.resources__desc {
   display: block;
   font-size: clamp(0.9rem, 1.3vw, 1rem);
   color: var(--color-ink-muted);
   line-height: 1.6;
 }
 
-.built__arrow {
+.resources__arrow {
   font-size: 1.2rem;
   color: var(--color-ink-muted);
   flex-shrink: 0;
   transition: transform 0.2s ease, color 0.2s ease;
 }
 
-.built__link:hover .built__arrow,
-.built__link:focus-visible .built__arrow {
+.resources__link:hover .resources__arrow,
+.resources__link:focus-visible .resources__arrow {
   color: var(--color-ink);
   transform: translateX(5px);
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .built__arrow {
+  .resources__arrow {
     transition: none;
     transform: none !important;
   }
 }
 
 @media (min-width: 900px) {
-  .built__link {
+  .resources__link {
     align-items: baseline;
   }
-  .built__title {
+  .resources__title {
     width: 22rem;
     margin-bottom: 0;
   }
-  .built__desc {
+  .resources__desc {
     flex: 1 1 auto;
   }
 }
