@@ -9,6 +9,68 @@ if (yearEl) {
 
 
 /* ============================================================
+   PORT MORESBY CLOCK
+   Local time in the site head — a quiet dossier detail.
+   ============================================================ */
+
+function initClock() {
+  const clock = document.getElementById('clock');
+  if (!clock) return;
+
+  let formatter;
+  try {
+    formatter = new Intl.DateTimeFormat('en-GB', {
+      timeZone: 'Pacific/Port_Moresby',
+      hour: '2-digit',
+      minute: '2-digit',
+      hourCycle: 'h23',
+    });
+  } catch (e) {
+    // Time zone data unavailable — hide the meta rather than show wrong time
+    clock.parentElement.style.display = 'none';
+    return;
+  }
+
+  const tick = () => {
+    clock.textContent = formatter.format(new Date());
+    clock.setAttribute('datetime', new Date().toISOString());
+  };
+  tick();
+  setInterval(tick, 30000);
+}
+
+
+/* ============================================================
+   READING PROGRESS — brass hairline scaling with scroll
+   ============================================================ */
+
+function initProgress() {
+  const bar = document.getElementById('progress');
+  if (!bar) return;
+
+  let queued = false;
+  const update = () => {
+    queued = false;
+    const max = document.documentElement.scrollHeight - window.innerHeight;
+    const ratio = max > 0 ? Math.min(window.scrollY / max, 1) : 0;
+    bar.style.transform = 'scaleX(' + ratio + ')';
+  };
+
+  window.addEventListener(
+    'scroll',
+    () => {
+      if (!queued) {
+        queued = true;
+        requestAnimationFrame(update);
+      }
+    },
+    { passive: true }
+  );
+  update();
+}
+
+
+/* ============================================================
    STAGGERED HERO ENTRANCE ANIMATIONS
    Each [data-reveal="N"] element gets .is-visible with a delay
    proportional to N. The CSS animation does the rest.
@@ -33,7 +95,8 @@ function initReveal() {
    GSAP SCROLL ANIMATIONS
    Gated behind prefers-reduced-motion and GSAP availability.
    Reveals section headings, body blocks, and connect links as
-   they scroll into view.
+   they scroll into view; drifts the ghost numerals and portrait
+   for quiet depth.
    ============================================================ */
 
 function initScrollAnimations() {
@@ -66,6 +129,47 @@ function initScrollAnimations() {
       }
     );
   });
+
+  // Ghost numerals — slow counter-drift against the scroll.
+  // The numeral is the heading's ::before, so the heading itself is
+  // the proxy target: a custom property drives the pseudo-element.
+  document.querySelectorAll('.section__heading[data-ghost]').forEach((el) => {
+    const section = el.closest('.section');
+    gsap.fromTo(
+      el,
+      { '--ghost-y': '70px' },
+      {
+        '--ghost-y': '-70px',
+        ease: 'none',
+        scrollTrigger: {
+          trigger: section || el,
+          start: 'top bottom',
+          end: 'bottom top',
+          scrub: 1,
+        },
+      }
+    );
+  });
+
+  // Hero portrait — gentle parallax on the wrapper so the CSS
+  // scale-settle on the <img> is left untouched
+  const portraitFrame = document.querySelector('.hero__portrait picture');
+  if (portraitFrame && window.matchMedia('(min-width: 900px)').matches) {
+    gsap.fromTo(
+      portraitFrame,
+      { yPercent: 0 },
+      {
+        yPercent: 6,
+        ease: 'none',
+        scrollTrigger: {
+          trigger: '.hero',
+          start: 'top top',
+          end: 'bottom top',
+          scrub: 1,
+        },
+      }
+    );
+  }
 
   // Connect links — staggered slide-in from left
   const connectList = document.querySelector('.connect__list');
@@ -140,6 +244,8 @@ function initRail() {
    ============================================================ */
 
 document.addEventListener('DOMContentLoaded', () => {
+  initClock();
+  initProgress();
   initReveal();
   initScrollAnimations();
   initRail();
