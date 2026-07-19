@@ -6,6 +6,7 @@
 :root {
   /* --- Backgrounds --- */
   --color-bg:      #0d0f12;   /* near-black — deep slate */
+  --color-bg-alt:  #101319;   /* barely-lifted panel for alternating sections */
   --color-surface: #161820;   /* slightly elevated dark surface */
   --color-footer-bg: #080a0c; /* darker anchor for the footer */
 
@@ -15,7 +16,7 @@
 
   /* --- Accent: muted gold/brass — used sparingly on numerals and links --- */
   --color-accent:     #c5a880; /* old-money brass */
-  --color-accent-rgb: 197, 168, 128; /* used by JS for rgba() construction */
+  --color-accent-rgb: 197, 168, 128; /* used for rgba() construction */
 
   /* --- UI chrome --- */
   --color-border: rgba(226, 232, 240, 0.1); /* hairline ledger lines on dark */
@@ -84,6 +85,25 @@ body {
 
 img, picture, canvas, svg { display: block; }
 
+/* Text selected reads as ink stamped on brass */
+::selection {
+  background: rgba(var(--color-accent-rgb), 0.9);
+  color: var(--color-bg);
+}
+
+/* Film grain — a fixed, faint fractal-noise wash over everything.
+   Pure texture: pointer-events off, aria-invisible by nature. */
+body::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  pointer-events: none;
+  opacity: 0.045;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160' viewBox='0 0 160 160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-size: 160px 160px;
+}
+
 
 /* ============================================================
    FOCUS STATES — visible, accessible, on-brand
@@ -93,6 +113,75 @@ img, picture, canvas, svg { display: block; }
   outline: 2px solid var(--color-accent);
   outline-offset: 4px;
   border-radius: 2px;
+}
+
+
+/* ============================================================
+   READING PROGRESS — 2px brass rule along the top edge
+   ============================================================ */
+
+.progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  z-index: 110;
+  background: var(--color-accent);
+  transform: scaleX(0);
+  transform-origin: left center;
+  pointer-events: none;
+}
+
+
+/* ============================================================
+   SITE HEAD — seal monogram + Port Moresby local time.
+   Minimal chrome over a soft scrim so it reads on the portrait.
+   ============================================================ */
+
+.site-head {
+  position: fixed;
+  inset-inline: 0;
+  top: 0;
+  z-index: 30;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: clamp(1rem, 2.5vw, 1.6rem) var(--content-pad-x);
+  pointer-events: none;
+  background: linear-gradient(180deg, rgba(13, 15, 18, 0.75) 0%, rgba(13, 15, 18, 0) 100%);
+}
+
+.site-head__seal {
+  pointer-events: auto;
+  color: var(--color-accent);
+  display: inline-flex;
+  transition: opacity 0.3s ease;
+}
+
+.site-head__seal:hover {
+  opacity: 0.7;
+}
+
+.site-head__meta {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 0.6em;
+  font-family: var(--font-body);
+  font-size: 0.68rem;
+  font-weight: 500;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: var(--color-ink-muted);
+}
+
+.site-head__sep {
+  color: var(--color-accent);
+}
+
+.site-head__time {
+  color: var(--color-ink);
+  font-variant-numeric: tabular-nums;
 }
 
 
@@ -122,6 +211,15 @@ img, picture, canvas, svg { display: block; }
     clamp(2.25rem, 9vw, var(--hero-pad-bottom));
 }
 
+/* Faint brass halo behind the name — depth without decoration */
+.hero__text::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse 75% 55% at 22% 38%, rgba(var(--color-accent-rgb), 0.07), transparent 65%);
+  pointer-events: none;
+}
+
 .hero__inner {
   position: relative;
   z-index: 1;
@@ -148,6 +246,16 @@ img, picture, canvas, svg { display: block; }
   pointer-events: none;
 }
 
+/* Engraved plate frame — an inset brass hairline floating over the image */
+.hero__portrait::before {
+  content: '';
+  position: absolute;
+  inset: clamp(0.9rem, 2vw, 1.4rem);
+  border: 1px solid rgba(var(--color-accent-rgb), 0.35);
+  pointer-events: none;
+  z-index: 2;
+}
+
 .hero__portrait picture {
   height: 100%;
 }
@@ -157,6 +265,16 @@ img, picture, canvas, svg { display: block; }
   height: 100%;
   object-fit: cover;
   object-position: center 20%;
+}
+
+/* Slow settle: the portrait arrives a touch oversized and eases home */
+.js .hero__portrait .hero__portrait-img {
+  transform: scale(1.06);
+  transition: transform 2s var(--ease-out-expo);
+}
+
+.js .hero__portrait.is-visible .hero__portrait-img {
+  transform: scale(1);
 }
 
 /* Mobile: full-width text column — the name can stay monumental */
@@ -178,7 +296,8 @@ img, picture, canvas, svg { display: block; }
   .hero {
     flex-direction: row;
     align-items: stretch;
-    min-height: 85vh;
+    min-height: 100svh;
+    min-height: 100vh;
     overflow: hidden;
   }
   .hero__text {
@@ -210,7 +329,7 @@ img, picture, canvas, svg { display: block; }
 }
 
 
-/* ---- Name — engraved serif caps ---- */
+/* ---- Name — engraved serif caps, each line rising from a mask ---- */
 .hero__name {
   font-family: var(--font-display);
   font-size: var(--text-hero-name);
@@ -221,9 +340,30 @@ img, picture, canvas, svg { display: block; }
   color: var(--color-ink);
 }
 
+.name-mask {
+  display: block;
+  overflow: hidden;
+  /* Room for descender-free caps; keeps the mask tight to the glyphs */
+  padding-bottom: 0.05em;
+}
+
 .name-line {
   display: block;
   white-space: nowrap;
+}
+
+/* Masked rise: lines start below their crop and slide up on reveal */
+.js .hero__name .name-line {
+  transform: translateY(110%);
+  transition: transform 1.3s var(--ease-out-expo);
+}
+
+.js .hero__name.is-visible .name-line {
+  transform: translateY(0);
+}
+
+.js .hero__name.is-visible .name-mask:nth-child(2) .name-line {
+  transition-delay: 0.14s;
 }
 
 
@@ -247,6 +387,77 @@ img, picture, canvas, svg { display: block; }
   color: var(--color-ink);
   line-height: 1.5;
   max-width: 40ch;
+}
+
+
+/* ---- Coordinates — a dossier detail under the role ---- */
+.hero__coords {
+  margin-top: clamp(1.25rem, 2.5vw, 2rem);
+  font-family: var(--font-body);
+  font-size: 0.7rem;
+  font-weight: 500;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--color-ink-muted);
+  font-variant-numeric: tabular-nums;
+}
+
+
+/* ---- Scroll cue — hairline dropping from the text column ---- */
+.hero__scrollcue {
+  display: none;
+  position: absolute;
+  left: var(--content-pad-x);
+  bottom: clamp(1.5rem, 4vh, 2.75rem);
+  align-items: center;
+  gap: 1rem;
+}
+
+@media (min-width: 900px) {
+  .hero__scrollcue {
+    display: flex;
+  }
+}
+
+.hero__scrollcue-label {
+  font-family: var(--font-body);
+  font-size: 0.62rem;
+  font-weight: 500;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--color-ink-muted);
+}
+
+.hero__scrollcue-line {
+  position: relative;
+  display: block;
+  width: clamp(3.5rem, 6vw, 6rem);
+  height: 1px;
+  background: var(--color-border);
+  overflow: hidden;
+}
+
+.hero__scrollcue-line::after {
+  content: '';
+  position: absolute;
+  inset-block: 0;
+  left: 0;
+  width: 40%;
+  background: var(--color-accent);
+  animation: cueSweep 2.6s var(--ease-out-expo) infinite;
+}
+
+@keyframes cueSweep {
+  0%   { transform: translateX(-110%); }
+  60%  { transform: translateX(260%); }
+  100% { transform: translateX(260%); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero__scrollcue-line::after {
+    animation: none;
+    transform: none;
+  }
 }
 
 
@@ -284,6 +495,14 @@ img, picture, canvas, svg { display: block; }
     animation: none;
     opacity: 1;
     transition: opacity 0.3s ease;
+  }
+  .js .hero__name .name-line {
+    transform: none;
+    transition: none;
+  }
+  .js .hero__portrait .hero__portrait-img {
+    transform: none;
+    transition: none;
   }
 }
 
@@ -330,13 +549,23 @@ img, picture, canvas, svg { display: block; }
   padding-block: clamp(5rem, 10vw, 8.5rem);
 }
 
+/* Alternating panels give the scroll a quiet rhythm */
+.section--resources,
+.section--capabilities,
+.section--connect {
+  background-color: var(--color-bg-alt);
+}
+
 .section__inner {
+  position: relative;
   max-width: 72rem;
   margin-inline: auto;
   padding-inline: var(--content-pad-x);
 }
 
 .section__heading {
+  position: relative;
+  z-index: 1;
   display: flex;
   flex-direction: column;
   font-family: var(--font-display);
@@ -350,6 +579,34 @@ img, picture, canvas, svg { display: block; }
   color: var(--color-ink);
   margin-bottom: clamp(2.5rem, 5vw, 3.75rem);
   overflow-wrap: break-word;
+}
+
+/* Ghost numeral — an outsized engraved roman numeral floating behind
+   the heading. Drawn from data-ghost so screen readers never see it. */
+.section__heading::before {
+  content: attr(data-ghost);
+  position: absolute;
+  top: 50%;
+  right: 0;
+  /* --ghost-y is scrubbed by GSAP for a slow parallax drift */
+  transform: translateY(calc(-58% + var(--ghost-y, 0px)));
+  z-index: -1;
+  font-family: var(--font-display);
+  font-size: clamp(9rem, 22vw, 19rem);
+  font-weight: 600;
+  line-height: 1;
+  letter-spacing: 0.04em;
+  color: transparent;
+  -webkit-text-stroke: 1px rgba(var(--color-accent-rgb), 0.16);
+  pointer-events: none;
+  user-select: none;
+}
+
+/* Browsers without text-stroke get a faint solid ghost instead */
+@supports not (-webkit-text-stroke: 1px black) {
+  .section__heading::before {
+    color: rgba(var(--color-accent-rgb), 0.06);
+  }
 }
 
 /* Roman-numeral section index — small gold overline above the heading */
@@ -380,6 +637,18 @@ img, picture, canvas, svg { display: block; }
   font-size: clamp(1.1rem, 1.7vw, 1.3rem);
   color: var(--color-ink);
   line-height: 1.8;
+}
+
+/* An illuminated initial anchors the record's opening line */
+.about__body p:first-of-type::first-letter {
+  font-family: var(--font-display);
+  font-size: 3.2em;
+  font-weight: 600;
+  float: left;
+  line-height: 0.8;
+  padding-right: 0.12em;
+  padding-top: 0.06em;
+  color: var(--color-accent);
 }
 
 .about__body p + p {
@@ -483,9 +752,12 @@ img, picture, canvas, svg { display: block; }
    ============================================================ */
 
 .writing__lead {
-  font-size: clamp(1.1rem, 1.7vw, 1.3rem);
+  /* The section's single statement carries display weight */
+  font-family: var(--font-display);
+  font-size: clamp(1.4rem, 2.6vw, 2.1rem);
+  font-weight: 500;
   color: var(--color-ink);
-  line-height: 1.8;
+  line-height: 1.55;
   margin-bottom: var(--space-sm);
 }
 
@@ -543,9 +815,11 @@ img, picture, canvas, svg { display: block; }
 }
 
 .connect__link {
+  position: relative;
   display: flex;
   align-items: center;
   justify-content: space-between;
+  gap: 1.25rem;
   /* Downsized from the giant variant for a tighter ledger grip. */
   padding-block: clamp(0.9rem, 2vw, 1.5rem);
   border-bottom: 1px solid var(--color-border);
@@ -557,7 +831,24 @@ img, picture, canvas, svg { display: block; }
   text-transform: uppercase;
   letter-spacing: 0.05em;
   line-height: 1.05;
-  transition: padding-left 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+  transition: padding-left 0.3s var(--ease-out-expo), border-color 0.2s ease, color 0.2s ease;
+}
+
+/* Brass wash sweeping in behind the hovered row */
+.connect__link::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: rgba(var(--color-accent-rgb), 0.06);
+  transform: scaleX(0);
+  transform-origin: left center;
+  transition: transform 0.45s var(--ease-out-expo);
+  pointer-events: none;
+}
+
+.connect__link:hover::before,
+.connect__link:focus-visible::before {
+  transform: scaleX(1);
 }
 
 /* High-contrast hover: indent + darken the divider to full ink. */
@@ -571,6 +862,36 @@ img, picture, canvas, svg { display: block; }
   outline: 2px solid var(--color-accent);
   outline-offset: 4px;
   border-radius: 2px;
+}
+
+.connect__name {
+  flex-shrink: 0;
+}
+
+/* The actual address, set small and quiet at the row's right edge */
+.connect__handle {
+  margin-left: auto;
+  font-family: var(--font-body);
+  font-size: 0.78rem;
+  font-weight: 500;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--color-ink-muted);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  transition: color 0.2s ease;
+}
+
+.connect__link:hover .connect__handle,
+.connect__link:focus-visible .connect__handle {
+  color: var(--color-accent);
+}
+
+@media (max-width: 700px) {
+  .connect__handle {
+    display: none;
+  }
 }
 
 .connect__arrow {
@@ -591,6 +912,9 @@ img, picture, canvas, svg { display: block; }
     transition: none;
     transform: none !important;
   }
+  .connect__link::before {
+    transition: none;
+  }
 }
 
 
@@ -603,6 +927,30 @@ img, picture, canvas, svg { display: block; }
   color: #8E8E93;
   border-top: 1px solid rgba(255, 255, 255, 0.05);
   padding-block: clamp(2.5rem, 5vw, 4rem);
+  overflow: hidden;
+}
+
+/* Engraved watermark — the name at monument scale, barely there */
+.footer__watermark {
+  font-family: var(--font-display);
+  font-size: clamp(3.4rem, 11.5vw, 10.5rem);
+  font-weight: 600;
+  line-height: 0.95;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  white-space: nowrap;
+  text-align: center;
+  color: transparent;
+  -webkit-text-stroke: 1px rgba(226, 232, 240, 0.1);
+  user-select: none;
+  pointer-events: none;
+  margin-bottom: clamp(2rem, 5vw, 4rem);
+}
+
+@supports not (-webkit-text-stroke: 1px black) {
+  .footer__watermark {
+    color: rgba(226, 232, 240, 0.05);
+  }
 }
 
 .footer__inner {
@@ -716,11 +1064,24 @@ img, picture, canvas, svg { display: block; }
   color: var(--color-ink);
   line-height: 1.6;
   padding-block: 0.65rem;
+  padding-left: 0;
   border-top: 1px solid var(--color-border);
+  transition: padding-left 0.3s var(--ease-out-expo), color 0.2s ease;
+}
+
+.capabilities__list li:hover {
+  padding-left: 0.75rem;
+  color: var(--color-accent);
 }
 
 .capabilities__list li:last-child {
   border-bottom: 1px solid var(--color-border);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .capabilities__list li {
+    transition: none;
+  }
 }
 
 .credentials__list {
@@ -752,7 +1113,7 @@ img, picture, canvas, svg { display: block; }
 
 
 /* ============================================================
-   RESOURCES — free public tools
+   RESOURCES — free public tools, a numbered ledger
    ============================================================ */
 
 .resources__intro {
@@ -768,9 +1129,15 @@ img, picture, canvas, svg { display: block; }
 .resources__list {
   list-style: none;
   border-top: 1px solid var(--color-border);
+  counter-reset: resource;
+}
+
+.resources__item {
+  counter-increment: resource;
 }
 
 .resources__link {
+  position: relative;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -779,7 +1146,43 @@ img, picture, canvas, svg { display: block; }
   border-bottom: 1px solid var(--color-border);
   text-decoration: none;
   color: var(--color-ink);
-  transition: padding-left 0.2s ease, border-color 0.2s ease;
+  transition: padding-left 0.3s var(--ease-out-expo), border-color 0.2s ease;
+}
+
+/* Ledger index — 01 through 09, drawn by counter so markup stays clean */
+.resources__link::after {
+  content: '0' counter(resource);
+  order: -1;
+  flex: 0 0 2.6rem;
+  font-family: var(--font-body);
+  font-size: 0.72rem;
+  font-weight: 500;
+  letter-spacing: 0.18em;
+  color: rgba(var(--color-accent-rgb), 0.55);
+  font-variant-numeric: tabular-nums;
+  transition: color 0.2s ease;
+}
+
+.resources__link:hover::after,
+.resources__link:focus-visible::after {
+  color: var(--color-accent);
+}
+
+/* Brass wash sweeping in behind the hovered row */
+.resources__link::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: rgba(var(--color-accent-rgb), 0.06);
+  transform: scaleX(0);
+  transform-origin: left center;
+  transition: transform 0.45s var(--ease-out-expo);
+  pointer-events: none;
+}
+
+.resources__link:hover::before,
+.resources__link:focus-visible::before {
+  transform: scaleX(1);
 }
 
 .resources__link:hover,
@@ -830,6 +1233,27 @@ img, picture, canvas, svg { display: block; }
     transition: none;
     transform: none !important;
   }
+  .resources__link::before {
+    transition: none;
+  }
+}
+
+/* Mobile: the index number sits above the title; hide the flex column */
+@media (max-width: 899px) {
+  .resources__link::after {
+    position: absolute;
+    top: clamp(1.5rem, 3vw, 2.25rem);
+    right: 0;
+    flex: none;
+  }
+  .resources__link {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.35rem;
+  }
+  .resources__arrow {
+    display: none;
+  }
 }
 
 @media (min-width: 900px) {
@@ -851,7 +1275,7 @@ img, picture, canvas, svg { display: block; }
    ============================================================ */
 
 .writing__intro {
-  max-width: 56ch;
+  max-width: 46rem;
   margin-bottom: var(--space-lg);
 }
 

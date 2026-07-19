@@ -90,9 +90,14 @@ The look is dark, restrained, and institutional — a state document more than a
   Both serif. No sans-serif.
 - **Palette:** Near-black ground (`#0d0f12`); muted gold (`#7E5F18`) as the single accent —
   used for the seal monogram and fine rules, never for large areas.
-- **Mark:** A gold seal monogram "N" in a thin circle (drawn inline as the favicon).
-- **Motion:** Slow and deliberate (GSAP reveals, the horizon canvas). Nothing bounces,
-  nothing rushes. Calm conveys confidence.
+- **Mark:** A gold seal monogram "N" in a thin circle (drawn inline as the favicon and
+  in the fixed site head, alongside Port Moresby local time).
+- **Texture:** A faint film grain over the whole page; engraved ghost roman numerals
+  behind section headings; an outlined name watermark in the footer. All barely-there —
+  texture, never decoration.
+- **Motion:** Slow and deliberate (masked hero reveals, GSAP scroll reveals, slow
+  parallax drift on the ghost numerals and portrait). Nothing bounces, nothing rushes.
+  Calm conveys confidence. All motion respects `prefers-reduced-motion`.
 - **Space:** Generous. Let copy breathe; crowding reads as anxiety.
 
 ---
