@@ -9,68 +9,6 @@ if (yearEl) {
 
 
 /* ============================================================
-   PORT MORESBY CLOCK
-   Local time in the site head — a quiet dossier detail.
-   ============================================================ */
-
-function initClock() {
-  const clock = document.getElementById('clock');
-  if (!clock) return;
-
-  let formatter;
-  try {
-    formatter = new Intl.DateTimeFormat('en-GB', {
-      timeZone: 'Pacific/Port_Moresby',
-      hour: '2-digit',
-      minute: '2-digit',
-      hourCycle: 'h23',
-    });
-  } catch (e) {
-    // Time zone data unavailable — hide the meta rather than show wrong time
-    clock.parentElement.style.display = 'none';
-    return;
-  }
-
-  const tick = () => {
-    clock.textContent = formatter.format(new Date());
-    clock.setAttribute('datetime', new Date().toISOString());
-  };
-  tick();
-  setInterval(tick, 30000);
-}
-
-
-/* ============================================================
-   READING PROGRESS — brass hairline scaling with scroll
-   ============================================================ */
-
-function initProgress() {
-  const bar = document.getElementById('progress');
-  if (!bar) return;
-
-  let queued = false;
-  const update = () => {
-    queued = false;
-    const max = document.documentElement.scrollHeight - window.innerHeight;
-    const ratio = max > 0 ? Math.min(window.scrollY / max, 1) : 0;
-    bar.style.transform = 'scaleX(' + ratio + ')';
-  };
-
-  window.addEventListener(
-    'scroll',
-    () => {
-      if (!queued) {
-        queued = true;
-        requestAnimationFrame(update);
-      }
-    },
-    { passive: true }
-  );
-  update();
-}
-
-
-/* ============================================================
    STAGGERED HERO ENTRANCE ANIMATIONS
    Each [data-reveal="N"] element gets .is-visible with a delay
    proportional to N. The CSS animation does the rest.
@@ -244,8 +182,6 @@ function initRail() {
    ============================================================ */
 
 document.addEventListener('DOMContentLoaded', () => {
-  initClock();
-  initProgress();
   initReveal();
   initScrollAnimations();
   initRail();

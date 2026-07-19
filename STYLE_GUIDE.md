@@ -90,8 +90,7 @@ The look is dark, restrained, and institutional — a state document more than a
   Both serif. No sans-serif.
 - **Palette:** Near-black ground (`#0d0f12`); muted gold (`#7E5F18`) as the single accent —
   used for the seal monogram and fine rules, never for large areas.
-- **Mark:** A gold seal monogram "N" in a thin circle (drawn inline as the favicon and
-  in the fixed site head, alongside Port Moresby local time).
+- **Mark:** A gold seal monogram "N" in a thin circle (drawn inline as the favicon).
 - **Texture:** A faint film grain over the whole page; engraved ghost roman numerals
   behind section headings; an outlined name watermark in the footer. All barely-there —
   texture, never decoration.
