@@ -117,75 +117,6 @@ body::after {
 
 
 /* ============================================================
-   READING PROGRESS — 2px brass rule along the top edge
-   ============================================================ */
-
-.progress {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 2px;
-  z-index: 110;
-  background: var(--color-accent);
-  transform: scaleX(0);
-  transform-origin: left center;
-  pointer-events: none;
-}
-
-
-/* ============================================================
-   SITE HEAD — seal monogram + Port Moresby local time.
-   Minimal chrome over a soft scrim so it reads on the portrait.
-   ============================================================ */
-
-.site-head {
-  position: fixed;
-  inset-inline: 0;
-  top: 0;
-  z-index: 30;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: clamp(1rem, 2.5vw, 1.6rem) var(--content-pad-x);
-  pointer-events: none;
-  background: linear-gradient(180deg, rgba(13, 15, 18, 0.75) 0%, rgba(13, 15, 18, 0) 100%);
-}
-
-.site-head__seal {
-  pointer-events: auto;
-  color: var(--color-accent);
-  display: inline-flex;
-  transition: opacity 0.3s ease;
-}
-
-.site-head__seal:hover {
-  opacity: 0.7;
-}
-
-.site-head__meta {
-  display: inline-flex;
-  align-items: baseline;
-  gap: 0.6em;
-  font-family: var(--font-body);
-  font-size: 0.68rem;
-  font-weight: 500;
-  letter-spacing: 0.24em;
-  text-transform: uppercase;
-  color: var(--color-ink-muted);
-}
-
-.site-head__sep {
-  color: var(--color-accent);
-}
-
-.site-head__time {
-  color: var(--color-ink);
-  font-variant-numeric: tabular-nums;
-}
-
-
-/* ============================================================
    HERO SECTION
    Mobile: stacked — full-width portrait above the text.
    Desktop (≥900px): split — text column + full-height portrait.
@@ -387,19 +318,6 @@ body::after {
   color: var(--color-ink);
   line-height: 1.5;
   max-width: 40ch;
-}
-
-
-/* ---- Coordinates — a dossier detail under the role ---- */
-.hero__coords {
-  margin-top: clamp(1.25rem, 2.5vw, 2rem);
-  font-family: var(--font-body);
-  font-size: 0.7rem;
-  font-weight: 500;
-  letter-spacing: 0.28em;
-  text-transform: uppercase;
-  color: var(--color-ink-muted);
-  font-variant-numeric: tabular-nums;
 }
 
 
