@@ -10,6 +10,8 @@
   />
   <meta name="author" content="Neo Malesa" />
   <meta name="theme-color" content="#0d0f12" />
+  <meta name="color-scheme" content="dark" />
+  <meta name="format-detection" content="telephone=no" />
   <link rel="canonical" href="https://neomalesa.com/" />
   <!-- Open Graph — link previews on social and chat -->
   <meta property="og:type" content="website" />
@@ -21,6 +23,7 @@
   />
   <meta property="og:url" content="https://neomalesa.com/" />
   <meta property="og:image" content="https://neomalesa.com/assets/og-image.png" />
+  <meta property="og:image:type" content="image/png" />
   <meta property="og:image:width" content="1200" />
   <meta property="og:image:height" content="630" />
   <meta property="og:image:alt" content="Neo Malesa — Port Moresby, Papua New Guinea" />
@@ -40,13 +43,9 @@
   <link rel="icon" type="image/png" sizes="192x192" href="favicon.png" />
   <link rel="shortcut icon" href="favicon.ico" />
   <link rel="apple-touch-icon" sizes="192x192" href="favicon.png" />
-  <!-- Fonts: Cormorant Garamond (display) + Spectral (body) — only the weights in use -->
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link
-    href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600&family=Spectral:ital,wght@0,400;0,500;1,400&display=swap"
-    rel="stylesheet"
-  />
+  <!-- Fonts: Cormorant Garamond (display) + Spectral (body) — self-hosted, only the weights in use -->
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="assets/fonts/cormorant-garamond-600.woff2" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="assets/fonts/spectral-400.woff2" />
   <!-- Hero portrait is the LCP element — fetch it at highest priority -->
   <link
     rel="preload"
@@ -150,6 +149,19 @@
       <li><a class="rail__link" href="#writing" aria-label="Writing">V</a></li>
       <li><a class="rail__link" href="#engagements" aria-label="Engagements">VI</a></li>
       <li><a class="rail__link" href="#connect" aria-label="Correspondence">VII</a></li>
+    </ol>
+  </nav>
+  <!-- Mobile wayfinding — horizontal numeral strip with scroll progress, mobile only -->
+  <nav class="mobile-rail" id="mobile-rail" aria-label="Sections">
+    <span class="mobile-rail__progress" aria-hidden="true"></span>
+    <ol class="mobile-rail__list" role="list">
+      <li><a class="mobile-rail__link" href="#about" aria-label="About">I</a></li>
+      <li><a class="mobile-rail__link" href="#resources" aria-label="Resources">II</a></li>
+      <li><a class="mobile-rail__link" href="#experience" aria-label="Experience">III</a></li>
+      <li><a class="mobile-rail__link" href="#capabilities" aria-label="Capabilities">IV</a></li>
+      <li><a class="mobile-rail__link" href="#writing" aria-label="Writing">V</a></li>
+      <li><a class="mobile-rail__link" href="#engagements" aria-label="Engagements">VI</a></li>
+      <li><a class="mobile-rail__link" href="#connect" aria-label="Correspondence">VII</a></li>
     </ol>
   </nav>
   <main>
@@ -383,8 +395,9 @@
             applied AI, and reflections on technology. Published on Medium since 2018.
           </p>
         </div>
+        <ul class="writing__list" id="writing-list" data-gsap-reveal role="list"></ul>
         <div class="writing__archive" data-gsap-reveal>
-          <a href="https://medium.com/@neomalesa" class="writing__cta" target="_blank" rel="noopener noreferrer" aria-label="Read articles on Medium (opens in a new tab)">
+          <a href="https://medium.com/@neomalesa" class="writing__cta" target="_blank" rel="noopener noreferrer" aria-label="Read all articles on Medium (opens in a new tab)">
             Read on Medium <span aria-hidden="true">→</span>
           </a>
         </div>
@@ -438,10 +451,11 @@
         </h2>
         <ul class="connect__list" role="list">
           <li>
-            <a href="mailto:neomalesa@protonmail.com" class="connect__link" aria-label="Send an email">
+            <a href="mailto:neomalesa@protonmail.com" class="connect__link connect__link--copy" title="Copy email address" aria-label="Copy email address">
               <span class="connect__name">Email</span>
               <span class="connect__handle">neomalesa@protonmail.com</span>
               <span class="connect__arrow" aria-hidden="true">→</span>
+              <span class="connect__copy-tip" role="status" aria-live="polite"></span>
             </a>
           </li>
           <li>
@@ -474,14 +488,20 @@
     <p class="footer__watermark" aria-hidden="true">Neo Malesa</p>
     <div class="footer__inner">
       <p class="footer__copy">© <span id="year">2026</span> Neo Malesa. All rights reserved.</p>
+      <nav class="footer__nav" aria-label="Pages">
+        <a href="index.html" aria-current="true">Home</a>
+        <a href="now.html">Now</a>
+      </nav>
       <a href="#hero" class="back-to-top" aria-label="Back to top of page">
         <span aria-hidden="true">↑</span> Top
       </a>
     </div>
   </footer>
   <!-- GSAP + ScrollTrigger loaded before main.js so they're available synchronously -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <script src="assets/vendor/gsap.min.js"></script>
+  <script src="assets/vendor/ScrollTrigger.min.js"></script>
+  <!-- Writing posts, inline so the section works even opened from disk -->
+  <script src="writing-data.js"></script>
   <!-- If main.js fails to load, drop the .js class so nothing stays hidden -->
   <script src="js/main.js" onerror="document.documentElement.classList.remove('js');"></script>
 </body>

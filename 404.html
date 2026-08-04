@@ -6,17 +6,15 @@
   <title>Not Found — Neo Malesa</title>
   <meta name="robots" content="noindex" />
   <meta name="theme-color" content="#0d0f12" />
+  <meta name="color-scheme" content="dark" />
+  <meta name="format-detection" content="telephone=no" />
 
   <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
   <link rel="icon" type="image/png" sizes="192x192" href="/favicon.png" />
   <link rel="shortcut icon" href="/favicon.ico" />
 
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link
-    href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600&family=Spectral:ital,wght@0,400;0,500;1,400&display=swap"
-    rel="stylesheet"
-  />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="/assets/fonts/cormorant-garamond-600.woff2" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="/assets/fonts/spectral-400.woff2" />
 
   <style>
     :root {
@@ -26,6 +24,34 @@
       --color-accent: #c5a880;
       --font-display: 'Cormorant Garamond', Georgia, serif;
       --font-body: 'Spectral', Georgia, serif;
+    }
+    @font-face {
+      font-family: 'Cormorant Garamond';
+      font-style: normal;
+      font-weight: 600;
+      font-display: swap;
+      src: url('/assets/fonts/cormorant-garamond-600.woff2') format('woff2');
+    }
+    @font-face {
+      font-family: 'Spectral';
+      font-style: normal;
+      font-weight: 400;
+      font-display: swap;
+      src: url('/assets/fonts/spectral-400.woff2') format('woff2');
+    }
+    @font-face {
+      font-family: 'Spectral';
+      font-style: normal;
+      font-weight: 500;
+      font-display: swap;
+      src: url('/assets/fonts/spectral-500.woff2') format('woff2');
+    }
+    @font-face {
+      font-family: 'Spectral';
+      font-style: italic;
+      font-weight: 400;
+      font-display: swap;
+      src: url('/assets/fonts/spectral-400-italic.woff2') format('woff2');
     }
     * { box-sizing: border-box; margin: 0; padding: 0; }
     body {
