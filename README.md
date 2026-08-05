@@ -1,6 +1,27 @@
 # Neo Malesa — Personal Site
 
-Single-page portfolio. Vanilla HTML, CSS, and JavaScript. No framework, no build step.
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![HTML](https://img.shields.io/badge/HTML-5-E34F26?logo=html5&logoColor=white)](https://developer.mozilla.org/en-US/docs/Web/HTML)
+[![CSS](https://img.shields.io/badge/CSS-3-1572B6?logo=css3&logoColor=white)](https://developer.mozilla.org/en-US/docs/Web/CSS)
+[![JavaScript](https://img.shields.io/badge/JavaScript-Vanilla-F7DF1E?logo=javascript&logoColor=black)](https://developer.mozilla.org/en-US/docs/Web/JavaScript)
+[![Site](https://img.shields.io/badge/Site-neomalesa.com-222222)](https://neomalesa.com)
+
+**Personal website and portfolio of Neo Malesa — vanilla HTML, CSS, and JavaScript. No framework, no build step.**
+
+Single-page portfolio with a dark editorial design, self-hosted fonts and GSAP animations, a “Now” page, and a Medium writing feed refreshed daily by GitHub Actions.
+
+**Live site:** [https://neomalesa.com](https://neomalesa.com)
+
+## Features
+
+- Single-page portfolio with hero, work, writing, and contact sections
+- **Now** page for current focus, updated in place
+- Self-hosted Cormorant Garamond + Spectral (no Google Fonts request)
+- GSAP 3 + ScrollTrigger scroll animations (self-hosted, no CDN)
+- Medium writing feed via scheduled GitHub Action (no runtime third-party calls)
+- Open Graph / Twitter cards, canonical URL, JSON-LD `Person` schema
+- View Transitions API cross-document fades
+- Branded 404 page for GitHub Pages
 
 ## Run locally
 
@@ -8,88 +29,79 @@ Single-page portfolio. Vanilla HTML, CSS, and JavaScript. No framework, no build
 # Open directly in a browser
 open index.html
 
-# Or serve over HTTP to avoid browser security restrictions on local files
-python -m http.server 8000
+# Or serve over HTTP (recommended)
+python3 -m http.server 8000
 # → http://localhost:8000
 ```
 
 ## Deploy on GitHub Pages
 
-### Root site (user/org page)
-1. Create a repository named `n30dyn4m1c.github.io`.
-2. Push these files to the `main` branch.
-3. GitHub Pages is automatically enabled — no extra settings required.
+### This repository (project site)
 
-### Any other repository
 1. Go to **Settings → Pages**.
 2. Set **Source** to **Deploy from a branch**, branch `main`, folder `/` (root).
-3. Save. The site will be live at `https://n30dyn4m1c.github.io/<repo-name>/`.
+3. Save. The site is also available at `https://n30dyn4m1c.github.io/neomalesa/`.
 
-### Custom domain
+### Custom domain (`neomalesa.com`)
 
-Once the domain is purchased:
+The `CNAME` file is already set to `neomalesa.com`. At your DNS provider:
 
-1. Add the domain to the `CNAME` file — one line, no `https://`, e.g.:
-   ```
-   neomalesa.com
-   ```
-2. At your DNS provider, create these records:
+| Type  | Name | Value                 |
+|-------|------|-----------------------|
+| A     | @    | 185.199.108.153       |
+| A     | @    | 185.199.109.153       |
+| A     | @    | 185.199.110.153       |
+| A     | @    | 185.199.111.153       |
+| CNAME | www  | n30dyn4m1c.github.io. |
 
-   | Type  | Name | Value               |
-   |-------|------|---------------------|
-   | A     | @    | 185.199.108.153     |
-   | A     | @    | 185.199.109.153     |
-   | A     | @    | 185.199.110.153     |
-   | A     | @    | 185.199.111.153     |
-   | CNAME | www  | n30dyn4m1c.github.io. |
-
-3. In the GitHub repository go to **Settings → Pages → Custom domain**, enter the domain, and click **Save**.
-4. After DNS propagates (up to 24 h), tick **Enforce HTTPS**.
+In **Settings → Pages → Custom domain**, enter `neomalesa.com`, save, wait for DNS, then enable **Enforce HTTPS**.
 
 ## Structure
 
-```
+```text
 index.html               entry point — all sections on a single page
 now.html                 "Now" page — what's current, updated in place
 404.html                 branded not-found page (served by GitHub Pages)
 css/style.css            design tokens and all styles (single dark scheme)
-js/main.js               hero reveals, GSAP scroll animations, writing feed, copy-email, rails
-writing-data.js          latest Medium posts as a script (read by the Writing section)
-writing.json            same posts as plain JSON, refreshed by a GitHub Action
+js/main.js               hero reveals, GSAP scroll animations, writing feed, copy-email
+writing-data.js          latest Medium posts as a script (Writing section)
+writing.json             same posts as plain JSON, refreshed by GitHub Action
 .github/workflows/       update-writing.yml — refreshes the writing files daily
 .github/scripts/         update_writing.py — the feed fetcher (no dependencies)
 assets/fonts/            self-hosted woff2 fonts (Cormorant Garamond, Spectral)
 assets/vendor/           self-hosted GSAP + ScrollTrigger
 assets/images/           photography — neo_profilepic.jpg is the hero portrait
 assets/og-image.png      1200×630 social link-preview card
-CNAME                    custom domain — leave empty until domain is ready
+CNAME                    custom domain (neomalesa.com)
 ```
 
 ### Writing feed
 
-The Writing section renders from `writing-data.js`, a script-tag copy of the
-latest Medium posts (so it also works when `index.html` is opened directly
-from disk). Both files are generated by `.github/scripts/update_writing.py`
-from the Medium RSS feed; a scheduled GitHub Action refreshes them daily and
-commits them, so the page needs no server or third-party call. To refresh
-manually:
+The Writing section renders from `writing-data.js`, a script-tag copy of the latest Medium posts (so it also works when `index.html` is opened from disk). Both files are generated by `.github/scripts/update_writing.py` from the Medium RSS feed; a scheduled GitHub Action refreshes them daily and commits them. To refresh manually:
 
 ```bash
 python3 .github/scripts/update_writing.py
 ```
 
-To change the hero portrait, replace `assets/images/neo_profilepic.jpg` (a
-square image works best) and update the `width`/`height` on the `.hero__portrait-img`
-in `index.html`. Regenerate `assets/og-image.png` if the photo changes.
+To change the hero portrait, replace `assets/images/neo_profilepic.jpg` (square works best) and update the `width`/`height` on `.hero__portrait-img` in `index.html`. Regenerate `assets/og-image.png` if the photo changes.
 
-The canonical URL and the Open Graph / Twitter image URLs in `index.html` point to
-`https://neomalesa.com/`. Update them if the site is hosted elsewhere.
+Canonical and Open Graph URLs in `index.html` point to `https://neomalesa.com/`.
 
 ## Stack
 
-- **Fonts** — Cormorant Garamond (display), Spectral (body); self-hosted woff2, no Google Fonts request
-- **Animation** — GSAP 3 + ScrollTrigger (self-hosted; the only third-party code, no CDN)
-- **Writing feed** — Medium RSS → `writing.json` via a scheduled GitHub Action
+- **Fonts** — Cormorant Garamond (display), Spectral (body); self-hosted woff2
+- **Animation** — GSAP 3 + ScrollTrigger (self-hosted; only third-party code)
+- **Writing feed** — Medium RSS → `writing.json` via scheduled GitHub Action
 - **SEO** — Open Graph + Twitter cards, canonical URL, JSON-LD `Person` schema
-- **View transitions** — cross-document fades between pages via the View Transitions API
+- **View transitions** — cross-document fades via the View Transitions API
 - No build tools, no `node_modules`
+
+## License
+
+This project is licensed under the [MIT License](LICENSE).
+
+## Author
+
+**Neo Malesa**  
+Software Developer · UPNG · AbideTech · $N30 · n30dyn4m1c  
+[neomalesa.com](https://neomalesa.com) · [GitHub](https://github.com/n30dyn4m1c)
