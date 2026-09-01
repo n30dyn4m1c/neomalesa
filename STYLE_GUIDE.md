@@ -65,8 +65,9 @@ Filler: *for organisations, leverage, utilise, in order to, very, really.*
   locations). Em dashes sparingly.
 - **Capitalisation:** Section headings in Title Case; body in sentence case.
 - **Numerals:** Spell out one through nine; figures for 10 and up.
-- **Roman numerals** index the sections (I–VII). Keep them sequential when adding or
-  removing sections.
+- **Roman numerals** index the sections (I–VIII). Keep them sequential when adding or
+  removing sections — the numeral appears three times per section (the rail, the mobile
+  strip, and the heading's `data-ghost` plus `.section__index`).
 
 ---
 
@@ -75,7 +76,7 @@ Filler: *for organisations, leverage, utilise, in order to, very, really.*
 Section names are deliberately formal and understated — they set the tone before a word
 of body copy is read:
 
-`About · Approach · Experience · Capabilities · Writing · Correspondence · Engagements`
+`About · Resources · Experience · Capabilities · Writing · Data Visualisations · Engagements · Correspondence`
 
 Keep this register. Favour a single weighty noun over a descriptive phrase
 ("Correspondence", not "Get in touch"; "Engagements", not "Work with me").

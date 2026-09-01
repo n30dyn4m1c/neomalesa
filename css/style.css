@@ -529,6 +529,7 @@ body::after {
 /* Alternating panels give the scroll a quiet rhythm */
 .section--resources,
 .section--capabilities,
+.section--dataviz,
 .section--connect {
   background-color: var(--color-bg-alt);
 }
@@ -1575,6 +1576,166 @@ body::after {
 
 
 /* ============================================================
+   DATA VISUALISATIONS — published data work, a ledger of entries
+   Shares the Writing ledger's geometry; the venue line replaces
+   the date in the left column.
+   ============================================================ */
+
+.dataviz__intro {
+  max-width: 46rem;
+  margin-bottom: var(--space-lg);
+}
+
+.dataviz__lead {
+  font-size: clamp(1.05rem, 1.6vw, 1.2rem);
+  color: var(--color-ink-muted);
+  line-height: 1.8;
+}
+
+.dataviz__list {
+  list-style: none;
+  border-top: 1px solid var(--color-border);
+}
+
+.dataviz__link {
+  position: relative;
+  display: grid;
+  grid-template-columns: 13rem 1fr auto;
+  align-items: baseline;
+  /* Column gap only — the title's own margin sets the space above the description */
+  column-gap: clamp(1rem, 3vw, 2.5rem);
+  row-gap: 0;
+  padding-block: clamp(1.5rem, 3vw, 2.25rem);
+  border-bottom: 1px solid var(--color-border);
+  text-decoration: none;
+  color: var(--color-ink);
+  transition: padding-left 0.3s var(--ease-out-expo), border-color 0.2s ease;
+}
+
+/* Brass wash sweeping in behind the hovered row — shared with the other ledgers */
+.dataviz__link::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: rgba(var(--color-accent-rgb), 0.06);
+  transform: scaleX(0);
+  transform-origin: left center;
+  transition: transform 0.45s var(--ease-out-expo);
+  pointer-events: none;
+}
+
+.dataviz__link:hover::before,
+.dataviz__link:focus-visible::before {
+  transform: scaleX(1);
+}
+
+.dataviz__link:hover,
+.dataviz__link:focus-visible {
+  padding-left: 1rem;
+  border-bottom-color: var(--color-ink);
+}
+
+.dataviz__link:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 4px;
+  border-radius: 2px;
+}
+
+/* Explicit placement — venue beside the title, description beneath it,
+   arrow centred against the pair */
+.dataviz__meta {
+  grid-area: 1 / 1;
+}
+
+.dataviz__title {
+  grid-area: 1 / 2;
+}
+
+.dataviz__desc {
+  grid-area: 2 / 2;
+}
+
+.dataviz__meta {
+  font-family: var(--font-body);
+  font-size: 0.7rem;
+  font-weight: 500;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--color-ink-muted);
+  font-variant-numeric: tabular-nums;
+  transition: color 0.2s ease;
+}
+
+.dataviz__title {
+  display: block;
+  font-family: var(--font-display);
+  font-size: clamp(1.2rem, 2vw, 1.6rem);
+  font-weight: 600;
+  color: var(--color-ink);
+  line-height: 1.2;
+  margin-bottom: 0.35em;
+  transition: color 0.2s ease;
+}
+
+.dataviz__desc {
+  display: block;
+  font-size: clamp(0.9rem, 1.3vw, 1rem);
+  color: var(--color-ink-muted);
+  line-height: 1.6;
+  max-width: 58ch;
+}
+
+.dataviz__link:hover .dataviz__meta,
+.dataviz__link:focus-visible .dataviz__meta {
+  color: var(--color-accent);
+}
+
+.dataviz__link:hover .dataviz__title,
+.dataviz__link:focus-visible .dataviz__title {
+  color: var(--color-accent);
+}
+
+.dataviz__arrow {
+  grid-area: 1 / 3 / span 2;
+  align-self: center;
+  font-size: 1.2rem;
+  color: var(--color-ink-muted);
+  flex-shrink: 0;
+  transition: transform 0.2s ease, color 0.2s ease;
+}
+
+.dataviz__link:hover .dataviz__arrow,
+.dataviz__link:focus-visible .dataviz__arrow {
+  color: var(--color-ink);
+  transform: translateX(5px);
+}
+
+/* Below the ledger width the venue line stacks above the title */
+@media (max-width: 899px) {
+  .dataviz__link {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.35rem;
+    padding-left: 0;
+  }
+  .dataviz__arrow {
+    display: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .dataviz__arrow {
+    transition: none;
+    transform: none !important;
+  }
+  .dataviz__link::before {
+    transition: none;
+  }
+}
+
+
+/* ============================================================
    ENGAGEMENTS & MANDATES
    ============================================================ */
 
@@ -1788,6 +1949,18 @@ body::after {
 
 .mobile-rail__link[aria-current='true'] {
   color: var(--color-accent);
+}
+
+/* Eight numerals now — tighten the strip so VIII still fits a 320px phone */
+@media (max-width: 400px) {
+  .mobile-rail__list {
+    gap: 0.1rem;
+    padding-inline: 0.75rem;
+  }
+  .mobile-rail__link {
+    padding-inline: 0.2rem;
+    letter-spacing: 0.12em;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
