@@ -154,19 +154,12 @@
       <li><a class="rail__link" href="#connect" aria-label="Correspondence">VIII</a></li>
     </ol>
   </nav>
-  <!-- Mobile wayfinding — horizontal numeral strip with scroll progress, mobile only -->
+  <!-- Mobile wayfinding — horizontal numeral strip with scroll progress, mobile only.
+       The entries are mirrored from the rail above by main.js, so sections are
+       only ever listed once. Both rails stay hidden until that script runs. -->
   <nav class="mobile-rail" id="mobile-rail" aria-label="Sections">
     <span class="mobile-rail__progress" aria-hidden="true"></span>
-    <ol class="mobile-rail__list" role="list">
-      <li><a class="mobile-rail__link" href="#about" aria-label="About">I</a></li>
-      <li><a class="mobile-rail__link" href="#resources" aria-label="Resources">II</a></li>
-      <li><a class="mobile-rail__link" href="#experience" aria-label="Experience">III</a></li>
-      <li><a class="mobile-rail__link" href="#capabilities" aria-label="Capabilities">IV</a></li>
-      <li><a class="mobile-rail__link" href="#writing" aria-label="Writing">V</a></li>
-      <li><a class="mobile-rail__link" href="#dataviz" aria-label="Data Visualisations">VI</a></li>
-      <li><a class="mobile-rail__link" href="#engagements" aria-label="Engagements">VII</a></li>
-      <li><a class="mobile-rail__link" href="#connect" aria-label="Correspondence">VIII</a></li>
-    </ol>
+    <ol class="mobile-rail__list" role="list"></ol>
   </nav>
   <main>
     <!-- ===== HERO ===== -->

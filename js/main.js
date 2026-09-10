@@ -140,7 +140,23 @@ function initScrollAnimations() {
    ============================================================ */
 
 function initRail() {
-  const rails = [document.getElementById('rail'), document.getElementById('mobile-rail')].filter(Boolean);
+  const rail = document.getElementById('rail');
+  const mobileRail = document.getElementById('mobile-rail');
+
+  // The mobile strip carries the same sections as the side rail — build it
+  // from that one list so a new section is only ever added in one place.
+  const mobileList = mobileRail && mobileRail.querySelector('.mobile-rail__list');
+  if (rail && mobileList && !mobileList.children.length) {
+    mobileList.innerHTML = Array.from(rail.querySelectorAll('.rail__link'))
+      .map(
+        (link) =>
+          `<li><a class="mobile-rail__link" href="${link.getAttribute('href')}"` +
+          ` aria-label="${link.getAttribute('aria-label')}">${link.textContent}</a></li>`
+      )
+      .join('');
+  }
+
+  const rails = [rail, mobileRail].filter(Boolean);
   if (!rails.length || !('IntersectionObserver' in window)) return;
 
   const hero = document.getElementById('hero');
@@ -155,7 +171,6 @@ function initRail() {
 
   // The mobile rail should never cover the colophon — slide away while the
   // footer is on screen.
-  const mobileRail = document.getElementById('mobile-rail');
   const footer = document.querySelector('.footer');
   if (mobileRail && footer) {
     new IntersectionObserver(
@@ -238,7 +253,7 @@ function initWriting() {
       month: 'short',
       year: 'numeric',
     }).format(d);
-    return `<time datetime="${iso}">${pretty}</time>`;
+    return `<time class="writing__date" datetime="${iso}">${pretty}</time>`;
   };
 
   const render = (posts) => {
@@ -345,10 +360,14 @@ function initCopyEmail() {
    INIT
    ============================================================ */
 
+// Each section is independent — one failing (an unsupported API on an old
+// browser, say) should not take the rest of the page down with it.
 document.addEventListener('DOMContentLoaded', () => {
-  initReveal();
-  initScrollAnimations();
-  initRail();
-  initWriting();
-  initCopyEmail();
+  [initReveal, initScrollAnimations, initRail, initWriting, initCopyEmail].forEach((init) => {
+    try {
+      init();
+    } catch (err) {
+      console.error(init.name + ' failed:', err);
+    }
+  });
 });
