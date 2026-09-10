@@ -17,7 +17,7 @@ Single-page portfolio with a dark editorial design, self-hosted fonts and GSAP a
 - Single-page portfolio with hero, work, writing, and contact sections
 - **Now** page for current focus, updated in place
 - Self-hosted Cormorant Garamond + Spectral (no Google Fonts request)
-- GSAP 3 + ScrollTrigger scroll animations (self-hosted, no CDN)
+- GSAP 3 + ScrollTrigger scroll animations (self-hosted, no CDN; loaded only on the pages that use them)
 - Medium writing feed via scheduled GitHub Action (no runtime third-party calls)
 - Open Graph / Twitter cards, canonical URL, JSON-LD `Person` schema
 - View Transitions API cross-document fades
@@ -63,7 +63,7 @@ index.html               entry point — all sections on a single page
 now.html                 "Now" page — what's current, updated in place
 404.html                 branded not-found page (served by GitHub Pages)
 css/style.css            design tokens and all styles (single dark scheme)
-js/main.js               hero reveals, GSAP scroll animations, writing feed, copy-email
+js/main.js               hero reveals, GSAP scroll animations, section rails, writing feed, copy-email
 writing-data.js          latest Medium posts as a script (Writing section)
 writing.json             same posts as plain JSON, refreshed by GitHub Action
 .github/workflows/       update-writing.yml — refreshes the writing files daily
