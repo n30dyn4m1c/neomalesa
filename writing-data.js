@@ -2,13 +2,13 @@ window.NEO_WRITING = [
   {
     "title": "The Ocean Knows First: What I Learned About El Niño While Building This Project",
     "url": "https://medium.com/@neomalesa/the-ocean-knows-first-what-i-learned-about-el-ni%C3%B1o-while-building-this-project-d6fde9b6981e",
-    "date": "",
+    "date": "Tue, 22 Sep 2026 02:46:50 GMT",
     "excerpt": "Notes from building the Pacific Dataviz Challenge entry — what the Pacific Community climate record shows about El Niño and drought in Papua New Guinea, and how early the ocean signals what follows on land."
   },
   {
     "title": "The Great Southland of the Holy Spirit: Origin, Context, and Historiographical Evolution",
     "url": "https://medium.com/@neomalesa/the-great-southland-of-the-holy-spirit-origin-context-and-historiographical-evolution-6a81cf482765",
-    "date": "",
+    "date": "Tue, 22 Sep 2026 03:19:44 GMT",
     "excerpt": "The origin and context of Austrialia del Espíritu Santo — the name Pedro Fernández de Quirós gave the land he claimed in 1606 — and how historians have read it since."
   },
   {
@@ -28,17 +28,5 @@ window.NEO_WRITING = [
     "url": "https://medium.com/@neomalesa/papua-new-guineas-2010s-digital-ambitions-the-tech-promises-that-stalled-and-what-s-changing-in-89b8e292f0a8",
     "date": "Mon, 20 Jul 2026 13:31:16 GMT",
     "excerpt": "Five of PNG’s most hyped 2010s tech promises — and where they actually stand in 2026. Researched and fact-checked with Grok (xAI) and Claude. Papua New Guinea entered the 2010s with genuine cause for optimism about…"
-  },
-  {
-    "title": "From ChatGPT Chatbots to Graphs: The Rapid Evolution of How We Work with LLMs",
-    "url": "https://medium.com/@neomalesa/from-chatgpt-chatbots-to-graphs-the-rapid-evolution-of-how-we-work-with-llms-c29894e87718",
-    "date": "Sun, 19 Jul 2026 23:22:54 GMT",
-    "excerpt": "How the way we work with LLMs has changed since ChatGPT. Written with assistance from Grok (xAI) and Claude When OpenAI released ChatGPT in November 2022, most people experienced large language models as conversational…"
-  },
-  {
-    "title": "빨리빨리 — What “Hurry-Hurry” Really Means",
-    "url": "https://medium.com/@neomalesa/%EB%B9%A8%EB%A6%AC%EB%B9%A8%EB%A6%AC-what-hurry-hurry-really-means-24fe37440aa5",
-    "date": "Mon, 11 May 2026 15:55:55 GMT",
-    "excerpt": "South Korea’s Pali-pali culture is more than speed. It’s a complete reimagining of time, friction, and what it means to respect someone’s attention. Photo by Janis Rozenfelds on Unsplash In most parts of the world,…"
   }
 ];
