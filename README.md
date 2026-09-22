@@ -66,6 +66,7 @@ css/style.css            design tokens and all styles (single dark scheme)
 js/main.js               hero reveals, GSAP scroll animations, section rails, writing feed, copy-email
 writing-data.js          latest Medium posts as a script (Writing section)
 writing.json             same posts as plain JSON, refreshed by GitHub Action
+writing-pinned.json      hand-listed posts always shown first in the Writing section
 .github/workflows/       update-writing.yml — refreshes the writing files daily
 .github/scripts/         update_writing.py — the feed fetcher (no dependencies)
 assets/fonts/            self-hosted woff2 fonts (Cormorant Garamond, Spectral)
@@ -82,6 +83,21 @@ The Writing section renders from `writing-data.js`, a script-tag copy of the lat
 ```bash
 python3 .github/scripts/update_writing.py
 ```
+
+**Adding a post by hand.** The Medium profile feed does not return every post, and the fetcher overwrites `writing.json` and `writing-data.js` on each run, so posts added straight to those files are lost at the next refresh. Add them to `writing-pinned.json` instead — it is merged in ahead of the feed on every run:
+
+```json
+[
+  {
+    "title": "Post title",
+    "url": "https://medium.com/@neomalesa/slug-hash",
+    "date": "Tue, 15 Sep 2026 08:00:00 GMT",
+    "excerpt": "One or two sentences."
+  }
+]
+```
+
+`date` and `excerpt` may be left as `""`. A pinned post keeps its own wording and fills a blank `date` or `excerpt` from the feed if the feed later carries it; the duplicate feed entry is dropped. An entry with no date renders without one — the title and excerpt stay aligned.
 
 To change the hero portrait, replace `assets/images/neo_profilepic.jpg` (square works best) and update the `width`/`height` on `.hero__portrait-img` in `index.html`. Regenerate `assets/og-image.png` if the photo changes.
 
