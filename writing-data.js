@@ -12,6 +12,12 @@ window.NEO_WRITING = [
     "excerpt": "The origin and context of Austrialia del Espíritu Santo — the name Pedro Fernández de Quirós gave the land he claimed in 1606 — and how historians have read it since."
   },
   {
+    "title": "Speaking and Hearing Mathematics: The Missing Channels in Advanced Maths",
+    "url": "https://medium.com/@neomalesa/speaking-and-hearing-mathematics-the-missing-channels-in-advanced-maths-2cab5c777651",
+    "date": "Tue, 13 Oct 2026 06:30:06 GMT",
+    "excerpt": "Maths is usually learned through symbols and pictures. A realistic look at how speaking and hearing can work alongside them, from elementary algebra through type theory and category theory, and where they help least.…"
+  },
+  {
     "title": "Voting Technology Is a Stack, Not a Product",
     "url": "https://medium.com/@neomalesa/voting-technology-is-a-stack-not-a-product-44abc9fa70fd",
     "date": "Fri, 25 Sep 2026 07:32:15 GMT",
@@ -52,11 +58,5 @@ window.NEO_WRITING = [
     "url": "https://medium.com/@neomalesa/rabbit-hole-explorer-a-7-level-recursive-depth-engine-for-gemini-7c91e7fc48bc",
     "date": "Fri, 08 May 2026 09:10:22 GMT",
     "excerpt": "A custom Gemini Gem that structures topic exploration across seven recursive levels, with configurable branching, exposition detours, and an explicit slot for obscure or niche sub-topics at each depth. Background…"
-  },
-  {
-    "title": "Ichimoku H4-to-M1 Alignment EA for XAUUSD — Design, Logic, and Live Testing",
-    "url": "https://medium.com/@neomalesa/ichimoku-h4-to-m1-alignment-ea-for-xauusd-design-logic-and-live-testing-bf2b3dcef5ea",
-    "date": "Thu, 07 May 2026 12:33:17 GMT",
-    "excerpt": "Screenshot of EA code on Github Source: github.com/n30dyn4m1c/ichimoku-h4-m1-align Overview This is a MetaTrader 5 Expert Advisor (EA) written in MQL5 that trades XAUUSD using Ichimoku Kinko Hyo signals. A position is…"
   }
 ];
