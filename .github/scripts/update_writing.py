@@ -19,7 +19,7 @@ FEED_URL = "https://medium.com/feed/@neomalesa"
 PINNED_INPUT = "writing-pinned.json"
 OUTPUT = "writing.json"
 JS_OUTPUT = "writing-data.js"
-MAX_POSTS = 5
+MAX_POSTS = 10
 EXCERPT_MAX = 220
 CONTENT_NS = "{http://purl.org/rss/1.0/modules/content/}"
 
