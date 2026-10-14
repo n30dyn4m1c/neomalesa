@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Fetch the latest posts from Neo Malesa's Medium feed into writing.json.
 
-Posts listed in writing-pinned.json are merged in ahead of the feed, so
+Posts listed in writing-pinned.json are merged in with the feed, so
 articles the Medium profile feed leaves out still appear in the Writing
 section and survive the scheduled refresh.
 
@@ -13,6 +13,8 @@ import json
 import re
 import sys
 import urllib.request
+from datetime import datetime, timezone
+from email.utils import parsedate_to_datetime
 from xml.etree import ElementTree as ET
 
 FEED_URL = "https://medium.com/feed/@neomalesa"
@@ -30,6 +32,17 @@ def strip_html(text):
     text = re.sub(r"<[^>]+>", " ", text)
     text = html.unescape(text)
     return " ".join(text.split())
+
+
+def sort_key(post):
+    """Publication time for sorting; posts with no usable date sort last."""
+    try:
+        when = parsedate_to_datetime(post["date"])
+    except (TypeError, ValueError):
+        return datetime.min.replace(tzinfo=timezone.utc)
+    if when.tzinfo is None:
+        when = when.replace(tzinfo=timezone.utc)
+    return when
 
 
 def load_pinned():
@@ -110,7 +123,13 @@ def main():
             if not curated[field]:
                 curated[field] = post[field]
 
-    posts = pinned + [post for post in posts if post["url"] not in by_url]
+    # Newest first, regardless of whether a post came from the feed or the
+    # pinned list. sorted() is stable, so undated posts keep their order.
+    posts = sorted(
+        pinned + [post for post in posts if post["url"] not in by_url],
+        key=sort_key,
+        reverse=True,
+    )
 
     payload = json.dumps(posts, ensure_ascii=False, indent=2)
 
