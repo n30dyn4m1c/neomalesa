@@ -1571,6 +1571,45 @@ body::after {
   align-self: center;
 }
 
+/* Award line + link to the challenge edition page.
+   The edition link is a sibling of the row link (anchors can't nest), so the
+   row's divider moves down to sit beneath it. */
+.dataviz__award {
+  grid-area: 3 / 2;
+  margin-top: 0.75em;
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--color-accent);
+}
+
+.dataviz__item--award .dataviz__link {
+  border-bottom-color: transparent;
+  padding-bottom: 0.75rem;
+}
+
+.dataviz__item--award .dataviz__link:hover,
+.dataviz__item--award .dataviz__link:focus-visible {
+  border-bottom-color: transparent;
+}
+
+.dataviz__edition {
+  display: block;
+  padding: 0 0 clamp(1.5rem, 3vw, 2.25rem) calc(13rem + clamp(1rem, 3vw, 2.5rem));
+  border-bottom: 1px solid var(--color-border);
+  font-size: 0.85rem;
+  color: var(--color-ink-muted);
+  text-decoration: underline;
+  text-underline-offset: 0.25em;
+  transition: color 0.2s ease;
+}
+
+.dataviz__edition:hover,
+.dataviz__edition:focus-visible {
+  color: var(--color-accent);
+}
+
 /* Below the ledger width the venue line stacks above the title */
 @media (max-width: 899px) {
   .dataviz__link {
@@ -1582,6 +1621,9 @@ body::after {
   }
   .dataviz__arrow {
     display: none;
+  }
+  .dataviz__edition {
+    padding-left: 0;
   }
 }
 
