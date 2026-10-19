@@ -46,5 +46,17 @@ window.NEO_WRITING = [
     "url": "https://medium.com/@neomalesa/rabbit-hole-explorer-a-7-level-recursive-depth-engine-for-gemini-7c91e7fc48bc",
     "date": "Fri, 08 May 2026 09:10:22 GMT",
     "excerpt": "A custom Gemini Gem that structures topic exploration across seven recursive levels, with configurable branching, exposition detours, and an explicit slot for obscure or niche sub-topics at each depth. Background…"
+  },
+  {
+    "title": "Ichimoku H4-to-M1 Alignment EA for XAUUSD — Design, Logic, and Live Testing",
+    "url": "https://medium.com/@neomalesa/ichimoku-h4-to-m1-alignment-ea-for-xauusd-design-logic-and-live-testing-bf2b3dcef5ea",
+    "date": "Thu, 07 May 2026 12:33:17 GMT",
+    "excerpt": "Screenshot of EA code on Github Source: github.com/n30dyn4m1c/ichimoku-h4-m1-align Overview This is a MetaTrader 5 Expert Advisor (EA) written in MQL5 that trades XAUUSD using Ichimoku Kinko Hyo signals. A position is…"
+  },
+  {
+    "title": "How I Automated My Network Login on Linux Mint Using Python and Systemd",
+    "url": "https://medium.com/@neomalesa/how-i-automated-my-network-login-on-linux-mint-using-python-and-systemd-7030d98fb2b1",
+    "date": "Thu, 07 May 2026 07:36:00 GMT",
+    "excerpt": "Say goodbye to frustrating network timeouts and manual re-authentication with this lightweight heartbeat solution. Have you ever left a large download or a long-running process on your PC overnight, only to wake up and…"
   }
 ];
