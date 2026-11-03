@@ -1049,6 +1049,11 @@ body::after {
   color: var(--color-ink);
 }
 
+/* Long single words ("Visualisations") scale down so they fit a 320px screen */
+.subpage__title--long {
+  font-size: clamp(2rem, 10vw, 7rem);
+}
+
 .subpage__meta {
   font-family: var(--font-body);
   font-size: 0.72rem;
