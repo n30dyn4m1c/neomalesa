@@ -1861,3 +1861,62 @@ body::after {
     transition: none;
   }
 }
+
+
+/* ============================================================
+   DATAVIZ — static graphic page
+   ============================================================ */
+
+.subpage__kicker a {
+  color: inherit;
+  text-decoration: underline;
+  text-underline-offset: 0.25em;
+}
+
+.subpage__kicker a:hover,
+.subpage__kicker a:focus-visible {
+  color: var(--color-accent);
+}
+
+/* Multi-word titles wrap; keep them smaller than a single-word title */
+.subpage__title--story {
+  font-size: clamp(1.9rem, 6vw, 4rem);
+  line-height: 1;
+}
+
+.viz-figure {
+  margin: clamp(2rem, 4vw, 3rem) 0 0;
+}
+
+.viz-figure__link {
+  display: block;
+  max-width: 68rem;
+}
+
+.viz-figure img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border: 1px solid var(--color-border);
+}
+
+.viz-figure__caption {
+  max-width: 68rem;
+  margin-top: 1rem;
+  font-size: 0.85rem;
+  line-height: 1.6;
+  color: var(--color-ink-muted);
+}
+
+.viz-figure__caption a {
+  display: inline-block;
+  margin-top: 0.5rem;
+  color: var(--color-ink);
+  text-decoration: underline;
+  text-underline-offset: 0.25em;
+}
+
+.viz-figure__caption a:hover,
+.viz-figure__caption a:focus-visible {
+  color: var(--color-accent);
+}
