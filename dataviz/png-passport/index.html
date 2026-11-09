@@ -30,45 +30,19 @@
   <script>document.documentElement.classList.add('js');</script>
 </head>
 <body>
-  <main class="subpage" id="top">
-    <header class="subpage__head">
-      <div class="subpage__inner">
-        <p class="subpage__kicker"><a href="../">Data Visualisations</a> &middot; Static Graphic &middot; 2026</p>
-        <h1 class="subpage__title subpage__title--story">Papua New Guinea Shares the Lowest-Ranked Passport in the Pacific</h1>
-        <p class="subpage__meta">Published 9 November 2026</p>
-      </div>
-    </header>
-    <section class="subpage__section" aria-label="Graphic">
-      <div class="subpage__inner">
-        <p class="dataviz__lead">
-          Papua New Guinea ordinary passport holders must get a visa before travel to 122 of
-          193 sovereign states. The passport ties with Naoero for the lowest score in the
-          Pacific — 83 destinations without a prior visa. Australia, 850 km from Port Moresby,
-          requires a visa; Peru, 14,600 km away, grants visa-free entry for up to 90 days.
-        </p>
-        <figure class="viz-figure">
-          <a href="png-passport-2026.png" class="viz-figure__link" aria-label="Open the full-resolution graphic">
-            <picture>
-              <source type="image/webp" srcset="png-passport-2026-1080.webp 1080w, png-passport-2026.webp 2160w" sizes="(min-width: 72rem) 68rem, 100vw" />
-              <img
-                src="png-passport-2026.png"
-                width="2160" height="2700"
-                loading="eager" decoding="async"
-                alt="Infographic: Papua New Guinea shares the lowest-ranked passport in the Pacific. A world map centred on the Pacific colours each country by entry requirement for Papua New Guinea ordinary passport holders: visa-free (35 states), visa on arrival (31), travel authorisation (5), eVisa (33) and visa required (89). A line from Port Moresby to Cairns, 850 km, is marked visa required (eVisa); a line to Lima, 14,600 km, is marked visa-free for up to 90 days. Regional bars show the share visa-free or on arrival: Pacific 85%, Americas 54%, Africa 41%, Asia 30%, Europe 0%. A ranked bar chart of Pacific passports by destinations without a prior visa (Henley Passport Index, 9 October 2026) runs from the French passport at 186 and New Zealand and Australia at 183, down to Fiji 87, Vanuatu 85, and Naoero and Papua New Guinea joint lowest at 83."
-              />
-            </picture>
-          </a>
-          <figcaption class="viz-figure__caption">
-            Sources: IATA Timatic via Wikipedia, cross-checked with visalogy.com; Zambia waiver
-            (SI No. 78 of 2024); Iraq eVisa (2025); Australia subclass 600 online application;
-            Henley Passport Index (9 October 2026). Counts cover 193 sovereign states; territories
-            are mapped but not counted. Distances are great-circle from Port Moresby.
-            Requirements are subject to change.
-            <a href="png-passport-2026.png" download>Download PNG (2160 &times; 2700)</a>
-          </figcaption>
-        </figure>
-      </div>
-    </section>
+  <main class="viz-only" id="top">
+    <h1 class="visually-hidden">Papua New Guinea Shares the Lowest-Ranked Passport in the Pacific</h1>
+    <a href="png-passport-2026.png" class="viz-only__link" aria-label="Open the full-resolution graphic">
+      <picture>
+        <source type="image/webp" srcset="png-passport-2026-1080.webp 1080w, png-passport-2026.webp 2160w" sizes="(min-width: 64rem) 64rem, 100vw" />
+        <img
+          src="png-passport-2026.png"
+          width="2160" height="2700"
+          loading="eager" decoding="async"
+          alt="Infographic: Papua New Guinea shares the lowest-ranked passport in the Pacific. A world map centred on the Pacific colours each country by entry requirement for Papua New Guinea ordinary passport holders: visa-free (35 states), visa on arrival (31), travel authorisation (5), eVisa (33) and visa required (89). A line from Port Moresby to Cairns, 850 km, is marked visa required (eVisa); a line to Lima, 14,600 km, is marked visa-free for up to 90 days. Regional bars show the share visa-free or on arrival: Pacific 85%, Americas 54%, Africa 41%, Asia 30%, Europe 0%. A ranked bar chart of Pacific passports by destinations without a prior visa (Henley Passport Index, 9 October 2026) runs from the French passport at 186 and New Zealand and Australia at 183, down to Fiji 87, Vanuatu 85, and Naoero and Papua New Guinea joint lowest at 83."
+        />
+      </picture>
+    </a>
   </main>
   <footer class="footer" role="contentinfo">
     <div class="footer__inner">
