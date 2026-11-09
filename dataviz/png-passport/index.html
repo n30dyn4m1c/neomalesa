@@ -43,6 +43,15 @@
         />
       </picture>
     </a>
+    <div class="viz-only__actions">
+      <a href="png-passport-2026.png" class="viz-btn" download="png-passport-2026.png">
+        <span aria-hidden="true">↓</span> Download PNG
+      </a>
+      <button type="button" class="viz-btn" id="share-btn">
+        <span aria-hidden="true">↗</span> <span class="viz-btn__label">Share</span>
+      </button>
+      <p class="viz-only__status" id="share-status" role="status" aria-live="polite"></p>
+    </div>
   </main>
   <footer class="footer" role="contentinfo">
     <div class="footer__inner">
@@ -57,6 +66,36 @@
       </a>
     </div>
   </footer>
+  <script>
+    (function () {
+      var btn = document.getElementById('share-btn');
+      var status = document.getElementById('share-status');
+      var url = 'https://neomalesa.com/dataviz/png-passport/';
+      var data = {
+        title: 'Papua New Guinea shares the lowest-ranked passport in the Pacific',
+        text: 'Papua New Guinea shares the lowest-ranked passport in the Pacific. A visa is needed before travel to 122 of 193 sovereign states.',
+        url: url
+      };
+      function say(msg) {
+        status.textContent = msg;
+        setTimeout(function () { status.textContent = ''; }, 3000);
+      }
+      btn.addEventListener('click', function () {
+        if (navigator.share) {
+          navigator.share(data).catch(function () {});
+          return;
+        }
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+          navigator.clipboard.writeText(url).then(
+            function () { say('Link copied'); },
+            function () { window.prompt('Copy this link:', url); }
+          );
+        } else {
+          window.prompt('Copy this link:', url);
+        }
+      });
+    })();
+  </script>
   <script src="../../js/main.js" onerror="document.documentElement.classList.remove('js');"></script>
 </body>
 </html>
