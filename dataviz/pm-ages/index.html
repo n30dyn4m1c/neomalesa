@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>All of PNG’s Prime Ministers Were Born Before Independence — Neo Malesa</title>
+  <meta
+    name="description"
+    content="None of the eight people who have served as Papua New Guinea’s Prime Minister were born after Independence in 1975. They averaged 43 on first appointment, against a national median age of 24."
+  />
+  <meta name="author" content="Neo Malesa" />
+  <meta name="theme-color" content="#0d0f12" />
+  <meta name="color-scheme" content="dark" />
+  <meta name="format-detection" content="telephone=no" />
+  <link rel="canonical" href="https://neomalesa.com/dataviz/pm-ages/" />
+  <meta property="og:type" content="article" />
+  <meta property="og:site_name" content="Neo Malesa" />
+  <meta property="og:title" content="All of PNG’s Prime Ministers were born before Independence" />
+  <meta property="og:description" content="None of the eight people who have served as Prime Minister were born after 1975. They averaged 43 when first appointed; the population’s median age is 24." />
+  <meta property="og:url" content="https://neomalesa.com/dataviz/pm-ages/" />
+  <meta property="og:image" content="https://neomalesa.com/dataviz/pm-ages/pm-ages-2026.png" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <link rel="icon" type="image/svg+xml" href="../../favicon.svg" />
+  <link rel="icon" type="image/png" sizes="192x192" href="../../favicon.png" />
+  <link rel="shortcut icon" href="../../favicon.ico" />
+  <link rel="apple-touch-icon" sizes="192x192" href="../../favicon.png" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../assets/fonts/cormorant-garamond-600.woff2" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../assets/fonts/spectral-400.woff2" />
+  <link rel="stylesheet" href="../../css/style.css" />
+  <script>document.documentElement.classList.add('js');</script>
+</head>
+<body>
+  <main class="viz-only" id="top">
+    <h1 class="visually-hidden">All of PNG’s Prime Ministers Were Born Before Independence</h1>
+    <a href="pm-ages-2026.png" class="viz-only__link" aria-label="Open the full-resolution graphic">
+      <picture>
+        <source type="image/webp" srcset="pm-ages-2026-1080.webp 1080w, pm-ages-2026.webp 2160w" sizes="(min-width: 64rem) 64rem, 100vw" />
+        <img
+          src="pm-ages-2026.png"
+          width="2160" height="2700"
+          loading="eager" decoding="async"
+          alt="Infographic: all of PNG’s Prime Ministers were born before Independence. A timeline from 1930 to 2030 shows each of the eight Prime Ministers’ lifetimes from birth, with their terms in office marked and their age at each term. None was born after Independence in 1975. Age at first appointment: Sir Michael Somare 39, Sir Julius Chan 40, Paias Wingti 34, Sir Rabbie Namaliu 41, Sir Bill Skate 43, Sir Mekere Morauta 53, Peter O’Neill 46, James Marape 48 (incumbent). The average is 43, against a national median age of 24, a difference of 19 years. It has been 41 years since anyone younger than 41 became Prime Minister; Wingti was 34 in 1985. Those appointed since 1997 averaged 48 on taking office; the first four averaged 39. Six of eight first became Prime Minister mid-term."
+        />
+      </picture>
+    </a>
+    <div class="viz-only__actions">
+      <a href="pm-ages-2026.png" class="viz-btn" download="pm-ages-2026.png">
+        <span aria-hidden="true">↓</span> Download PNG
+      </a>
+      <button type="button" class="viz-btn" id="share-btn">
+        <span aria-hidden="true">↗</span> <span class="viz-btn__label">Share</span>
+      </button>
+      <p class="viz-only__status" id="share-status" role="status" aria-live="polite"></p>
+    </div>
+  </main>
+  <footer class="footer" role="contentinfo">
+    <div class="footer__inner">
+      <p class="footer__copy">© <span id="year">2026</span> Neo Malesa. All rights reserved.</p>
+      <nav class="footer__nav" aria-label="Pages">
+        <a href="../../index.html">Home</a>
+        <a href="../../now.html">Now</a>
+        <a href="../">Data Visualisations</a>
+      </nav>
+      <a href="#top" class="back-to-top" aria-label="Back to top of page">
+        <span aria-hidden="true">↑</span> Top
+      </a>
+    </div>
+  </footer>
+  <script>
+    (function () {
+      var btn = document.getElementById('share-btn');
+      var status = document.getElementById('share-status');
+      var url = 'https://neomalesa.com/dataviz/pm-ages/';
+      var data = {
+        title: 'All of PNG’s Prime Ministers were born before Independence',
+        text: 'None of PNG’s eight Prime Ministers were born after Independence. They averaged 43 on first appointment; the median age of the population is 24.',
+        url: url
+      };
+      function say(msg) {
+        status.textContent = msg;
+        setTimeout(function () { status.textContent = ''; }, 3000);
+      }
+      btn.addEventListener('click', function () {
+        if (navigator.share) {
+          navigator.share(data).catch(function () {});
+          return;
+        }
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+          navigator.clipboard.writeText(url).then(
+            function () { say('Link copied'); },
+            function () { window.prompt('Copy this link:', url); }
+          );
+        } else {
+          window.prompt('Copy this link:', url);
+        }
+      });
+    })();
+  </script>
+  <script src="../../js/main.js" onerror="document.documentElement.classList.remove('js');"></script>
+</body>
+</html>

@@ -14,13 +14,19 @@
   </url>
   <url>
     <loc>https://neomalesa.com/dataviz/</loc>
-    <lastmod>2026-11-09</lastmod>
+    <lastmod>2026-11-11</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://neomalesa.com/dataviz/png-passport/</loc>
     <lastmod>2026-11-09</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://neomalesa.com/dataviz/pm-ages/</loc>
+    <lastmod>2026-11-11</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.6</priority>
   </url>
