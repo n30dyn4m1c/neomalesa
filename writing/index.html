@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Writing — Neo Malesa</title>
+  <meta
+    name="description"
+    content="Writing by Neo Malesa — technical writing, data visualisation, and essays on technology and innovation in Papua New Guinea. Published on Medium since 2018."
+  />
+  <meta name="author" content="Neo Malesa" />
+  <meta name="theme-color" content="#0d0f12" />
+  <meta name="color-scheme" content="dark" />
+  <meta name="format-detection" content="telephone=no" />
+  <link rel="canonical" href="https://neomalesa.com/writing/" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Neo Malesa" />
+  <meta property="og:title" content="Writing — Neo Malesa" />
+  <meta property="og:description" content="Writing by Neo Malesa — technical writing, data visualisation, and essays on technology and innovation in Papua New Guinea. Published on Medium since 2018." />
+  <meta property="og:url" content="https://neomalesa.com/writing/" />
+  <meta property="og:image" content="https://neomalesa.com/assets/og-image.png" />
+  <link rel="icon" type="image/svg+xml" href="../favicon.svg" />
+  <link rel="icon" type="image/png" sizes="192x192" href="../favicon.png" />
+  <link rel="shortcut icon" href="../favicon.ico" />
+  <link rel="apple-touch-icon" sizes="192x192" href="../favicon.png" />
+  <!-- Fonts: Cormorant Garamond (display) + Spectral (body) — self-hosted -->
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../assets/fonts/cormorant-garamond-600.woff2" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../assets/fonts/spectral-400.woff2" />
+  <link rel="stylesheet" href="../css/style.css" />
+  <script>document.documentElement.classList.add('js');</script>
+</head>
+<body>
+  <main class="subpage" id="top">
+    <header class="subpage__head">
+      <div class="subpage__inner">
+        <p class="subpage__kicker">Port Moresby &middot; Papua New Guinea</p>
+        <h1 class="subpage__title">Writing</h1>
+        <p class="subpage__meta">Latest from Medium</p>
+      </div>
+    </header>
+    <section class="subpage__section" aria-labelledby="writing-heading">
+      <div class="subpage__inner">
+        <h2 class="subpage__heading" id="writing-heading">Recent Posts</h2>
+        <div class="writing__intro">
+          <p class="writing__lead">
+            Technical writing, data visualisation, and cultural essays — documenting
+            Papua New Guinea through its budgets, elections, places, and people;
+            alongside practical UPNG institutional guides, algorithmic trading tools,
+            applied AI, and reflections on technology. Published on Medium since 2018.
+          </p>
+        </div>
+        <ul class="writing__list" id="writing-list" data-src="../writing.json" role="list"></ul>
+        <div class="writing__archive">
+          <a href="https://medium.com/@neomalesa" class="writing__cta" target="_blank" rel="noopener noreferrer" aria-label="Read the full archive on Medium (opens in a new tab)">
+            Full archive on Medium <span aria-hidden="true">→</span>
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+  <footer class="footer" role="contentinfo">
+    <div class="footer__inner">
+      <p class="footer__copy">© <span id="year">2026</span> Neo Malesa. All rights reserved.</p>
+      <nav class="footer__nav" aria-label="Pages">
+        <a href="../index.html">Home</a>
+        <a href="../now.html">Now</a>
+        <a href="./" aria-current="true">Writing</a>
+        <a href="../dataviz/">Data Visualisations</a>
+        <a href="../resources/">Resources</a>
+        <a href="../experience/">Experience</a>
+        <a href="../engagements/">Engagements</a>
+      </nav>
+      <a href="#top" class="back-to-top" aria-label="Back to top of page">
+        <span aria-hidden="true">↑</span> Top
+      </a>
+    </div>
+  </footer>
+  <!-- Writing posts, inline so the list works even opened from disk -->
+  <script src="../writing-data.js"></script>
+  <!-- No scroll-reveal targets on this page, so GSAP is not loaded here -->
+  <script src="../js/main.js" onerror="document.documentElement.classList.remove('js');"></script>
+</body>
+</html>
