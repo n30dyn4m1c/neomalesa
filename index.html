@@ -142,42 +142,78 @@
   </script>
 </head>
 <body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <!-- ===== TOP BAR — brand, primary navigation, and the standing invitation ===== -->
+  <header class="topbar" id="topbar">
+    <div class="topbar__inner">
+      <a class="topbar__brand" href="#hero" aria-label="Neo Malesa — top of page">
+        <svg class="topbar__seal" viewBox="0 0 100 100" aria-hidden="true" focusable="false">
+          <circle cx="50" cy="50" r="44" fill="none" stroke="currentColor" stroke-width="4" />
+          <text x="50" y="52" font-family="Georgia,serif" font-size="52" font-weight="600" fill="currentColor" text-anchor="middle" dominant-baseline="central">N</text>
+        </svg>
+        <span class="topbar__name">Neo Malesa</span>
+      </a>
+      <nav class="topbar__nav" id="site-menu" aria-label="Primary">
+        <a href="#start">Start Here</a>
+        <a href="#work">Work</a>
+        <a href="#engagements">Engagements</a>
+        <a href="#writing">Writing</a>
+        <a href="#background">Background</a>
+        <a href="#play">Play</a>
+      </nav>
+      <a class="btn btn--primary btn--sm topbar__cta" href="#connect" data-magnetic>
+        <span class="topbar__cta-long">Start a conversation</span>
+        <span class="topbar__cta-short">Contact</span>
+      </a>
+      <button class="topbar__toggle" type="button" aria-expanded="false" aria-controls="site-menu">
+        <span class="topbar__toggle-bars" aria-hidden="true"></span>
+        <span class="visually-hidden">Menu</span>
+      </button>
+    </div>
+    <span class="topbar__progress" aria-hidden="true"></span>
+  </header>
   <!-- Roman-numeral section rail — desktop only, fades in past the hero -->
   <nav class="rail" id="rail" aria-label="Sections">
     <ol class="rail__list" role="list">
-      <li><a class="rail__link" href="#about" aria-label="About">I</a></li>
-      <li><a class="rail__link" href="#resources" aria-label="Resources">II</a></li>
-      <li><a class="rail__link" href="#experience" aria-label="Experience">III</a></li>
-      <li><a class="rail__link" href="#writing" aria-label="Writing">IV</a></li>
-      <li><a class="rail__link" href="#dataviz" aria-label="Data Visualisations">V</a></li>
-      <li><a class="rail__link" href="#engagements" aria-label="Engagements">VI</a></li>
-      <li><a class="rail__link" href="#connect" aria-label="Correspondence">VII</a></li>
+      <li><a class="rail__link" href="#start" aria-label="Start Here" data-label="Start Here">I</a></li>
+      <li><a class="rail__link" href="#work" aria-label="Work" data-label="Work">II</a></li>
+      <li><a class="rail__link" href="#engagements" aria-label="Engagements" data-label="Engagements">III</a></li>
+      <li><a class="rail__link" href="#writing" aria-label="Writing" data-label="Writing">IV</a></li>
+      <li><a class="rail__link" href="#background" aria-label="Background" data-label="Background">V</a></li>
+      <li><a class="rail__link" href="#play" aria-label="Interlude" data-label="Interlude">VI</a></li>
+      <li><a class="rail__link" href="#connect" aria-label="Correspondence" data-label="Correspondence">VII</a></li>
     </ol>
   </nav>
-  <!-- Mobile wayfinding — horizontal numeral strip with scroll progress, mobile only.
-       The entries are mirrored from the rail above by main.js, so sections are
-       only ever listed once. Both rails stay hidden until that script runs. -->
-  <nav class="mobile-rail" id="mobile-rail" aria-label="Sections">
-    <span class="mobile-rail__progress" aria-hidden="true"></span>
-    <ol class="mobile-rail__list" role="list"></ol>
-  </nav>
-  <main>
+  <main id="main">
     <!-- ===== HERO ===== -->
     <section class="hero" id="hero" aria-label="Introduction">
       <!-- Text column -->
       <div class="hero__text">
+        <!-- Swell lines — a slow sea drawn in brass hairlines; answers the pointer -->
+        <canvas class="hero__swell" id="hero-swell" aria-hidden="true"></canvas>
         <div class="hero__inner">
-          <p class="hero__kicker" data-reveal="0">Port Moresby &middot; Papua New Guinea</p>
+          <p class="hero__kicker" data-reveal="0">
+            Port Moresby &middot; Papua New Guinea
+            <span class="hero__clock" data-clock hidden></span>
+          </p>
           <h1 class="hero__name" data-reveal="1" aria-label="Neo Malesa">
             <span class="name-mask"><span class="name-line">Neo</span></span>
             <span class="name-mask"><span class="name-line">Malesa</span></span>
           </h1>
           <span class="hero__rule" data-reveal="2" aria-hidden="true"></span>
-          <p class="hero__role" data-reveal="3">
-            Technologist &middot; UPNG software development lead &middot; writing on technology and innovation in PNG
+          <p class="hero__claim" data-reveal="3">
+            Builds the systems institutions run on — in Papua New Guinea, by Papua New Guineans.
           </p>
+          <p class="hero__role" data-reveal="4">
+            Software development lead, University of Papua New Guinea &middot; Founder, Abide Tech &middot;
+            Grand Pacific Prize, Pacific Dataviz Challenge 2026
+          </p>
+          <div class="hero__actions" data-reveal="5">
+            <a class="btn btn--primary" href="#connect" data-magnetic>Start a conversation <span aria-hidden="true">→</span></a>
+            <a class="btn btn--ghost" href="#work" data-magnetic>See the work</a>
+          </div>
         </div>
-        <div class="hero__scrollcue" data-reveal="4" aria-hidden="true">
+        <div class="hero__scrollcue" data-reveal="6" aria-hidden="true">
           <span class="hero__scrollcue-label">Scroll</span>
           <span class="hero__scrollcue-line"></span>
         </div>
@@ -204,95 +240,379 @@
         </picture>
       </figure>
     </section>
-    <!-- ===== ABOUT ===== -->
-    <section class="section section--about" id="about" aria-labelledby="about-heading">
+    <!-- ===== TICKER — the practice, in one moving line ===== -->
+    <div class="ticker" aria-hidden="true">
+      <div class="ticker__track">
+        <p class="ticker__group">
+          <span>Custom Software</span><span>Information Systems</span><span>Applied AI</span><span>Data Storytelling</span><span>Infrastructure</span><span>Automation</span><span>Advisory</span><span>Training</span>
+        </p>
+        <p class="ticker__group">
+          <span>Custom Software</span><span>Information Systems</span><span>Applied AI</span><span>Data Storytelling</span><span>Infrastructure</span><span>Automation</span><span>Advisory</span><span>Training</span>
+        </p>
+      </div>
+    </div>
+    <!-- ===== THESIS — the conviction, then the record in four figures ===== -->
+    <section class="thesis" id="thesis" aria-label="Conviction">
       <div class="section__inner">
-        <h2 class="section__heading" id="about-heading" data-ghost="I" data-gsap-reveal>
+        <p class="thesis__label" data-gsap-reveal>The conviction</p>
+        <p class="thesis__text" data-scrub>
+          Papua New Guinea can build its own systems. Written here, by its own developers — fitted to the institution, leaner to run, and owned by the people who depend on them.
+        </p>
+        <p class="thesis__sign" data-gsap-reveal>That is the work.</p>
+        <dl class="stats" data-gsap-stagger>
+          <div class="stats__item">
+            <dd class="stats__figure" data-count="2026" data-count-plain>2026</dd>
+            <dt class="stats__label">Grand Pacific Prize, Pacific Dataviz Challenge</dt>
+          </div>
+          <div class="stats__item">
+            <dd class="stats__figure" data-count="11">11</dd>
+            <dt class="stats__label">Tools released free to the public</dt>
+          </div>
+          <div class="stats__item">
+            <dd class="stats__figure" data-count="8" data-count-since="2018">8</dd>
+            <dt class="stats__label">Years of published writing</dt>
+          </div>
+          <div class="stats__item">
+            <dd class="stats__figure" data-count="5">5</dd>
+            <dt class="stats__label">Areas of engagement, one point of contact</dt>
+          </div>
+        </dl>
+      </div>
+    </section>
+    <!-- ===== I · START HERE — the page answers to who is reading it ===== -->
+    <section class="section section--start" id="start" aria-labelledby="start-heading">
+      <div class="section__inner">
+        <h2 class="section__heading" id="start-heading" data-ghost="I" data-gsap-reveal>
           <span class="section__index" aria-hidden="true">I</span>
-          About
+          Start Here
         </h2>
-        <div class="about__body">
-          <p data-gsap-reveal>
-            Leads in-house software development at the University of Papua New Guinea — building institutional systems locally, by Papua New Guinean developers, without outsourcing. Founder of Abide Tech, an ICT consultancy taking the same conviction to organisations across PNG and the Pacific.
-          </p>
-          <p data-gsap-reveal>
-            Curious across many domains — PNG language preservation, mental models, multiple intelligence theory, 360 photography, data visualisation and storytelling, Ichimoku trading, agentic AI, and bleeding-edge technology.
-          </p>
+        <p class="section__lead" data-gsap-reveal>
+          Three kinds of reader arrive at this page. Choose the one that fits — the page answers accordingly.
+        </p>
+        <div class="paths" data-gsap-reveal>
+          <div class="paths__tabs" role="tablist" aria-label="Reason for visiting">
+            <button class="paths__tab" type="button" role="tab" id="path-tab-role" aria-controls="path-role" aria-selected="true" data-path="role">
+              <span class="paths__tab-index" aria-hidden="true">i</span> Hiring
+            </button>
+            <button class="paths__tab" type="button" role="tab" id="path-tab-project" aria-controls="path-project" aria-selected="false" tabindex="-1" data-path="project">
+              <span class="paths__tab-index" aria-hidden="true">ii</span> A project in mind
+            </button>
+            <button class="paths__tab" type="button" role="tab" id="path-tab-question" aria-controls="path-question" aria-selected="false" tabindex="-1" data-path="question">
+              <span class="paths__tab-index" aria-hidden="true">iii</span> Curious
+            </button>
+          </div>
+          <div class="paths__panels">
+            <article class="paths__panel is-active" role="tabpanel" id="path-role" aria-labelledby="path-tab-role" tabindex="0">
+              <p class="paths__kicker">For hiring managers and search firms</p>
+              <h3 class="paths__title">A team lead who still writes the code.</h3>
+              <ul class="paths__points" role="list">
+                <li>Team Leader, Online Services at the University of Papua New Guinea — tutor, then analyst programmer, then team lead.</li>
+                <li>Full-stack systems, enterprise databases, applied AI, and automation — built in-house, to the institution's exact requirements.</li>
+                <li>MSc in ICT Convergence, Handong Global University, South Korea. BSc in Mathematics, Statistics and Computer Science, UPNG.</li>
+                <li>Works in public: open code, eleven free tools, years of published writing.</li>
+              </ul>
+              <div class="paths__actions">
+                <a class="btn btn--primary" href="#connect" data-intent="role" data-magnetic>Discuss a role <span aria-hidden="true">→</span></a>
+                <a class="btn btn--ghost" href="experience/">Read the full record</a>
+              </div>
+            </article>
+            <article class="paths__panel" role="tabpanel" id="path-project" aria-labelledby="path-tab-project" tabindex="0" hidden>
+              <p class="paths__kicker">For businesses, organisations, and institutions</p>
+              <h3 class="paths__title">A system that should exist, and does not yet.</h3>
+              <ul class="paths__points" role="list">
+                <li>Custom software, infrastructure, applied AI, advisory, and training — delivered through Abide Tech, across PNG and the Pacific.</li>
+                <li>Built to the organisation's exact requirements. Nothing off the shelf, nothing generic.</li>
+                <li>In build now: the UPNG website on Django and Wagtail; a Moodle and student information system for Klower&rsquo;s Axiological Institute.</li>
+              </ul>
+              <div class="paths__actions">
+                <a class="btn btn--primary" href="#connect" data-intent="project" data-magnetic>Describe the project <span aria-hidden="true">→</span></a>
+                <a class="btn btn--ghost" href="#engagements">See areas of engagement</a>
+              </div>
+            </article>
+            <article class="paths__panel" role="tabpanel" id="path-question" aria-labelledby="path-tab-question" tabindex="0" hidden>
+              <p class="paths__kicker">For students, developers, researchers, and the curious</p>
+              <h3 class="paths__title">Take what is useful. Ask about what is not here.</h3>
+              <ul class="paths__points" role="list">
+                <li>Eleven tools, free — AI thinking tools, a GPA calculator, a gold trading bot, a 360° photo app.</li>
+                <li>Essays and data stories on Papua New Guinea — its climate, politics, history, and technology.</li>
+                <li>Questions, corrections, and collaborations are welcome.</li>
+              </ul>
+              <div class="paths__actions">
+                <a class="btn btn--primary" href="#connect" data-intent="question" data-magnetic>Ask a question <span aria-hidden="true">→</span></a>
+                <a class="btn btn--ghost" href="resources/">Open the tools</a>
+              </div>
+            </article>
+          </div>
         </div>
       </div>
     </section>
-    <!-- ===== RESOURCES ===== -->
-    <section class="section section--resources" id="resources" aria-labelledby="resources-heading">
+    <!-- ===== II · WORK — three subsections, one filter ===== -->
+    <section class="section section--work" id="work" aria-labelledby="work-heading">
       <div class="section__inner">
-        <h2 class="section__heading" id="resources-heading" data-ghost="II" data-gsap-reveal>
+        <h2 class="section__heading" id="work-heading" data-ghost="II" data-gsap-reveal>
           <span class="section__index" aria-hidden="true">II</span>
-          Resources
+          Work
         </h2>
-        <div class="resources__intro" data-gsap-reveal>
-          <p class="resources__lead">Tools made available for the public to use, free — a selection of ten, from AI thinking tools to a 360° photo app.</p>
+        <p class="section__lead" data-gsap-reveal>
+          Data stories in public, systems in service, tools free to use.
+        </p>
+        <div class="filter" role="group" aria-label="Filter the work" data-gsap-reveal>
+          <button class="filter__btn" type="button" aria-pressed="true" data-filter="all">All</button>
+          <button class="filter__btn" type="button" aria-pressed="false" data-filter="data">Data stories</button>
+          <button class="filter__btn" type="button" aria-pressed="false" data-filter="systems">Systems</button>
+          <button class="filter__btn" type="button" aria-pressed="false" data-filter="tools">Tools</button>
         </div>
-        <ul class="resources__list" role="list">
-          <li class="resources__item" data-gsap-reveal>
-            <a href="https://gemini.google.com/gem/1wssKe29fiDCvUz6mFIeZm6PQdfBUocsz?usp=sharing" class="resources__link" target="_blank" rel="noopener noreferrer" aria-label="Open Rabbit Hole Explorer (opens in a new tab)">
-              <span class="resources__title">Rabbit Hole Explorer</span>
-              <span class="resources__desc">Follows a question down through every tangent it opens, one layer at a time.</span>
-              <span class="resources__arrow" aria-hidden="true">→</span>
-            </a>
-          </li>
-          <li class="resources__item" data-gsap-reveal>
-            <a href="https://n30dyn4m1c.github.io/upng-gpa-calculator_/" class="resources__link" target="_blank" rel="noopener noreferrer" aria-label="Open UPNG GPA Calculator (opens in a new tab)">
-              <span class="resources__title">UPNG GPA Calculator</span>
-              <span class="resources__desc">Calculates semester and cumulative GPA to UPNG's grading scale.</span>
-              <span class="resources__arrow" aria-hidden="true">→</span>
-            </a>
-          </li>
-          <li class="resources__item" data-gsap-reveal>
-            <a href="https://github.com/n30dyn4m1c/ichimoku-h4-m1-align" class="resources__link" target="_blank" rel="noopener noreferrer" aria-label="Open Ichimoku Gold Trading Bot (opens in a new tab)">
-              <span class="resources__title">Ichimoku Gold Trading Bot</span>
-              <span class="resources__desc">Free MT5 expert advisor for gold — enters only when six timeframes align on trend, with ATR-based risk sizing.</span>
-              <span class="resources__arrow" aria-hidden="true">→</span>
-            </a>
-          </li>
-        </ul>
-        <div class="writing__archive section__more" data-gsap-reveal>
-          <a href="resources/" class="writing__cta" aria-label="View all resources">
-            All resources <span aria-hidden="true">→</span>
-          </a>
+        <!-- II.i — Data stories -->
+        <div class="subsection" data-kind="data">
+          <h3 class="subsection__heading" data-gsap-reveal>
+            <span class="subsection__index" aria-hidden="true">II.i</span>
+            Data Stories
+            <span class="subsection__note">Papua New Guinea read through its own data</span>
+          </h3>
+          <ul class="cards" role="list" data-gsap-stagger>
+            <li class="card card--feature">
+              <a class="card__link" href="https://n30dyn4m1c.github.io/pacificdatavizchallenge26/" target="_blank" rel="noopener noreferrer" aria-label="Open The Ocean Knows First, winner of the Grand Pacific Prize (opens in a new tab)">
+                <span class="card__art"><svg class="card__motif" viewBox="0 0 320 200" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><polyline points="-4,37.2 4,38.8 12,40.1 20,41 28,41.3 36,41.1 44,40.6 52,40 60,39.6 68,39.6 76,39.8 84,40.1 92,40.2 100,39.9 108,39.1 116,37.8 124,36.4 132,35.1 140,34.2 148,33.9 156,34.3 164,35.1 172,36 180,36.8 188,37.2 196,37.3 204,37.2 212,37.1 220,37.3 228,37.9 236,39 244,40.2 252,41.4 260,42.2 268,42.3 276,41.8 284,40.8 292,39.6 300,38.5 308,37.7 316,37.4 324,37.4" stroke-opacity="0.2"/><polyline points="-4,54.5 4,55.6 12,55.9 20,55.4 28,54.5 36,53.6 44,52.8 52,52.5 60,52.6 68,52.9 76,53 84,52.6 92,51.6 100,50 108,48.3 116,46.7 124,45.7 132,45.5 140,46.1 148,47.3 156,48.8 164,50 172,50.7 180,51 188,50.9 196,50.8 204,51 212,51.7 220,52.8 228,54.3 236,55.6 244,56.5 252,56.5 260,55.7 268,54.2 276,52.5 284,50.9 292,49.8 300,49.3 308,49.3 316,49.5 324,49.6" stroke-opacity="0.2"/><polyline points="-4,70.5 4,69.7 12,68.4 20,66.9 28,65.7 36,65.1 44,65 52,65.2 60,65.3 68,64.9 76,63.7 84,62 92,60 100,58.2 108,57.2 116,57.2 124,58.2 132,59.9 140,61.9 148,63.6 156,64.7 164,65.1 172,65 180,64.8 188,64.9 196,65.6 204,66.8 212,68.3 220,69.7 228,70.5 236,70.4 244,69.2 252,67.2 260,65 268,62.9 276,61.4 284,60.8 292,60.8 300,61.2 308,61.6 316,61.6 324,61" stroke-opacity="0.2"/><polyline points="-4,81.9 4,79.8 12,78.1 20,77.1 28,76.9 36,77 44,77.2 52,76.8 60,75.7 68,73.8 76,71.7 84,69.9 92,68.9 100,69.1 108,70.6 116,72.8 124,75.4 132,77.7 140,79.1 148,79.7 156,79.6 164,79.2 172,79.1 180,79.6 188,80.7 196,82.2 204,83.6 212,84.2 220,83.9 228,82.3 236,79.8 244,77 252,74.4 260,72.6 268,71.9 276,72.1 284,72.8 292,73.6 300,73.9 308,73.6 316,72.7 324,71.9" stroke-opacity="0.2"/><polyline points="-4,90.1 4,88.7 12,88.2 20,88.4 28,88.7 36,88.5 44,87.5 52,85.7 60,83.6 68,81.8 76,81 84,81.5 92,83.4 100,86.3 108,89.4 116,92.2 124,94 132,94.7 140,94.4 148,93.8 156,93.3 164,93.5 172,94.4 180,95.7 188,96.9 196,97.5 204,96.8 212,94.9 220,91.9 228,88.6 236,85.6 244,83.6 252,82.8 260,83.3 268,84.4 276,85.7 284,86.4 292,86.5 300,85.9 308,85.2 316,84.9 324,85.5" stroke-opacity="0.95" stroke-width="1.6"/><polyline points="-4,99.2 4,99.5 12,100 20,100.1 28,99.3 36,97.8 44,95.8 52,94.2 60,93.5 68,94.4 76,96.7 84,100.2 92,103.9 100,107.2 108,109.2 116,109.9 124,109.4 132,108.4 140,107.4 148,107.1 156,107.7 164,108.7 172,109.8 180,110.2 188,109.3 196,107 204,103.6 212,99.8 220,96.5 228,94.4 236,93.7 244,94.5 252,96.2 260,98 268,99.4 276,99.9 284,99.6 292,99.1 300,98.9 308,99.6 316,101.6 324,104.6" stroke-opacity="0.3"/><polyline points="-4,111.2 4,111.7 12,111.4 20,110.2 28,108.5 36,107.1 44,106.7 52,107.8 60,110.6 68,114.6 76,118.8 84,122.4 92,124.7 100,125.3 108,124.4 116,122.8 124,121.3 132,120.4 140,120.5 148,121.2 156,122.1 164,122.3 172,121.2 180,118.6 188,114.9 196,110.8 204,107.3 212,105.1 220,104.7 228,106 236,108.3 244,110.9 252,112.9 260,113.9 268,114 276,113.6 284,113.4 292,114.2 300,116.2 308,119.3 316,122.8 324,126" stroke-opacity="0.3"/><polyline points="-4,123.8 4,123.1 12,121.7 20,120.6 28,120.4 36,121.9 44,125 52,129.4 60,134 68,137.9 76,140.2 84,140.6 92,139.3 100,137 108,134.7 116,133.2 124,132.7 132,133.1 140,133.7 148,133.8 156,132.6 164,129.9 172,126 180,121.8 188,118.1 196,116.1 204,116 212,117.8 220,120.8 228,124.2 236,126.9 244,128.5 252,128.9 260,128.6 268,128.4 276,129 284,130.9 292,134 300,137.5 308,140.5 316,142.2 324,141.9" stroke-opacity="0.4"/><polyline points="-4,135.6 4,134.7 12,134.8 20,136.5 28,139.9 36,144.5 44,149.4 52,153.4 60,155.6 68,155.6 76,153.7 84,150.7 92,147.6 100,145.3 108,144.2 116,144.3 124,144.8 132,144.8 140,143.6 148,140.9 156,137 164,132.8 172,129.2 180,127.4 188,127.7 196,130.1 204,134 212,138.1 220,141.6 228,143.7 236,144.3 244,144.1 252,143.7 260,144.1 268,145.7 276,148.5 284,151.8 292,154.6 300,156 308,155.3 316,152.5 324,148.1" stroke-opacity="0.4"/><polyline points="-4,149.7 4,151.5 12,155 20,159.8 28,164.7 36,168.7 44,170.7 52,170.3 60,167.7 68,163.9 76,159.9 84,156.8 92,155.2 100,154.9 108,155.3 116,155.4 124,154.4 132,151.9 140,148.1 148,144 156,140.7 164,139.1 172,140 180,143.1 188,147.7 196,152.7 204,156.8 212,159.4 220,160.2 228,159.9 236,159.2 244,159.1 252,160.3 260,162.7 268,165.6 276,168.2 284,169.2 292,168 300,164.6 308,159.6 316,154 324,149.3" stroke-opacity="0.4"/><polyline points="-4,170.3 4,175 12,179.9 20,183.7 28,185.4 36,184.4 44,181.1 52,176.3 60,171.5 68,167.6 76,165.4 84,164.9 92,165.4 100,165.7 108,165.1 116,163 124,159.6 132,155.7 140,152.7 148,151.6 156,153 164,156.8 172,162.2 180,167.9 188,172.6 196,175.6 204,176.4 212,175.8 220,174.6 228,173.9 236,174.5 244,176.3 252,178.8 260,181 268,181.6 276,180 284,176.1 292,170.5 300,164.4 308,159.2 316,156 324,155.1" stroke-opacity="0.5"/><circle cx="228" cy="88.6" r="3.2" fill="currentColor" stroke="none"/></svg></span>
+                <span class="card__body">
+                  <span class="card__meta">Pacific Dataviz Challenge &middot; 2026</span>
+                  <span class="card__title">The Ocean Knows First</span>
+                  <span class="card__award">Winner &middot; Grand Pacific Prize</span>
+                  <span class="card__desc">Interactive scrollytelling on El Ni&ntilde;o and drought in Papua New Guinea, built on the Pacific Community climate record. Nine chapters, from the equatorial Pacific to dry tanks and highland frost.</span>
+                  <span class="card__go">Open the story <span aria-hidden="true">→</span></span>
+                </span>
+              </a>
+            </li>
+            <li class="card">
+              <a class="card__link" href="https://n30dyn4m1c.github.io/png-calls-to-resign/" target="_blank" rel="noopener noreferrer" aria-label="Open Told to Quit. Almost No One Does. (opens in a new tab)">
+                <span class="card__art"><svg class="card__motif" viewBox="0 0 320 200" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="48" cy="62" r="8" fill="currentColor" stroke="none"/><circle cx="76" cy="62" r="8" stroke-opacity="0.95" stroke-width="1.6"/><path d="M76 54 a8 8 0 0 1 0 16 z" fill="currentColor" fill-opacity="0.9" stroke="none"/><circle cx="104" cy="62" r="8" stroke-opacity="0.95" stroke-width="1.6"/><path d="M104 54 a8 8 0 0 1 0 16 z" fill="currentColor" fill-opacity="0.9" stroke="none"/><circle cx="132" cy="62" r="8" stroke-opacity="0.95" stroke-width="1.6"/><path d="M132 54 a8 8 0 0 1 0 16 z" fill="currentColor" fill-opacity="0.9" stroke="none"/><circle cx="160" cy="62" r="8" stroke-opacity="0.95" stroke-width="1.6"/><path d="M160 54 a8 8 0 0 1 0 16 z" fill="currentColor" fill-opacity="0.9" stroke="none"/><circle cx="188" cy="62" r="8" stroke-opacity="0.55"/><circle cx="216" cy="62" r="8" stroke-opacity="0.55"/><circle cx="244" cy="62" r="8" stroke-opacity="0.55"/><circle cx="272" cy="62" r="8" stroke-opacity="0.55"/><circle cx="48" cy="100" r="8" stroke-opacity="0.55"/><circle cx="76" cy="100" r="8" stroke-opacity="0.55"/><circle cx="104" cy="100" r="8" stroke-opacity="0.2"/><circle cx="132" cy="100" r="8" stroke-opacity="0.2"/><circle cx="160" cy="100" r="8" stroke-opacity="0.2"/><circle cx="188" cy="100" r="8" stroke-opacity="0.2"/><circle cx="216" cy="100" r="8" stroke-opacity="0.2"/><circle cx="244" cy="100" r="8" stroke-opacity="0.2"/><circle cx="272" cy="100" r="8" stroke-opacity="0.2"/><circle cx="48" cy="138" r="8" stroke-opacity="0.2"/><circle cx="76" cy="138" r="8" stroke-opacity="0.2"/><circle cx="104" cy="138" r="8" stroke-opacity="0.2"/><circle cx="132" cy="138" r="8" stroke-opacity="0.2"/><circle cx="160" cy="138" r="8" stroke-opacity="0.2"/><circle cx="188" cy="138" r="8" stroke-opacity="0.2"/><circle cx="216" cy="138" r="8" stroke-opacity="0.2"/><circle cx="244" cy="138" r="8" stroke-opacity="0.2"/><circle cx="272" cy="138" r="8" stroke-opacity="0.2"/></svg></span>
+                <span class="card__body">
+                  <span class="card__meta">Data story &middot; 2026</span>
+                  <span class="card__title">Told to Quit. Almost No One Does.</span>
+                  <span class="card__desc">Twenty-seven public calls for a PNG office-holder to resign, and what followed each. One resigned.</span>
+                  <span class="card__go">Open the story <span aria-hidden="true">→</span></span>
+                </span>
+              </a>
+            </li>
+            <li class="card">
+              <a class="card__link" href="dataviz/pngpm-ages/" aria-label="Open All of PNG’s Prime Ministers Were Born Before Independence">
+                <span class="card__art card__art--image">
+                  <img src="assets/images/work/pngpm-ages-thumb.webp" width="720" height="450" alt="" loading="lazy" decoding="async" />
+                </span>
+                <span class="card__body">
+                  <span class="card__meta">Static graphic &middot; 2026</span>
+                  <span class="card__title">All of PNG’s Prime Ministers Were Born Before Independence</span>
+                  <span class="card__desc">Eight Prime Ministers, none born after 1975. No one under 41 has taken the job since 1985.</span>
+                  <span class="card__go">View the graphic <span aria-hidden="true">→</span></span>
+                </span>
+              </a>
+            </li>
+            <li class="card">
+              <a class="card__link" href="dataviz/png-passport/" aria-label="Open Papua New Guinea Shares the Lowest-Ranked Passport in the Pacific">
+                <span class="card__art card__art--image">
+                  <img src="assets/images/work/png-passport-thumb.webp" width="720" height="450" alt="" loading="lazy" decoding="async" />
+                </span>
+                <span class="card__body">
+                  <span class="card__meta">Static graphic &middot; 2026</span>
+                  <span class="card__title">The Lowest-Ranked Passport in the Pacific</span>
+                  <span class="card__desc">A visa is needed for 122 of 193 states. Australia, 850 km away, requires one; Peru, 14,600 km away, does not.</span>
+                  <span class="card__go">View the graphic <span aria-hidden="true">→</span></span>
+                </span>
+              </a>
+            </li>
+          </ul>
+          <p class="subsection__more" data-gsap-reveal>
+            <a href="dataviz/" class="textlink" aria-label="View all data visualisations">All data visualisations <span aria-hidden="true">→</span></a>
+          </p>
         </div>
+        <!-- II.ii — Systems -->
+        <div class="subsection" data-kind="systems">
+          <h3 class="subsection__heading" data-gsap-reveal>
+            <span class="subsection__index" aria-hidden="true">II.ii</span>
+            Systems
+            <span class="subsection__note">Built locally, to exact requirements</span>
+          </h3>
+          <ul class="cards" role="list" data-gsap-stagger>
+            <li class="card">
+              <a class="card__link" href="experience/" aria-label="University of Papua New Guinea — read the full record">
+                <span class="card__art"><svg class="card__motif" viewBox="0 0 320 200" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect x="40" y="36" width="64" height="34" rx="2" stroke-opacity="0.45"/><path d="M50 49 h28 M50 58 h40" stroke-opacity="0.3"/><path d="M72 70 V92 H160" stroke-opacity="0.3"/><rect x="128" y="36" width="64" height="34" rx="2" stroke-opacity="0.45"/><path d="M138 49 h28 M138 58 h40" stroke-opacity="0.3"/><path d="M160 70 V92 H160" stroke-opacity="0.3"/><rect x="216" y="36" width="64" height="34" rx="2" stroke-opacity="0.45"/><path d="M226 49 h28 M226 58 h40" stroke-opacity="0.3"/><path d="M248 70 V92 H160" stroke-opacity="0.3"/><rect x="112" y="92" width="96" height="40" rx="2" stroke-opacity="0.95" stroke-width="1.6"/><path d="M126 107 h44 M126 118 h68" stroke-opacity="0.6"/><path d="M160 132 V150" stroke-opacity="0.5"/><ellipse cx="160" cy="154" rx="34" ry="7" stroke-opacity="0.6"/><path d="M126 154 v16 a34 7 0 0 0 68 0 v-16" stroke-opacity="0.6"/><path d="M208 112 H262 V150" stroke-opacity="0.3"/><rect x="238" y="150" width="48" height="26" rx="2" stroke-opacity="0.4"/><path d="M112 112 H58 V150" stroke-opacity="0.3"/><rect x="34" y="150" width="48" height="26" rx="2" stroke-opacity="0.4"/></svg></span>
+                <span class="card__body">
+                  <span class="card__meta">In service &middot; Present</span>
+                  <span class="card__title">University of Papua New Guinea</span>
+                  <span class="card__desc">In-house web and software development for the national university. In build now: the UPNG website on Django and Wagtail.</span>
+                  <span class="card__go">Read the record <span aria-hidden="true">→</span></span>
+                </span>
+              </a>
+            </li>
+            <li class="card">
+              <a class="card__link" href="now.html" aria-label="Klower’s Axiological Institute — see what is in build now">
+                <span class="card__art"><svg class="card__motif" viewBox="0 0 320 200" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect x="40" y="40" width="20" height="20" rx="2" stroke-opacity="0.95"/><path d="M72 46 h70" stroke-opacity="0.5"/><path d="M72 56 H280" stroke-opacity="0.18" stroke-width="3"/><path d="M72 56 H242.6" stroke-opacity="0.95" stroke-width="3"/><rect x="40" y="74" width="20" height="20" rx="2" stroke-opacity="0.4"/><path d="M72 80 h93" stroke-opacity="0.5"/><path d="M72 90 H280" stroke-opacity="0.18" stroke-width="3"/><path d="M72 90 H186.4" stroke-opacity="0.55" stroke-width="3"/><rect x="40" y="108" width="20" height="20" rx="2" stroke-opacity="0.4"/><path d="M72 114 h116" stroke-opacity="0.5"/><path d="M72 124 H280" stroke-opacity="0.18" stroke-width="3"/><path d="M72 124 H142.7" stroke-opacity="0.55" stroke-width="3"/><rect x="40" y="142" width="20" height="20" rx="2" stroke-opacity="0.4"/><path d="M72 148 h89" stroke-opacity="0.5"/><path d="M72 158 H280" stroke-opacity="0.18" stroke-width="3"/><path d="M72 158 H213.4" stroke-opacity="0.55" stroke-width="3"/></svg></span>
+                <span class="card__body">
+                  <span class="card__meta">In build &middot; 2026</span>
+                  <span class="card__title">Klower&rsquo;s Axiological Institute</span>
+                  <span class="card__desc">A Moodle learning platform and student information system, built as one.</span>
+                  <span class="card__go">See what is current <span aria-hidden="true">→</span></span>
+                </span>
+              </a>
+            </li>
+            <li class="card">
+              <a class="card__link" href="experience/" aria-label="Eternal Realm Software — read the full record">
+                <span class="card__art"><svg class="card__motif" viewBox="0 0 320 200" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect x="40" y="34" width="150" height="26" rx="13" stroke-opacity="0.3"/><path d="M56 47 h118" stroke-opacity="0.3"/><rect x="130" y="70" width="150" height="26" rx="13" stroke-opacity="0.55"/><path d="M146 83 h118" stroke-opacity="0.7"/><rect x="40" y="106" width="110" height="26" rx="13" stroke-opacity="0.3"/><path d="M56 119 h78" stroke-opacity="0.3"/><rect x="160" y="142" width="120" height="26" rx="13" stroke-opacity="0.95" stroke-width="1.6"/><path d="M176 155 h88" stroke-opacity="0.7"/></svg></span>
+                <span class="card__body">
+                  <span class="card__meta">Co-founded &middot; 2017</span>
+                  <span class="card__title">Eternal Realm Software</span>
+                  <span class="card__desc">Conversational AI on Facebook Messenger, when chatbots were still a concept most PNG clients could not place. Too early to market. The technology is now mainstream.</span>
+                  <span class="card__go">Read the record <span aria-hidden="true">→</span></span>
+                </span>
+              </a>
+            </li>
+          </ul>
+        </div>
+        <!-- II.iii — Tools -->
+        <div class="subsection" data-kind="tools">
+          <h3 class="subsection__heading" data-gsap-reveal>
+            <span class="subsection__index" aria-hidden="true">II.iii</span>
+            Tools
+            <span class="subsection__note">Free to the public</span>
+          </h3>
+          <ul class="cards cards--four" role="list" data-gsap-stagger>
+            <li class="card">
+              <a class="card__link" href="https://github.com/n30dyn4m1c/ichimoku-h4-m1-align" target="_blank" rel="noopener noreferrer" aria-label="Open Ichimoku Gold Trading Bot (opens in a new tab)">
+                <span class="card__art"><svg class="card__motif" viewBox="0 0 320 200" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><polygon points="20,98.8 30,92.6 40,86.8 50,81.5 60,76.8 70,72.9 80,69.7 90,67.4 100,66 110,65.5 120,65.8 130,67 140,68.9 150,71.5 160,74.7 170,78.4 180,82.4 190,86.6 200,90.9 210,95.1 220,99.1 230,102.7 240,105.9 250,108.4 260,110.3 270,111.4 280,111.7 290,111.2 300,109.7 300,97.2 290,95.4 280,93.6 270,91.9 260,90.4 250,88.9 240,87.7 230,86.7 220,85.9 210,85.3 200,85.1 190,85.1 180,85.5 170,86.1 160,87.1 150,88.4 140,89.9 130,91.8 120,93.9 110,96.3 100,98.9 90,101.7 80,104.6 70,107.7 60,110.8 50,114 40,117.2 30,120.4 20,123.5" fill="currentColor" fill-opacity="0.08" stroke="none"/><polyline points="20,98.8 30,92.6 40,86.8 50,81.5 60,76.8 70,72.9 80,69.7 90,67.4 100,66 110,65.5 120,65.8 130,67 140,68.9 150,71.5 160,74.7 170,78.4 180,82.4 190,86.6 200,90.9 210,95.1 220,99.1 230,102.7 240,105.9 250,108.4 260,110.3 270,111.4 280,111.7 290,111.2 300,109.7" stroke-opacity="0.55"/><polyline points="20,123.5 30,120.4 40,117.2 50,114 60,110.8 70,107.7 80,104.6 90,101.7 100,98.9 110,96.3 120,93.9 130,91.8 140,89.9 150,88.4 160,87.1 170,86.1 180,85.5 190,85.1 200,85.1 210,85.3 220,85.9 230,86.7 240,87.7 250,88.9 260,90.4 270,91.9 280,93.6 290,95.4 300,97.2" stroke-opacity="0.3"/><path d="M30 141.1 V155.3" stroke-opacity="0.9"/><rect x="27" y="143.8" width="6" height="6.2" fill="currentColor" stroke="none"/><path d="M44 129.7 V147.6" stroke-opacity="0.9"/><rect x="41" y="134.4" width="6" height="9.5" fill="currentColor" stroke="none"/><path d="M58 120.2 V136.5" stroke-opacity="0.9"/><rect x="55" y="124.7" width="6" height="9.6" fill="currentColor" stroke="none"/><path d="M72 117.6 V127.2" stroke-opacity="0.9"/><rect x="69" y="119.9" width="6" height="4.8" fill="currentColor" stroke="none"/><path d="M86 108.9 V122.6" stroke-opacity="0.9"/><rect x="83" y="115.1" width="6" height="4.9" fill="currentColor" stroke="none"/><path d="M100 102.4 V121.8" stroke-opacity="0.9"/><rect x="97" y="107.6" width="6" height="7.5" fill="currentColor" stroke="none"/><path d="M114 100.7 V114.4" stroke-opacity="0.9"/><rect x="111" y="104.7" width="6" height="2.9" fill="currentColor" stroke="none"/><path d="M128 88.6 V108.1" stroke-opacity="0.9"/><rect x="125" y="94.9" width="6" height="9.8" fill="currentColor" stroke="none"/><path d="M142 83.8 V98.4" stroke-opacity="0.9"/><rect x="139" y="86.3" width="6" height="8.5" fill="currentColor" stroke="none"/><path d="M156 83.4 V91.5" stroke-opacity="0.4"/><rect x="153" y="86.3" width="6" height="2" stroke-opacity="0.45"/><path d="M170 80.6 V91.3" stroke-opacity="0.9"/><rect x="167" y="84.5" width="6" height="2.1" fill="currentColor" stroke="none"/><path d="M184 72.6 V87.5" stroke-opacity="0.9"/><rect x="181" y="74.9" width="6" height="9.6" fill="currentColor" stroke="none"/><path d="M198 69.2 V78.4" stroke-opacity="0.9"/><rect x="195" y="73.3" width="6" height="2" fill="currentColor" stroke="none"/><path d="M212 66.3 V76.8" stroke-opacity="0.9"/><rect x="209" y="70.5" width="6" height="2.8" fill="currentColor" stroke="none"/><path d="M226 65 V73.8" stroke-opacity="0.9"/><rect x="223" y="70.5" width="6" height="2" fill="currentColor" stroke="none"/><path d="M240 62.9 V76.8" stroke-opacity="0.9"/><rect x="237" y="67.5" width="6" height="2.9" fill="currentColor" stroke="none"/><path d="M254 63.2 V74.4" stroke-opacity="0.9"/><rect x="251" y="66.6" width="6" height="2" fill="currentColor" stroke="none"/><path d="M268 53.7 V72.4" stroke-opacity="0.9"/><rect x="265" y="57.7" width="6" height="8.9" fill="currentColor" stroke="none"/><path d="M282 44.9 V59.9" stroke-opacity="0.9"/><rect x="279" y="49.3" width="6" height="8.4" fill="currentColor" stroke="none"/></svg></span>
+                <span class="card__body">
+                  <span class="card__meta">Open source &middot; MT5</span>
+                  <span class="card__title">Ichimoku Gold Trading Bot</span>
+                  <span class="card__desc">Enters only when six timeframes align on trend, with ATR-based risk sizing.</span>
+                  <span class="card__go">View the code <span aria-hidden="true">→</span></span>
+                </span>
+              </a>
+            </li>
+            <li class="card">
+              <a class="card__link" href="https://github.com/n30dyn4m1c/360-photo-app" target="_blank" rel="noopener noreferrer" aria-label="Open Photo Sphere (opens in a new tab)">
+                <span class="card__art"><svg class="card__motif" viewBox="0 0 320 200" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="160" cy="100" r="70" stroke-opacity="0.95" stroke-width="1.6"/><ellipse cx="160" cy="100" rx="18" ry="70" stroke-opacity="0.3"/><ellipse cx="160" cy="100" rx="42" ry="70" stroke-opacity="0.3"/><ellipse cx="160" cy="100" rx="60" ry="70" stroke-opacity="0.3"/><ellipse cx="160" cy="100" rx="70" ry="14" stroke-opacity="0.6"/><ellipse cx="160" cy="66" rx="61.2" ry="10" stroke-opacity="0.3"/><ellipse cx="160" cy="134" rx="61.2" ry="10" stroke-opacity="0.3"/><path d="M160 30 V170" stroke-opacity="0.3"/><path d="M122 74 h-12 v-12 M198 74 h12 v-12 M122 126 h-12 v12 M198 126 h12 v12" stroke-opacity="0.8"/></svg></span>
+                <span class="card__body">
+                  <span class="card__meta">Open source &middot; Android</span>
+                  <span class="card__title">Photo Sphere</span>
+                  <span class="card__desc">Guided 360° capture — walks the shot round and stitches a pannable sphere.</span>
+                  <span class="card__go">View the code <span aria-hidden="true">→</span></span>
+                </span>
+              </a>
+            </li>
+            <li class="card">
+              <a class="card__link" href="https://n30dyn4m1c.github.io/upng-gpa-calculator_/" target="_blank" rel="noopener noreferrer" aria-label="Open UPNG GPA Calculator (opens in a new tab)">
+                <span class="card__art"><svg class="card__motif" viewBox="0 0 320 200" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M40 164 H280" stroke-opacity="0.4"/><rect x="52" y="106" width="14" height="58" stroke-opacity="0.35"/><rect x="80" y="78" width="14" height="86" stroke-opacity="0.35"/><rect x="108" y="94" width="14" height="70" stroke-opacity="0.35"/><rect x="136" y="60" width="14" height="104" stroke-opacity="0.35"/><rect x="164" y="72" width="14" height="92" stroke-opacity="0.35"/><rect x="192" y="46" width="14" height="118" stroke-opacity="0.35"/><rect x="220" y="54" width="14" height="110" stroke-opacity="0.35"/><rect x="248" y="38" width="14" height="126" stroke-opacity="0.95" fill="currentColor" fill-opacity="0.9"/><polyline points="59,92 87,78 115,78.7 143,70.5 171,68 199,62 227,58.9 255,54.5" stroke-opacity="0.8" stroke-dasharray="3 4"/></svg></span>
+                <span class="card__body">
+                  <span class="card__meta">Web app &middot; Students</span>
+                  <span class="card__title">UPNG GPA Calculator</span>
+                  <span class="card__desc">Semester and cumulative GPA, to UPNG's grading scale.</span>
+                  <span class="card__go">Open the calculator <span aria-hidden="true">→</span></span>
+                </span>
+              </a>
+            </li>
+            <li class="card">
+              <a class="card__link" href="resources/" aria-label="AI thinking tools — view all resources">
+                <span class="card__art"><svg class="card__motif" viewBox="0 0 320 200" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect x="78" y="18" width="164" height="164" transform="rotate(0 160 100)" stroke-opacity="0.2"/><rect x="99.3" y="39.3" width="121.4" height="121.4" transform="rotate(11 160 100)" stroke-opacity="0.3"/><rect x="115.1" y="55.1" width="89.8" height="89.8" transform="rotate(22 160 100)" stroke-opacity="0.3"/><rect x="126.8" y="66.8" width="66.5" height="66.5" transform="rotate(33 160 100)" stroke-opacity="0.4"/><rect x="135.4" y="75.4" width="49.2" height="49.2" transform="rotate(44 160 100)" stroke-opacity="0.4"/><rect x="141.8" y="81.8" width="36.4" height="36.4" transform="rotate(55 160 100)" stroke-opacity="0.5"/><rect x="146.5" y="86.5" width="26.9" height="26.9" transform="rotate(66 160 100)" stroke-opacity="0.6"/><rect x="150" y="90" width="19.9" height="19.9" transform="rotate(77 160 100)" stroke-opacity="0.6"/><rect x="152.6" y="92.6" width="14.7" height="14.7" transform="rotate(88 160 100)" stroke-opacity="0.9" fill="currentColor" fill-opacity="0.9"/></svg></span>
+                <span class="card__body">
+                  <span class="card__meta">Eight tools &middot; Gemini &amp; ChatGPT</span>
+                  <span class="card__title">AI Thinking Tools</span>
+                  <span class="card__desc">Rabbit Hole Explorer, First Principles Explorer, Deep Root and five more.</span>
+                  <span class="card__go">Open the set <span aria-hidden="true">→</span></span>
+                </span>
+              </a>
+            </li>
+          </ul>
+          <p class="subsection__more" data-gsap-reveal>
+            <a href="resources/" class="textlink" aria-label="View all resources">All resources <span aria-hidden="true">→</span></a>
+          </p>
+        </div>
+        <!-- The work, turned toward the reader -->
+        <aside class="nudge" data-gsap-reveal>
+          <p class="nudge__text">Something like this, needed elsewhere?</p>
+          <a class="btn btn--primary" href="#connect" data-intent="project" data-magnetic>Describe it <span aria-hidden="true">→</span></a>
+        </aside>
       </div>
     </section>
-    <!-- ===== EXPERIENCE ===== -->
-    <section class="section section--work" id="experience" aria-labelledby="experience-heading">
+    <!-- ===== III · ENGAGEMENTS ===== -->
+    <section class="section section--mandates" id="engagements" aria-labelledby="engagements-heading">
       <div class="section__inner">
-        <h2 class="section__heading" id="experience-heading" data-ghost="III" data-gsap-reveal>
+        <h2 class="section__heading" id="engagements-heading" data-ghost="III" data-gsap-reveal>
           <span class="section__index" aria-hidden="true">III</span>
-          Experience
+          Engagements
         </h2>
-        <ul class="work__list" role="list">
-          <li class="work__item work__item--lead" data-gsap-reveal>
-            <p class="work__org">University of Papua New Guinea</p>
-            <p class="work__role">Team Leader, Online Services &middot; ICT Division &middot; Present</p>
-            <p class="work__desc">
-              Leading in-house web and software development for the national university — systems built locally, to UPNG's exact requirements.
-            </p>
-          </li>
-          <li class="work__item" data-gsap-reveal>
-            <p class="work__org">Abide Tech</p>
-            <p class="work__role">Founder &middot; Est. 2026</p>
-          </li>
-          <li class="work__item" data-gsap-reveal>
-            <p class="work__org">Eternal Realm Software</p>
-            <p class="work__role">Co-founder &middot; 2017</p>
-          </li>
-        </ul>
-        <div class="writing__archive section__more" data-gsap-reveal>
-          <a href="experience/" class="writing__cta" aria-label="View full experience, capabilities and education">
-            Experience, capabilities &amp; education <span aria-hidden="true">→</span>
-          </a>
+        <p class="section__lead" data-gsap-reveal>
+          Software, infrastructure, applied AI, advisory, and training — for businesses,
+          organisations, and institutions across PNG and the Pacific. Not limited to ICT.
+        </p>
+        <!-- III.i — Areas -->
+        <div class="subsection">
+          <h3 class="subsection__heading" data-gsap-reveal>
+            <span class="subsection__index" aria-hidden="true">III.i</span>
+            Areas
+          </h3>
+          <ol class="areas" role="list" data-gsap-stagger>
+            <li class="areas__item">
+              <span class="areas__num" aria-hidden="true">01</span>
+              <h4 class="areas__title">Custom Software Development</h4>
+              <p class="areas__desc">Bespoke software, information systems, and web platforms built precisely to client requirements.</p>
+            </li>
+            <li class="areas__item">
+              <span class="areas__num" aria-hidden="true">02</span>
+              <h4 class="areas__title">Technology Infrastructure</h4>
+              <p class="areas__desc">Web, cloud, and database architecture for businesses, organisations, and institutions.</p>
+            </li>
+            <li class="areas__item">
+              <span class="areas__num" aria-hidden="true">03</span>
+              <h4 class="areas__title">Applied AI and Automation</h4>
+              <p class="areas__desc">AI tool development, workflow automation, and LLM integration for business and institutional use.</p>
+            </li>
+            <li class="areas__item">
+              <span class="areas__num" aria-hidden="true">04</span>
+              <h4 class="areas__title">Technology Advisory</h4>
+              <p class="areas__desc">Emerging technologies relevant to the PNG and Pacific market — adoption, transition, and future-proofing.</p>
+            </li>
+            <li class="areas__item">
+              <span class="areas__num" aria-hidden="true">05</span>
+              <h4 class="areas__title">Technology Training</h4>
+              <p class="areas__desc">Training for technical and executive teams on modern infrastructure, AI tools, and operational practice.</p>
+            </li>
+            <li class="areas__item areas__item--open">
+              <span class="areas__num" aria-hidden="true">+</span>
+              <h4 class="areas__title">Something Else</h4>
+              <p class="areas__desc">Engagements beyond these areas are considered.</p>
+              <a class="textlink" href="#connect" data-intent="project">Put it forward <span aria-hidden="true">→</span></a>
+            </li>
+          </ol>
+        </div>
+        <!-- III.ii — How it begins -->
+        <div class="subsection">
+          <h3 class="subsection__heading" data-gsap-reveal>
+            <span class="subsection__index" aria-hidden="true">III.ii</span>
+            How It Begins
+          </h3>
+          <ol class="steps" role="list" data-gsap-stagger>
+            <li class="steps__item">
+              <span class="steps__num" aria-hidden="true">1</span>
+              <h4 class="steps__title">Write</h4>
+              <p class="steps__desc">A few lines on the problem. No formal brief required.</p>
+            </li>
+            <li class="steps__item">
+              <span class="steps__num" aria-hidden="true">2</span>
+              <h4 class="steps__title">Talk</h4>
+              <p class="steps__desc">A conversation on scope, constraints, and fit.</p>
+            </li>
+            <li class="steps__item">
+              <span class="steps__num" aria-hidden="true">3</span>
+              <h4 class="steps__title">Decide</h4>
+              <p class="steps__desc">A written proposal. The decision stays with you.</p>
+            </li>
+          </ol>
+          <div class="subsection__actions" data-gsap-reveal>
+            <a class="btn btn--primary" href="#connect" data-intent="project" data-magnetic>Take the first step <span aria-hidden="true">→</span></a>
+            <a href="engagements/" class="textlink" aria-label="View all areas of engagement">Areas of engagement in full <span aria-hidden="true">→</span></a>
+          </div>
         </div>
       </div>
     </section>
-    <!-- ===== WRITING ===== -->
+    <!-- ===== IV · WRITING ===== -->
     <section class="section section--writing" id="writing" aria-labelledby="writing-heading">
       <div class="section__inner">
         <h2 class="section__heading" id="writing-heading" data-ghost="IV" data-gsap-reveal>
@@ -306,131 +626,306 @@
           </p>
         </div>
         <ul class="writing__list" id="writing-list" data-limit="3" data-gsap-reveal role="list"></ul>
-        <div class="writing__archive section__more" data-gsap-reveal>
-          <a href="writing/" class="writing__cta" aria-label="View all writing">
-            All writing <span aria-hidden="true">→</span>
-          </a>
+        <div class="section__more" data-gsap-reveal>
+          <a href="writing/" class="textlink" aria-label="View all writing">All writing <span aria-hidden="true">→</span></a>
         </div>
       </div>
     </section>
-    <!-- ===== DATA VISUALISATIONS ===== -->
-    <section class="section section--dataviz" id="dataviz" aria-labelledby="dataviz-heading">
+    <!-- ===== V · BACKGROUND ===== -->
+    <section class="section section--background" id="background" aria-labelledby="background-heading">
       <div class="section__inner">
-        <h2 class="section__heading" id="dataviz-heading" data-ghost="V" data-gsap-reveal>
+        <h2 class="section__heading" id="background-heading" data-ghost="V" data-gsap-reveal>
           <span class="section__index" aria-hidden="true">V</span>
-          Data Visualisations
+          Background
         </h2>
-        <div class="dataviz__intro" data-gsap-reveal>
-          <p class="dataviz__lead">
-            Papua New Guinea read through its own data — climate records, budgets, and
-            public statistics rendered so the pattern in them can be seen.
+        <div class="about__body">
+          <p data-gsap-reveal>
+            Leads in-house software development at the University of Papua New Guinea — building institutional systems locally, by Papua New Guinean developers, without outsourcing. Founder of Abide Tech, an ICT consultancy taking the same conviction to organisations across PNG and the Pacific.
+          </p>
+          <p data-gsap-reveal>
+            Curious across many domains — PNG language preservation, mental models, multiple intelligence theory, 360 photography, data visualisation and storytelling, Ichimoku trading, agentic AI, and bleeding-edge technology.
           </p>
         </div>
-        <ul class="dataviz__list" role="list">
-          <li class="dataviz__item dataviz__item--award" data-gsap-reveal>
-            <a href="https://n30dyn4m1c.github.io/pacificdatavizchallenge26/" class="dataviz__link" target="_blank" rel="noopener noreferrer" aria-label="Open The Ocean Knows First, winner of the Grand Pacific Prize (opens in a new tab)">
-              <span class="dataviz__meta">Pacific Dataviz Challenge &middot; 2026</span>
-              <span class="dataviz__title">The Ocean Knows First</span>
-              <span class="dataviz__award">Winner &middot; Grand Pacific Prize</span>
-              <span class="dataviz__desc">
-                Interactive scrollytelling on El Ni&ntilde;o and drought in Papua New Guinea,
-                built on the Pacific Community climate record.
-              </span>
-              <span class="dataviz__arrow" aria-hidden="true">→</span>
-            </a>
-            <a href="https://pacificdatavizchallenge.org/edition/2026" class="dataviz__edition" target="_blank" rel="noopener noreferrer" aria-label="View the 2026 challenge edition (opens in a new tab)">View the 2026 challenge edition &rarr;</a>
-          </li>
-          <li class="dataviz__item" data-gsap-reveal>
-            <a href="dataviz/pngpm-ages/" class="dataviz__link" aria-label="Open All of PNG’s Prime Ministers Were Born Before Independence">
-              <span class="dataviz__meta">Static Graphic &middot; 2026</span>
-              <span class="dataviz__title">All of PNG’s Prime Ministers Were Born Before Independence</span>
-              <span class="dataviz__desc">
-                A timeline of the eight people who have served as Prime Minister. None was
-                born after 1975, and no one under 41 has taken the job since 1985.
-              </span>
-              <span class="dataviz__arrow" aria-hidden="true">→</span>
-            </a>
-          </li>
-        </ul>
-        <div class="writing__archive section__more" data-gsap-reveal>
-          <a href="dataviz/" class="writing__cta" aria-label="View all data visualisations">
-            All data visualisations <span aria-hidden="true">→</span>
-          </a>
+        <div class="background__grid">
+          <!-- V.i — Record -->
+          <div class="subsection subsection--record">
+            <h3 class="subsection__heading" data-gsap-reveal>
+              <span class="subsection__index" aria-hidden="true">V.i</span>
+              Record
+            </h3>
+            <ol class="timeline" role="list">
+              <li class="timeline__item" data-gsap-reveal>
+                <p class="timeline__when">Present</p>
+                <h4 class="timeline__org">University of Papua New Guinea</h4>
+                <p class="timeline__role">Team Leader, Online Services &middot; ICT Division</p>
+                <p class="timeline__desc">In-house web and software development for the national university — systems built locally, to UPNG's exact requirements.</p>
+              </li>
+              <li class="timeline__item" data-gsap-reveal>
+                <p class="timeline__when">Est. 2026</p>
+                <h4 class="timeline__org">Abide Tech</h4>
+                <p class="timeline__role">Founder</p>
+                <p class="timeline__desc">Independent ICT consultancy for businesses, organisations, and institutions across PNG and the Pacific.</p>
+              </li>
+              <li class="timeline__item" data-gsap-reveal>
+                <p class="timeline__when">2017</p>
+                <h4 class="timeline__org">Eternal Realm Software</h4>
+                <p class="timeline__role">Co-founder</p>
+                <p class="timeline__desc">Conversational AI products on Facebook Messenger, ahead of the market.</p>
+              </li>
+            </ol>
+          </div>
+          <div class="background__side">
+            <!-- V.ii — Capabilities -->
+            <div class="subsection">
+              <h3 class="subsection__heading" data-gsap-reveal>
+                <span class="subsection__index" aria-hidden="true">V.ii</span>
+                Capabilities
+              </h3>
+              <ul class="chips" role="list" data-gsap-stagger>
+                <li>Full-Stack Web Development</li>
+                <li>Custom Information Systems</li>
+                <li>Custom App Development</li>
+                <li>Enterprise Database Engineering</li>
+                <li>Applied AI Systems</li>
+                <li>Workflow Automation &amp; Scripting</li>
+                <li>Algorithmic Trading Systems</li>
+                <li>Ichimoku Trading Analysis</li>
+                <li>Institutional Technology Strategy</li>
+              </ul>
+            </div>
+            <!-- V.iii — Education -->
+            <div class="subsection">
+              <h3 class="subsection__heading" data-gsap-reveal>
+                <span class="subsection__index" aria-hidden="true">V.iii</span>
+                Education
+              </h3>
+              <ul class="credentials__list" role="list" data-gsap-stagger>
+                <li>
+                  <span class="credential__degree">MSc in ICT Convergence</span>
+                  <span class="credential__institution">Handong Global University &middot; Pohang, South Korea</span>
+                </li>
+                <li>
+                  <span class="credential__degree">BSc in Mathematics, Statistics &amp; Computer Science</span>
+                  <span class="credential__institution">University of Papua New Guinea</span>
+                </li>
+              </ul>
+            </div>
+            <!-- V.iv — Now -->
+            <div class="subsection">
+              <h3 class="subsection__heading" data-gsap-reveal>
+                <span class="subsection__index" aria-hidden="true">V.iv</span>
+                Now
+              </h3>
+              <ul class="nowlist" role="list" data-gsap-stagger>
+                <li>UPNG website update in Django and Wagtail</li>
+                <li>Klower&rsquo;s Axiological Institute Moodle and SIS</li>
+                <li>360 Photo Sphere Android app</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="section__more section__more--pair" data-gsap-reveal>
+          <a href="experience/" class="textlink" aria-label="View full experience, capabilities and education">Experience, capabilities &amp; education <span aria-hidden="true">→</span></a>
+          <a href="now.html" class="textlink" aria-label="View the Now page">Everything current <span aria-hidden="true">→</span></a>
         </div>
       </div>
     </section>
-    <!-- ===== ENGAGEMENTS ===== -->
-    <section class="section section--mandates" id="engagements" aria-labelledby="engagements-heading">
+    <!-- ===== VI · INTERLUDE — a short crossing in three dimensions ===== -->
+    <section class="section section--play" id="play" aria-labelledby="play-heading">
       <div class="section__inner">
-        <h2 class="section__heading" id="engagements-heading" data-ghost="VI" data-gsap-reveal>
+        <h2 class="section__heading" id="play-heading" data-ghost="VI" data-gsap-reveal>
           <span class="section__index" aria-hidden="true">VI</span>
-          Engagements
+          Interlude
         </h2>
-        <div class="mandates__body">
-          <p class="mandates__lead" data-gsap-reveal>
-            Software, infrastructure, applied AI, advisory, and training — for businesses,
-            organisations, and institutions across PNG and the Pacific. Not limited to ICT.
-          </p>
-          <ul class="mandates__list mandates__list--compact" role="list">
-            <li class="mandates__item" data-gsap-reveal><p class="mandates__title">Custom Software Development</p></li>
-            <li class="mandates__item" data-gsap-reveal><p class="mandates__title">Technology Infrastructure</p></li>
-            <li class="mandates__item" data-gsap-reveal><p class="mandates__title">Applied AI and Automation</p></li>
-            <li class="mandates__item" data-gsap-reveal><p class="mandates__title">Technology Advisory</p></li>
-            <li class="mandates__item" data-gsap-reveal><p class="mandates__title">Technology Training</p></li>
-          </ul>
-        </div>
-        <div class="writing__archive section__more" data-gsap-reveal>
-          <a href="engagements/" class="writing__cta" aria-label="View all areas of engagement">
-            All areas of engagement <span aria-hidden="true">→</span>
-          </a>
+        <p class="section__lead" data-gsap-reveal>
+          Six islands sit dark across a night sea. Sail out, light every beacon, and bring the network online. Each light tells part of the record — and the last one opens a direct line.
+        </p>
+        <div class="game" id="game" data-state="idle" data-gsap-reveal>
+          <canvas class="game__canvas" id="game-canvas" aria-label="Light the Islands — a sailing game. Steer with the arrow keys."></canvas>
+          <!-- Poster — shown until the crossing begins -->
+          <div class="game__poster">
+            <svg class="game__poster-art" viewBox="0 150 800 300" preserveAspectRatio="xMidYMax slice" fill="none" stroke="currentColor" aria-hidden="true" focusable="false">
+              <g stroke-opacity="0.18">
+                <path d="M0 290 Q100 280 200 290 T400 290 T600 290 T800 290" />
+                <path d="M0 318 Q100 306 200 318 T400 318 T600 318 T800 318" />
+                <path d="M0 350 Q100 336 200 350 T400 350 T600 350 T800 350" />
+                <path d="M0 386 Q100 370 200 386 T400 386 T600 386 T800 386" />
+                <path d="M0 426 Q100 408 200 426 T400 426 T600 426 T800 426" />
+              </g>
+              <g stroke-opacity="0.4">
+                <path d="M60 268 L112 222 L150 250 L178 268 Z" />
+                <path d="M250 268 L290 236 L330 268 Z" />
+                <path d="M430 268 L486 206 L520 240 L560 268 Z" />
+                <path d="M640 268 L676 240 L712 268 Z" />
+              </g>
+              <path d="M0 268 H800" stroke-opacity="0.3" />
+              <g class="game__poster-beacons" fill="currentColor" stroke="none">
+                <circle cx="112" cy="214" r="3.5" />
+                <circle cx="290" cy="228" r="3.5" />
+                <circle cx="486" cy="198" r="3.5" />
+                <circle cx="676" cy="232" r="3.5" />
+              </g>
+              <g stroke-opacity="0.85" stroke-width="1.5">
+                <path d="M372 338 L428 338 L418 350 L382 350 Z" />
+                <path d="M400 338 V292 L424 332 Z" />
+              </g>
+            </svg>
+            <div class="game__poster-copy">
+              <p class="game__poster-kicker">A game in three dimensions</p>
+              <p class="game__poster-title">Light the Islands</p>
+              <p class="game__poster-help">
+                <span class="game__keys" aria-hidden="true"><kbd>←</kbd><kbd>→</kbd></span> steer
+                <span class="game__keys" aria-hidden="true"><kbd>↑</kbd></span> trim the sail for speed
+                <span class="game__poster-touch">On a phone: hold either side of the sea to steer.</span>
+              </p>
+              <button class="btn btn--primary" type="button" id="game-start">Begin the crossing <span aria-hidden="true">→</span></button>
+              <p class="game__poster-status" id="game-status" role="status" aria-live="polite"></p>
+            </div>
+          </div>
+          <!-- Heads-up display -->
+          <div class="game__hud" aria-hidden="true">
+            <p class="game__hud-item"><span class="game__hud-label">Beacons</span> <span id="game-count">0 / 6</span></p>
+            <p class="game__hud-item game__hud-item--bearing">
+              <span class="game__hud-label">Nearest dark island</span>
+              <span class="game__bearing"><span class="game__bearing-arrow" id="game-arrow">↑</span> <span id="game-dist">—</span></span>
+            </p>
+            <p class="game__hud-item"><span class="game__hud-label">Time</span> <span id="game-time">0:00</span></p>
+          </div>
+          <div class="game__tools">
+            <button class="game__tool" type="button" id="game-sound" aria-pressed="false">Sound off</button>
+            <button class="game__tool" type="button" id="game-full">Full screen</button>
+            <button class="game__tool" type="button" id="game-quit">End</button>
+          </div>
+          <!-- Beacon card — what each light stands for -->
+          <div class="game__toast" id="game-toast" role="status" aria-live="polite">
+            <p class="game__toast-kicker" id="game-toast-kicker"></p>
+            <p class="game__toast-title" id="game-toast-title"></p>
+            <p class="game__toast-text" id="game-toast-text"></p>
+          </div>
+          <!-- Touch steering -->
+          <div class="game__touch" aria-hidden="true">
+            <button class="game__touch-btn" type="button" data-steer="left" tabindex="-1">←</button>
+            <button class="game__touch-btn" type="button" data-steer="right" tabindex="-1">→</button>
+          </div>
+          <!-- Arrival -->
+          <div class="game__end" id="game-end" hidden>
+            <p class="game__end-kicker">All six beacons lit</p>
+            <p class="game__end-title">The network is online.</p>
+            <p class="game__end-text">
+              Crossing made in <strong id="game-final">0:00</strong><span id="game-best"></span>.
+              The direct line is open — a message sent from here arrives marked as a completed crossing.
+            </p>
+            <div class="game__end-actions">
+              <a class="btn btn--primary" id="game-signal" href="mailto:neomalesa@protonmail.com?subject=All%20six%20beacons%20lit">Send the signal <span aria-hidden="true">→</span></a>
+              <button class="btn btn--ghost" type="button" id="game-again">Sail again</button>
+            </div>
+          </div>
         </div>
       </div>
     </section>
-    <!-- ===== CORRESPONDENCE ===== -->
+    <!-- ===== VII · CORRESPONDENCE ===== -->
     <section class="section section--connect" id="connect" aria-labelledby="connect-heading">
       <div class="section__inner">
         <h2 class="section__heading" id="connect-heading" data-ghost="VII" data-gsap-reveal>
           <span class="section__index" aria-hidden="true">VII</span>
           Correspondence
         </h2>
-        <ul class="connect__list" role="list">
-          <li>
-            <a href="mailto:neomalesa@protonmail.com" class="connect__link connect__link--copy" title="Copy email address" aria-label="Copy email address">
-              <span class="connect__name">Email</span>
-              <span class="connect__handle">neomalesa@protonmail.com</span>
-              <span class="connect__arrow" aria-hidden="true">→</span>
-              <span class="connect__copy-tip" role="status" aria-live="polite"></span>
-            </a>
-          </li>
-          <li>
-            <a href="https://x.com/n30dyn4m1c" class="connect__link" target="_blank" rel="noopener noreferrer" aria-label="Follow on X (opens in a new tab)">
-              <span class="connect__name">X</span>
-              <span class="connect__handle">@n30dyn4m1c</span>
-              <span class="connect__arrow" aria-hidden="true">→</span>
-            </a>
-          </li>
-          <li>
-            <a href="https://medium.com/@neomalesa" class="connect__link" target="_blank" rel="noopener noreferrer" aria-label="Read on Medium (opens in a new tab)">
-              <span class="connect__name">Medium</span>
-              <span class="connect__handle">@neomalesa</span>
-              <span class="connect__arrow" aria-hidden="true">→</span>
-            </a>
-          </li>
-          <li>
-            <a href="https://github.com/n30dyn4m1c" class="connect__link" target="_blank" rel="noopener noreferrer" aria-label="View code on GitHub (opens in a new tab)">
-              <span class="connect__name">GitHub</span>
-              <span class="connect__handle">n30dyn4m1c</span>
-              <span class="connect__arrow" aria-hidden="true">→</span>
-            </a>
-          </li>
-          <li>
-            <a href="https://www.linkedin.com/in/n30dyn4m1c/" class="connect__link" target="_blank" rel="noopener noreferrer" aria-label="Connect on LinkedIn (opens in a new tab)">
-              <span class="connect__name">LinkedIn</span>
-              <span class="connect__handle">n30dyn4m1c</span>
-              <span class="connect__arrow" aria-hidden="true">→</span>
-            </a>
-          </li>
-        </ul>
+        <p class="connect__call" data-gsap-reveal>Bring the problem.</p>
+        <p class="section__lead" data-gsap-reveal>
+          A role, a system that should exist, a question. A few lines are enough to begin.
+          <span class="connect__clock" data-clock-long hidden></span>
+        </p>
+        <div class="connect__grid">
+          <!-- VII.i — Compose -->
+          <div class="subsection">
+            <h3 class="subsection__heading" data-gsap-reveal>
+              <span class="subsection__index" aria-hidden="true">VII.i</span>
+              Compose
+            </h3>
+            <form class="brief" id="brief" action="mailto:neomalesa@protonmail.com" method="post" enctype="text/plain" data-gsap-reveal>
+              <fieldset class="brief__intents">
+                <legend class="brief__label">Writing about</legend>
+                <label class="brief__chip"><input type="radio" name="intent" value="role" /><span>A role</span></label>
+                <label class="brief__chip"><input type="radio" name="intent" value="project" checked /><span>A project</span></label>
+                <label class="brief__chip"><input type="radio" name="intent" value="advice" /><span>Advice or training</span></label>
+                <label class="brief__chip"><input type="radio" name="intent" value="question" /><span>A question</span></label>
+                <label class="brief__chip"><input type="radio" name="intent" value="other" /><span>Something else</span></label>
+              </fieldset>
+              <div class="brief__row">
+                <label class="brief__field">
+                  <span class="brief__label">Name</span>
+                  <input type="text" name="name" autocomplete="name" />
+                </label>
+                <label class="brief__field">
+                  <span class="brief__label">Organisation <span class="brief__optional">optional</span></span>
+                  <input type="text" name="organisation" autocomplete="organization" />
+                </label>
+              </div>
+              <label class="brief__field">
+                <span class="brief__label">In a few lines</span>
+                <textarea name="message" rows="4" id="brief-message" placeholder="What should exist that does not — and who it is for."></textarea>
+              </label>
+              <div class="brief__preview" id="brief-preview" hidden>
+                <p class="brief__label">The message, as it will open</p>
+                <p class="brief__subject" id="brief-subject"></p>
+                <pre class="brief__body" id="brief-body"></pre>
+              </div>
+              <div class="brief__actions">
+                <button class="btn btn--primary" type="submit" data-magnetic>Open in email <span aria-hidden="true">→</span></button>
+                <button class="btn btn--ghost" type="button" id="brief-copy">Copy the message</button>
+                <span class="brief__status" id="brief-status" role="status" aria-live="polite"></span>
+              </div>
+              <p class="brief__note">
+                Nothing is sent from this page and nothing is stored. The message opens in your own email, addressed to neomalesa@protonmail.com.
+              </p>
+            </form>
+          </div>
+          <!-- VII.ii — Direct -->
+          <div class="subsection">
+            <h3 class="subsection__heading" data-gsap-reveal>
+              <span class="subsection__index" aria-hidden="true">VII.ii</span>
+              Direct
+            </h3>
+            <ul class="connect__list" role="list">
+              <li>
+                <a href="mailto:neomalesa@protonmail.com" class="connect__link connect__link--copy" title="Copy email address" aria-label="Copy email address">
+                  <span class="connect__name">Email</span>
+                  <span class="connect__handle">neomalesa@protonmail.com</span>
+                  <span class="connect__arrow" aria-hidden="true">→</span>
+                  <span class="connect__copy-tip" role="status" aria-live="polite"></span>
+                </a>
+              </li>
+              <li>
+                <a href="https://www.linkedin.com/in/n30dyn4m1c/" class="connect__link" target="_blank" rel="noopener noreferrer" aria-label="Connect on LinkedIn (opens in a new tab)">
+                  <span class="connect__name">LinkedIn</span>
+                  <span class="connect__handle">n30dyn4m1c</span>
+                  <span class="connect__arrow" aria-hidden="true">→</span>
+                </a>
+              </li>
+              <li>
+                <a href="https://x.com/n30dyn4m1c" class="connect__link" target="_blank" rel="noopener noreferrer" aria-label="Follow on X (opens in a new tab)">
+                  <span class="connect__name">X</span>
+                  <span class="connect__handle">@n30dyn4m1c</span>
+                  <span class="connect__arrow" aria-hidden="true">→</span>
+                </a>
+              </li>
+              <li>
+                <a href="https://github.com/n30dyn4m1c" class="connect__link" target="_blank" rel="noopener noreferrer" aria-label="View code on GitHub (opens in a new tab)">
+                  <span class="connect__name">GitHub</span>
+                  <span class="connect__handle">n30dyn4m1c</span>
+                  <span class="connect__arrow" aria-hidden="true">→</span>
+                </a>
+              </li>
+              <li>
+                <a href="https://medium.com/@neomalesa" class="connect__link" target="_blank" rel="noopener noreferrer" aria-label="Read on Medium (opens in a new tab)">
+                  <span class="connect__name">Medium</span>
+                  <span class="connect__handle">@neomalesa</span>
+                  <span class="connect__arrow" aria-hidden="true">→</span>
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
       </div>
     </section>
   </main>

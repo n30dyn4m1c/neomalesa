@@ -8,17 +8,23 @@
 
 **Personal website and portfolio of Neo Malesa — vanilla HTML, CSS, and JavaScript. No framework, no build step.**
 
-Portfolio with a dark editorial design — a summary home page with index pages for each section — self-hosted fonts and GSAP animations, a “Now” page, and a Medium writing feed refreshed daily by GitHub Actions.
+Portfolio with a dark editorial design, built to start conversations — a home page that answers to who is reading it, a message composer, an interactive 3D interlude, index pages for each section, self-hosted fonts and GSAP animations, a “Now” page, and a Medium writing feed refreshed daily by GitHub Actions.
 
 **Live site:** [https://neomalesa.com](https://neomalesa.com)
 
 ## Features
 
-- Summary home page: each section shows a few featured items and links to its full index page
+- Home page in seven numbered sections with indexed subsections: **Start Here**, **Work** (data stories, systems, tools), **Engagements**, **Writing**, **Background**, **Interlude**, **Correspondence**
+- **Start Here** — three tabs (hiring, a project, curious), each with its own case and call to act
+- **Composer** — drafts a message on the page and opens it in the reader's own email; nothing is sent or stored by the site. Any link with `data-intent`, or `index.html?about=role#connect` from another page, presets the subject
+- **Light the Islands** — a 3D sailing game (three.js) that tells the record through play; fetched only when the reader starts it
+- Top bar with a standing call to contact on every page; each index page closes with its own call
+- Motion: pointer-reactive swell lines in the hero, ticker, scroll-lit conviction, counting figures, tilting work cards, live Port Moresby time
 - Index pages: **Writing**, **Data Visualisations**, **Resources**, **Experience** (with capabilities and education), **Engagements**
 - **Now** page for current focus, updated in place
 - Self-hosted Cormorant Garamond + Spectral (no Google Fonts request)
 - GSAP 3 + ScrollTrigger scroll animations (self-hosted, no CDN; loaded only on the pages that use them)
+- All motion respects `prefers-reduced-motion`; the page reads in full with JavaScript off
 - Medium writing feed via scheduled GitHub Action (no runtime third-party calls)
 - Open Graph / Twitter cards, canonical URL, JSON-LD `Person` schema
 - View Transitions API cross-document fades
@@ -30,7 +36,7 @@ Portfolio with a dark editorial design — a summary home page with index pages 
 # Open directly in a browser
 open index.html
 
-# Or serve over HTTP (recommended)
+# Or serve over HTTP (recommended — the 3D interlude needs HTTP to load)
 python3 -m http.server 8000
 # → http://localhost:8000
 ```
@@ -60,7 +66,7 @@ In **Settings → Pages → Custom domain**, enter `neomalesa.com`, save, wait f
 ## Structure
 
 ```text
-index.html               home page — a summary of each section, linking to its index page
+index.html               home page — seven numbered sections, each linking to its index page
 writing/index.html       Writing index — every post in the feed
 dataviz/index.html       Data Visualisations index (+ one folder per static graphic)
 resources/index.html     Resources index — all free public tools
@@ -69,15 +75,16 @@ engagements/index.html   Engagements index — areas of engagement in full
 now.html                 "Now" page — what's current, updated in place
 404.html                 branded not-found page (served by GitHub Pages)
 css/style.css            design tokens and all styles (single dark scheme)
-js/main.js               hero reveals, GSAP scroll animations, section rails, writing feed, copy-email
+js/main.js               top bar, hero reveals and swell, scroll animations, tabs, work filter, composer, writing feed
+js/game.js               Light the Islands — the 3D interlude (ES module, loaded on demand by main.js)
 writing-data.js          latest Medium posts as a script (Writing section)
 writing.json             same posts as plain JSON, refreshed by GitHub Action
 writing-pinned.json      hand-listed posts merged into the Writing section (sorted by date)
 .github/workflows/       update-writing.yml — refreshes the writing files daily
 .github/scripts/         update_writing.py — the feed fetcher (no dependencies)
 assets/fonts/            self-hosted woff2 fonts (Cormorant Garamond, Spectral)
-assets/vendor/           self-hosted GSAP + ScrollTrigger
-assets/images/           photography — neo_profilepic.jpg is the hero portrait
+assets/vendor/           self-hosted GSAP + ScrollTrigger, and three.js (fetched only when the game starts)
+assets/images/           photography — neo_profilepic.jpg is the hero portrait; work/ holds card thumbnails
 assets/og-image.png      1200×630 social link-preview card
 CNAME                    custom domain (neomalesa.com)
 ```
@@ -105,6 +112,13 @@ python3 .github/scripts/update_writing.py
 
 `date` and `excerpt` may be left as `""`. A pinned post keeps its own wording and fills a blank `date` or `excerpt` from the feed if the feed later carries it; the duplicate feed entry is dropped. An entry with no date renders without one — the title and excerpt stay aligned.
 
+### Editing the home page
+
+- **Work cards** — each `<li class="card">` in `index.html` sits in a `.subsection` with a `data-kind` (`data`, `systems`, `tools`) that the filter buttons use. Card art is either an inline SVG motif or a 720×450 thumbnail in `assets/images/work/`.
+- **Start Here** — the three `.paths__panel` articles hold the case made to each reader.
+- **Game** — the six beacons, their names, and the line each one shows are the `BEACONS` list at the top of `js/game.js`.
+- **Figures** — the four numbers under the conviction are `data-count` values; "years of published writing" is computed from `data-count-since`.
+
 To change the hero portrait, replace `assets/images/neo_profilepic.jpg` (square works best) and update the `width`/`height` on `.hero__portrait-img` in `index.html`. Regenerate `assets/og-image.png` if the photo changes.
 
 Canonical and Open Graph URLs in `index.html` point to `https://neomalesa.com/`.
@@ -112,7 +126,8 @@ Canonical and Open Graph URLs in `index.html` point to `https://neomalesa.com/`.
 ## Stack
 
 - **Fonts** — Cormorant Garamond (display), Spectral (body); self-hosted woff2
-- **Animation** — GSAP 3 + ScrollTrigger (self-hosted; only third-party code)
+- **Animation** — GSAP 3 + ScrollTrigger (self-hosted)
+- **3D** — three.js r170 (self-hosted, MIT; loaded on demand for the interlude only)
 - **Writing feed** — Medium RSS → `writing.json` via scheduled GitHub Action
 - **SEO** — Open Graph + Twitter cards, canonical URL, JSON-LD `Person` schema
 - **View transitions** — cross-document fades via the View Transitions API
