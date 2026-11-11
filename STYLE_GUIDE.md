@@ -65,7 +65,7 @@ Filler: *for organisations, leverage, utilise, in order to, very, really.*
   locations). Em dashes sparingly.
 - **Capitalisation:** Section headings in Title Case; body in sentence case.
 - **Numerals:** Spell out one through nine; figures for 10 and up.
-- **Roman numerals** index the sections (I–VIII). Keep them sequential when adding or
+- **Roman numerals** index the sections (I–VII). Keep them sequential when adding or
   removing sections — the numeral appears twice per section: once in the rail
   (`.rail__list` in `index.html`), and once on the heading as `data-ghost` plus
   `.section__index`. The mobile strip is built from the rail by `main.js`, so it

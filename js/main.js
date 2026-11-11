@@ -229,11 +229,17 @@ function initRail() {
    Posts come from writing-data.js (a script tag, so it also works
    when index.html is opened directly from disk); writing.json is a
    fetch fallback for any deployment where the script is missing.
+   The home page shows only the newest few (data-limit on the list);
+   the Writing page lists every post. data-src points the fallback
+   fetch at writing.json from pages one folder down.
    ============================================================ */
 
 function initWriting() {
   const list = document.getElementById('writing-list');
   if (!list) return;
+
+  const limit = parseInt(list.dataset.limit, 10) || Infinity;
+  const src = list.dataset.src || 'writing.json';
 
   const escapeHtml = (str) =>
     String(str).replace(/[&<>"']/g, (c) => ({
@@ -260,6 +266,7 @@ function initWriting() {
     if (!Array.isArray(posts) || !posts.length) return;
     list.innerHTML = posts
       .filter((p) => p && p.title && p.url)
+      .slice(0, limit)
       .map((p) => {
         const excerpt = p.excerpt
           ? `<span class="writing__excerpt">${escapeHtml(p.excerpt)}</span>`
@@ -283,14 +290,14 @@ function initWriting() {
     return;
   }
 
-  fetch('writing.json')
+  fetch(src)
     .then((res) => {
       if (!res.ok) throw new Error('writing.json unavailable');
       return res.json();
     })
     .then(render)
     .catch(() => {
-      // Feed unavailable — the "Read on Medium" CTA remains as the fallback.
+      // Feed unavailable — the archive link below the list remains as the fallback.
     });
 }
 
