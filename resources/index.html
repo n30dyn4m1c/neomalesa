@@ -30,6 +30,36 @@
   <script>document.documentElement.classList.add('js');</script>
 </head>
 <body>
+  <a class="skip-link" href="#top">Skip to content</a>
+  <!-- Top bar — the same on every page; its links lead to the home page sections -->
+  <header class="topbar" id="topbar">
+    <div class="topbar__inner">
+      <a class="topbar__brand" href="../index.html" aria-label="Neo Malesa — home">
+        <svg class="topbar__seal" viewBox="0 0 100 100" aria-hidden="true" focusable="false">
+          <circle cx="50" cy="50" r="44" fill="none" stroke="currentColor" stroke-width="4" />
+          <text x="50" y="52" font-family="Georgia,serif" font-size="52" font-weight="600" fill="currentColor" text-anchor="middle" dominant-baseline="central">N</text>
+        </svg>
+        <span class="topbar__name">Neo Malesa</span>
+      </a>
+      <nav class="topbar__nav" id="site-menu" aria-label="Primary">
+        <a href="../index.html#start">Start Here</a>
+        <a href="../index.html#work" aria-current="true">Work</a>
+        <a href="../index.html#engagements">Engagements</a>
+        <a href="../index.html#writing">Writing</a>
+        <a href="../index.html#background">Background</a>
+        <a href="../index.html#play">Play</a>
+      </nav>
+      <a class="btn btn--primary btn--sm topbar__cta" href="../index.html#connect">
+        <span class="topbar__cta-long">Start a conversation</span>
+        <span class="topbar__cta-short">Contact</span>
+      </a>
+      <button class="topbar__toggle" type="button" aria-expanded="false" aria-controls="site-menu">
+        <span class="topbar__toggle-bars" aria-hidden="true"></span>
+        <span class="visually-hidden">Menu</span>
+      </button>
+    </div>
+    <span class="topbar__progress" aria-hidden="true"></span>
+  </header>
   <main class="subpage" id="top">
     <header class="subpage__head">
       <div class="subpage__inner">
@@ -44,6 +74,12 @@
         <div class="resources__intro">
           <p class="resources__lead">Tools made available for the public to use, free — AI thinking tools, a GPA calculator, a gold trading bot, and a 360° photo app.</p>
         </div>
+        <div class="subpage__group">
+        <h3 class="subsection__heading">
+          <span class="subsection__index" aria-hidden="true">i</span>
+          AI Thinking Tools
+          <span class="subsection__note">Eight &middot; Gemini and ChatGPT</span>
+        </h3>
         <ul class="resources__list" role="list">
           <li class="resources__item">
             <a href="https://gemini.google.com/gem/1wssKe29fiDCvUz6mFIeZm6PQdfBUocsz?usp=sharing" class="resources__link" target="_blank" rel="noopener noreferrer" aria-label="Open Rabbit Hole Explorer (opens in a new tab)">
@@ -101,6 +137,15 @@
               <span class="resources__arrow" aria-hidden="true">→</span>
             </a>
           </li>
+        </ul>
+        </div>
+        <div class="subpage__group">
+        <h3 class="subsection__heading">
+          <span class="subsection__index" aria-hidden="true">ii</span>
+          Apps and Code
+          <span class="subsection__note">Three &middot; open to use and to read</span>
+        </h3>
+        <ul class="resources__list" role="list">
           <li class="resources__item">
             <a href="https://n30dyn4m1c.github.io/upng-gpa-calculator_/" class="resources__link" target="_blank" rel="noopener noreferrer" aria-label="Open UPNG GPA Calculator (opens in a new tab)">
               <span class="resources__title">UPNG GPA Calculator</span>
@@ -123,8 +168,22 @@
             </a>
           </li>
         </ul>
+        </div>
       </div>
     </section>
+    <!-- The page, turned toward the reader -->
+    <aside class="cta-band" aria-label="Correspondence">
+      <div class="cta-band__inner">
+        <div>
+          <p class="cta-band__kicker">Beyond the free set</p>
+          <p class="cta-band__text">A tool that should exist, built for one organisation?</p>
+        </div>
+        <div class="cta-band__actions">
+          <a class="btn btn--primary" href="../index.html?about=project#connect">Describe it <span aria-hidden="true">→</span></a>
+          <a class="btn btn--ghost" href="../index.html?about=question#connect">Suggest a free one</a>
+        </div>
+      </div>
+    </aside>
   </main>
   <footer class="footer" role="contentinfo">
     <div class="footer__inner">
