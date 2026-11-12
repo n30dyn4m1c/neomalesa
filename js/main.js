@@ -387,7 +387,7 @@ document.addEventListener('DOMContentLoaded', () => {
    <id>/subscriptions). Until it is set, forms do not submit.
    ============================================================ */
 
-const KIT_FORM_ID = '';
+const KIT_FORM_ID = '10178356';
 
 document.querySelectorAll('form[data-signup]').forEach((form) => {
   const status = form.querySelector('.signup__status');
