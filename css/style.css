@@ -1986,6 +1986,121 @@ body::after {
   color: var(--color-ink-muted);
 }
 
+/* Multi-chart pages: intro, captioned figures, sources */
+
+.viz-intro {
+  max-width: 40rem;
+  margin: clamp(1rem, 3vw, 2rem) auto clamp(2rem, 5vw, 3rem);
+  text-align: center;
+}
+
+.viz-intro__kicker {
+  margin: 0 0 0.75rem;
+  font-size: var(--text-kicker);
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  color: var(--color-accent);
+}
+
+.viz-intro__title {
+  margin: 0 0 1rem;
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: clamp(1.75rem, 4vw, 2.6rem);
+  line-height: 1.15;
+  color: var(--color-ink);
+}
+
+.viz-intro__lead {
+  margin: 0;
+  color: var(--color-ink-muted);
+  font-size: 1rem;
+  line-height: 1.7;
+}
+
+.viz-figure {
+  margin: 0 auto clamp(2.5rem, 6vw, 4rem);
+  max-width: 64rem;
+  scroll-margin-top: 1rem;
+}
+
+.viz-figure__caption {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.35rem 1rem;
+  margin-top: 0.85rem;
+  padding-bottom: 0.85rem;
+  border-bottom: 1px solid var(--color-border);
+  font-size: 0.9rem;
+  color: var(--color-ink-muted);
+}
+
+.viz-figure__index {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--color-accent);
+}
+
+.viz-figure__name {
+  flex: 1 1 12rem;
+  color: var(--color-ink);
+}
+
+.viz-figure__download {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--color-accent);
+  text-decoration: none;
+  min-height: 2.75rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4em;
+}
+
+.viz-figure__download:hover,
+.viz-figure__download:focus-visible {
+  text-decoration: underline;
+  text-underline-offset: 0.2em;
+}
+
+.viz-sources {
+  max-width: 40rem;
+  margin: clamp(2.5rem, 6vw, 4rem) auto 0;
+  padding-top: clamp(1.75rem, 4vw, 2.5rem);
+  border-top: 1px solid var(--color-border);
+}
+
+.viz-sources__heading {
+  margin: 0 0 1rem;
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: clamp(1.4rem, 2.4vw, 1.75rem);
+  color: var(--color-ink);
+  text-align: center;
+}
+
+.viz-sources__list {
+  margin: 0;
+  padding-left: 1.25rem;
+  color: var(--color-ink-muted);
+  font-size: 0.95rem;
+  line-height: 1.6;
+}
+
+.viz-sources__list li + li {
+  margin-top: 0.6rem;
+}
+
+.viz-sources__note {
+  margin: 1.25rem 0 0;
+  color: var(--color-ink-muted);
+  font-size: 0.85rem;
+  line-height: 1.6;
+}
+
 
 /* ============================================================
    SKIP LINK

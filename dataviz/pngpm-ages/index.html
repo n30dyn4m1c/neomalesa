@@ -6,7 +6,7 @@
   <title>All of PNG’s Prime Ministers Were Born Before Independence — Neo Malesa</title>
   <meta
     name="description"
-    content="None of the eight people who have served as Papua New Guinea’s Prime Minister were born after Independence in 1975. They averaged 43 on first appointment, against a national median age of 24."
+    content="None of the eight people who have served as Papua New Guinea’s Prime Minister were born after Independence in 1975. Three charts: age at first appointment, that age against a national median of 23, and the 12 terms in office since 1975."
   />
   <meta name="author" content="Neo Malesa" />
   <meta name="theme-color" content="#0d0f12" />
@@ -16,7 +16,7 @@
   <meta property="og:type" content="article" />
   <meta property="og:site_name" content="Neo Malesa" />
   <meta property="og:title" content="All of PNG’s Prime Ministers were born before Independence" />
-  <meta property="og:description" content="None of the eight people who have served as Prime Minister were born after 1975. They averaged 43 when first appointed; the population’s median age is 24." />
+  <meta property="og:description" content="None of the eight people who have served as Prime Minister were born after 1975. Three charts: age at first appointment, age against the national median, and the 12 terms in office since 1975." />
   <meta property="og:url" content="https://neomalesa.com/dataviz/pngpm-ages/" />
   <meta property="og:image" content="https://neomalesa.com/dataviz/pngpm-ages/pngpm-ages-2026.png" />
   <meta name="twitter:card" content="summary_large_image" />
@@ -31,27 +31,99 @@
 </head>
 <body>
   <main class="viz-only" id="top">
-    <h1 class="visually-hidden">All of PNG’s Prime Ministers Were Born Before Independence</h1>
-    <a href="pngpm-ages-2026.png" class="viz-only__link" aria-label="Open the full-resolution graphic">
-      <picture>
-        <source type="image/webp" srcset="pngpm-ages-2026-1080.webp 1080w, pngpm-ages-2026.webp 2160w" sizes="(min-width: 64rem) 64rem, 100vw" />
-        <img
-          src="pngpm-ages-2026.png"
-          width="2160" height="2700"
-          loading="eager" decoding="async"
-          alt="Infographic: all of PNG’s Prime Ministers were born before Independence. A timeline from 1930 to 2030 shows each of the eight Prime Ministers’ lifetimes from birth, with their terms in office marked and their age at each term. None was born after Independence in 1975. Age at first appointment: Sir Michael Somare 39, Sir Julius Chan 40, Paias Wingti 34, Sir Rabbie Namaliu 41, Sir Bill Skate 43, Sir Mekere Morauta 53, Peter O’Neill 46, James Marape 48 (incumbent). The average is 43, against a national median age of 24, a difference of 19 years. It has been 41 years since anyone younger than 41 became Prime Minister; Wingti was 34 in 1985. Those appointed since 1997 averaged 48 on taking office; the first four averaged 39. Six of eight first became Prime Minister mid-term."
-        />
-      </picture>
-    </a>
-    <div class="viz-only__actions">
-      <a href="pngpm-ages-2026.png" class="viz-btn" download="pngpm-ages-2026.png">
-        <span aria-hidden="true">↓</span> Download PNG
+    <header class="viz-intro">
+      <p class="viz-intro__kicker">Papua New Guinea &middot; Three Charts &middot; 2026</p>
+      <h1 class="viz-intro__title">All of PNG’s Prime Ministers Were Born Before Independence</h1>
+      <p class="viz-intro__lead">
+        Eight people have served as Prime Minister since Independence on 16 September 1975. None was born after that date. The three charts below set out their age at first appointment, that age against the median age of the population, and the 12 terms in office from 1975 to 2026.
+      </p>
+    </header>
+
+    <figure class="viz-figure" id="ages">
+      <a href="pngpm-ages-2026.png" class="viz-only__link" aria-label="Open chart 1 of 3 at full resolution">
+        <picture>
+          <source type="image/webp" srcset="pngpm-ages-2026-1080.webp 1080w, pngpm-ages-2026.webp 2160w" sizes="(min-width: 64rem) 64rem, 100vw" />
+          <img
+            src="pngpm-ages-2026.png"
+            width="2160" height="2700"
+            loading="eager" decoding="async"
+            alt="Bar chart: how old PNG’s Prime Ministers were when they first became Prime Minister. Youngest 34, oldest 53, none born after Independence. The first four averaged 39: Sir Michael Somare 39 (1975), Sir Julius Chan 40 (1980), Paias Wingti 34 (1985), Sir Rabbie Namaliu 41 (1988). Those appointed since 1997 averaged 48, about nine years older: Sir Bill Skate 43 (1997), Sir Mekere Morauta 53 (1999), Peter O’Neill 46 (2011), James Marape 48 (2019). A dashed line marks the national median age of 23. A strip below shows that all eight were born before Independence on 16 September 1975, under Australian colonial administration (the Territory of Papua and New Guinea from 1949). Their ages at Independence: Somare 39, Chan 36, Morauta 29, Namaliu 28, Wingti 24, Skate 21, O’Neill 10, Marape 4. Most Papua New Guineans alive today were born after Independence. For discussion: PNG has not yet had a Prime Minister born after Independence. What would it take for that to change?"
+          />
+        </picture>
       </a>
+      <figcaption class="viz-figure__caption">
+        <span class="viz-figure__index">1 of 3</span>
+        <span class="viz-figure__name">Age at first appointment</span>
+        <a href="pngpm-ages-2026.png" class="viz-figure__download" download="pngpm-ages-2026.png"><span aria-hidden="true">↓</span> Download PNG</a>
+      </figcaption>
+    </figure>
+
+    <figure class="viz-figure" id="median-age">
+      <a href="pngpm-median-age-2026.png" class="viz-only__link" aria-label="Open chart 2 of 3 at full resolution">
+        <picture>
+          <source type="image/webp" srcset="pngpm-median-age-2026-1080.webp 1080w, pngpm-median-age-2026.webp 2160w" sizes="(min-width: 64rem) 64rem, 100vw" />
+          <img
+            src="pngpm-median-age-2026.png"
+            width="2160" height="2700"
+            loading="lazy" decoding="async"
+            alt="Chart: the age of each PNG Prime Minister at each appointment, plotted against the median age of all Papua New Guineans, 1975 to 2026. New Prime Ministers have grown older faster than the population. The median age rose from 16 in 1975 to 23 today. First appointments: Somare 39, Chan 40, Wingti 34, Namaliu 41, Skate 43, Morauta 53, O’Neill 46, Marape 48. Returns for later terms: Somare 46 and 66, Wingti 41, Chan 55. Between the first four appointments and the four since 1997, the median age rose about three years, while the age of new Prime Ministers rose about nine. The average gap between a new Prime Minister’s age and the median widened from 22 to 28 years. Somare was 66 on his 2002 return; the oldest first-time Prime Minister was Morauta, at 53."
+          />
+        </picture>
+      </a>
+      <figcaption class="viz-figure__caption">
+        <span class="viz-figure__index">2 of 3</span>
+        <span class="viz-figure__name">Age against the median age of the population</span>
+        <a href="pngpm-median-age-2026.png" class="viz-figure__download" download="pngpm-median-age-2026.png"><span aria-hidden="true">↓</span> Download PNG</a>
+      </figcaption>
+    </figure>
+
+    <figure class="viz-figure" id="terms">
+      <a href="pngpm-terms-2026.png" class="viz-only__link" aria-label="Open chart 3 of 3 at full resolution">
+        <picture>
+          <source type="image/webp" srcset="pngpm-terms-2026-1080.webp 1080w, pngpm-terms-2026.webp 2160w" sizes="(min-width: 64rem) 64rem, 100vw" />
+          <img
+            src="pngpm-terms-2026.png"
+            width="2160" height="2700"
+            loading="lazy" decoding="async"
+            alt="Timeline: who has held the office of Prime Minister from 1975 to 2026, and how each term began. Seven of 12 terms began between elections, after a no-confidence vote, resignation or vacancy. Somare: 1975–80, at Independence; 1982–85 and 2002–11, after general elections; 16.5 years in total, the longest of any Prime Minister. Chan: 1980–82 and 1994–97, both between elections; 5.3 years. Wingti: 1985–88, between elections, and 1992–94, after a general election; 4.7 years. Namaliu: 1988–92, between elections; 4.0 years. Skate: 1997–99, after a general election; 2.0 years. Morauta: 1999–2002, between elections; 3.1 years. O’Neill: 2011–19, between elections; 7.8 years. Marape: 2019 to now, between elections; 7.5 years to November 2026."
+          />
+        </picture>
+      </a>
+      <figcaption class="viz-figure__caption">
+        <span class="viz-figure__index">3 of 3</span>
+        <span class="viz-figure__name">Who held office, 1975–2026</span>
+        <a href="pngpm-terms-2026.png" class="viz-figure__download" download="pngpm-terms-2026.png"><span aria-hidden="true">↓</span> Download PNG</a>
+      </figcaption>
+    </figure>
+
+    <div class="viz-only__actions">
       <button type="button" class="viz-btn" id="share-btn">
         <span aria-hidden="true">↗</span> <span class="viz-btn__label">Share</span>
       </button>
       <p class="viz-only__status" id="share-status" role="status" aria-live="polite"></p>
     </div>
+
+    <section class="viz-sources" aria-labelledby="sources-heading">
+      <h2 class="viz-sources__heading" id="sources-heading">Sources</h2>
+      <ol class="viz-sources__list">
+        <li>
+          <a class="subpage__inline-link" href="https://press.anu.edu.au/publications/series/pacific/struggle-reform-boom-bust" target="_blank" rel="noopener noreferrer">Struggle, Reform, Boom and Bust: An Economic History of Papua New Guinea since Independence</a>, ANU Press, Annex A. Prime Ministers and terms in office, 1975 onwards.
+        </li>
+        <li>
+          <a class="subpage__inline-link" href="https://population.un.org/wpp/" target="_blank" rel="noopener noreferrer">World Population Prospects 2024</a>, United Nations. Median age of the population: 16 in 1975, 23 in 2026 (projected).
+        </li>
+        <li>
+          <a class="subpage__inline-link" href="https://en.wikipedia.org/wiki/Prime_Minister_of_Papua_New_Guinea" target="_blank" rel="noopener noreferrer">Prime Minister of Papua New Guinea</a>, Wikipedia, with the linked biography of each Prime Minister. Dates of birth.
+        </li>
+        <li>
+          PNG Government Gazette. Appointment of Sir Mekere Morauta, 1999.
+        </li>
+      </ol>
+      <p class="viz-sources__note">
+        Ages are calculated from exact dates of birth and appointment; averages are rounded. Acting Prime Ministers (John Giheno, 1997; Sam Abal, 2010–11) are excluded. The median age covers the whole population, including children. Data as of November 2026.
+      </p>
+    </section>
+
     <section class="signup" aria-labelledby="signup-heading">
       <h2 class="signup__heading" id="signup-heading">Updates by Email</h2>
       <p class="signup__lead">New charts, tools, and writing, sent by email.</p>
@@ -93,7 +165,7 @@
       var url = 'https://neomalesa.com/dataviz/pngpm-ages/';
       var data = {
         title: 'All of PNG’s Prime Ministers were born before Independence',
-        text: 'None of PNG’s eight Prime Ministers were born after Independence. They averaged 43 on first appointment; the median age of the population is 24.',
+        text: 'None of PNG’s eight Prime Ministers were born after Independence. They averaged 43 on first appointment; the median age of the population is 23.',
         url: url
       };
       function say(msg) {
