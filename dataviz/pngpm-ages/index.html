@@ -52,6 +52,21 @@
       </button>
       <p class="viz-only__status" id="share-status" role="status" aria-live="polite"></p>
     </div>
+    <section class="signup" aria-labelledby="signup-heading">
+      <h2 class="signup__heading" id="signup-heading">Dispatches by Email</h2>
+      <p class="signup__lead">One chart a day through November 2026. Thereafter, occasional dispatches on new work.</p>
+      <form class="signup__form" action="../../subscribe/" method="post" data-signup>
+        <div class="signup__fields">
+          <label class="signup__field signup__field--grow">
+            <span class="visually-hidden">Email</span>
+            <input class="signup__input" type="email" name="email_address" autocomplete="email" placeholder="Email address" required />
+          </label>
+          <button type="submit" class="viz-btn signup__submit">Subscribe</button>
+        </div>
+        <p class="signup__note">Confirmation by email. Unsubscribe at any time. <a class="subpage__inline-link" href="../../subscribe/#privacy-heading">Privacy</a></p>
+        <p class="signup__status" role="status" aria-live="polite"></p>
+      </form>
+    </section>
   </main>
   <footer class="footer" role="contentinfo">
     <div class="footer__inner">
@@ -64,6 +79,7 @@
         <a href="../../resources/">Resources</a>
         <a href="../../experience/">Experience</a>
         <a href="../../engagements/">Engagements</a>
+        <a href="../../subscribe/">Subscribe</a>
       </nav>
       <a href="#top" class="back-to-top" aria-label="Back to top of page">
         <span aria-hidden="true">↑</span> Top
