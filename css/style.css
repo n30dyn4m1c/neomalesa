@@ -4001,15 +4001,6 @@ html:not(.js) .topbar__toggle { display: none; }
   outline-offset: 3px;
 }
 
-.brief__row {
-  display: grid;
-  gap: clamp(1.25rem, 2.5vw, 1.75rem);
-}
-
-@media (min-width: 600px) {
-  .brief__row { grid-template-columns: 1fr 1fr; }
-}
-
 .brief__field {
   display: flex;
   flex-direction: column;
@@ -4033,7 +4024,7 @@ html:not(.js) .topbar__toggle { display: none; }
 
 .brief textarea {
   resize: vertical;
-  min-height: 7rem;
+  min-height: 4.5rem;
 }
 
 .brief input[type='text']::placeholder,
@@ -4048,34 +4039,6 @@ html:not(.js) .topbar__toggle { display: none; }
   outline: none;
   border-bottom-color: var(--color-accent);
   box-shadow: 0 1px 0 0 var(--color-accent);
-}
-
-.brief__preview {
-  padding: 1.1rem 1.25rem;
-  background: var(--color-bg-alt);
-  border-left: 2px solid var(--color-accent);
-}
-
-.brief__preview[hidden] {
-  display: none;
-}
-
-.brief__subject {
-  margin-top: 0.7rem;
-  font-family: var(--font-display);
-  font-size: 1.2rem;
-  font-weight: 600;
-  color: var(--color-ink);
-}
-
-.brief__body {
-  margin-top: 0.5rem;
-  font-family: var(--font-body);
-  font-size: 0.92rem;
-  line-height: 1.6;
-  color: var(--color-ink-muted);
-  white-space: pre-wrap;
-  overflow-wrap: anywhere;
 }
 
 .brief__actions {
