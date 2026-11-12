@@ -30,6 +30,36 @@
   <script>document.documentElement.classList.add('js');</script>
 </head>
 <body>
+  <a class="skip-link" href="#top">Skip to content</a>
+  <!-- Top bar — the same on every page; its links lead to the home page sections -->
+  <header class="topbar" id="topbar">
+    <div class="topbar__inner">
+      <a class="topbar__brand" href="../index.html" aria-label="Neo Malesa — home">
+        <svg class="topbar__seal" viewBox="0 0 100 100" aria-hidden="true" focusable="false">
+          <circle cx="50" cy="50" r="44" fill="none" stroke="currentColor" stroke-width="4" />
+          <text x="50" y="52" font-family="Georgia,serif" font-size="52" font-weight="600" fill="currentColor" text-anchor="middle" dominant-baseline="central">N</text>
+        </svg>
+        <span class="topbar__name">Neo Malesa</span>
+      </a>
+      <nav class="topbar__nav" id="site-menu" aria-label="Primary">
+        <a href="../index.html#start">Start Here</a>
+        <a href="../index.html#work">Work</a>
+        <a href="../index.html#engagements">Engagements</a>
+        <a href="../index.html#writing" aria-current="true">Writing</a>
+        <a href="../index.html#background">Background</a>
+        <a href="../index.html#play">Play</a>
+      </nav>
+      <a class="btn btn--primary btn--sm topbar__cta" href="../index.html#connect">
+        <span class="topbar__cta-long">Start a conversation</span>
+        <span class="topbar__cta-short">Contact</span>
+      </a>
+      <button class="topbar__toggle" type="button" aria-expanded="false" aria-controls="site-menu">
+        <span class="topbar__toggle-bars" aria-hidden="true"></span>
+        <span class="visually-hidden">Menu</span>
+      </button>
+    </div>
+    <span class="topbar__progress" aria-hidden="true"></span>
+  </header>
   <main class="subpage" id="top">
     <header class="subpage__head">
       <div class="subpage__inner">
@@ -57,6 +87,18 @@
         </div>
       </div>
     </section>
+    <!-- The page, turned toward the reader -->
+    <aside class="cta-band" aria-label="Correspondence">
+      <div class="cta-band__inner">
+        <div>
+          <p class="cta-band__kicker">After the reading</p>
+          <p class="cta-band__text">A question the essays did not answer?</p>
+        </div>
+        <div class="cta-band__actions">
+          <a class="btn btn--primary" href="../index.html?about=question#connect">Ask it <span aria-hidden="true">→</span></a>
+        </div>
+      </div>
+    </aside>
   </main>
   <footer class="footer" role="contentinfo">
     <div class="footer__inner">
