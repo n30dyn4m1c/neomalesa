@@ -31,27 +31,89 @@
 </head>
 <body>
   <main class="viz-only" id="top">
-    <h1 class="visually-hidden">Papua New Guinea Shares the Lowest-Ranked Passport in the Pacific</h1>
-    <a href="png-passport-2026.png" class="viz-only__link" aria-label="Open the full-resolution graphic">
-      <picture>
-        <source type="image/webp" srcset="png-passport-2026-1080.webp 1080w, png-passport-2026.webp 2160w" sizes="(min-width: 64rem) 64rem, 100vw" />
-        <img
-          src="png-passport-2026.png"
-          width="2160" height="2700"
-          loading="eager" decoding="async"
-          alt="Infographic: Papua New Guinea shares the lowest-ranked passport in the Pacific. A world map centred on the Pacific colours each country by entry requirement for Papua New Guinea ordinary passport holders: visa-free (35 states), visa on arrival (31), travel authorisation (5), eVisa (33) and visa required (89). A line from Port Moresby to Cairns, 850 km, is marked visa required (eVisa); a line to Lima, 14,600 km, is marked visa-free for up to 90 days. Regional bars show the share visa-free or on arrival: Pacific 85%, Americas 54%, Africa 41%, Asia 30%, Europe 0%. A ranked bar chart of Pacific passports by destinations without a prior visa (Henley Passport Index, 9 October 2026) runs from the French passport at 186 and New Zealand and Australia at 183, down to Fiji 87, Vanuatu 85, and Naoero and Papua New Guinea joint lowest at 83."
-        />
-      </picture>
-    </a>
-    <div class="viz-only__actions">
-      <a href="png-passport-2026.png" class="viz-btn" download="png-passport-2026.png">
-        <span aria-hidden="true">↓</span> Download PNG
+    <header class="viz-intro">
+      <p class="viz-intro__kicker">Papua New Guinea &middot; Static Graphic &middot; 2026</p>
+      <h1 class="viz-intro__title">Papua New Guinea Shares the Lowest-Ranked Passport in the Pacific</h1>
+      <p class="viz-intro__lead">
+        Holders of a Papua New Guinea ordinary passport must arrange a visa before travel to 122 of 193 sovereign states. On the Henley Passport Index of 9 October 2026, the passport opens 83 destinations without a prior visa: level with Naoero, and the lowest of the 14 Pacific passports. Australia, 850 km from Port Moresby, requires a visa; Peru, 14,600 km away, admits Papua New Guineans visa-free for up to 90 days.
+      </p>
+    </header>
+
+    <figure class="viz-figure" id="map">
+      <a href="png-passport-2026.png" class="viz-only__link" aria-label="Open the graphic at full resolution">
+        <picture>
+          <source type="image/webp" srcset="png-passport-2026-1080.webp 1080w, png-passport-2026.webp 2160w" sizes="(min-width: 64rem) 64rem, 100vw" />
+          <img
+            src="png-passport-2026.png"
+            width="2160" height="2700"
+            loading="eager" decoding="async"
+            alt="Infographic: Papua New Guinea shares the lowest-ranked passport in the Pacific. A world map centred on the Pacific colours each country by entry requirement for Papua New Guinea ordinary passport holders: visa-free (35 states), visa on arrival (31), travel authorisation (5), eVisa (33) and visa required (89). A line from Port Moresby to Cairns, 850 km, is marked visa required (eVisa); a line to Lima, 14,600 km, is marked visa-free for up to 90 days. Regional bars show the share visa-free or on arrival: Pacific 85%, Americas 54%, Africa 41%, Asia 30%, Europe 0%. A ranked bar chart of Pacific passports by destinations without a prior visa (Henley Passport Index, 9 October 2026) runs from the French passport at 186 and New Zealand and Australia at 183, down to Fiji 87, Vanuatu 85, and Naoero and Papua New Guinea joint lowest at 83."
+          />
+        </picture>
       </a>
+      <figcaption class="viz-figure__caption">
+        <span class="viz-figure__name">Entry requirements by destination, with the Pacific passport ranking</span>
+        <a href="png-passport-2026.png" class="viz-figure__download" download="png-passport-2026.png"><span aria-hidden="true">↓</span> Download PNG</a>
+      </figcaption>
+    </figure>
+
+    <div class="viz-only__actions">
       <button type="button" class="viz-btn" id="share-btn">
         <span aria-hidden="true">↗</span> <span class="viz-btn__label">Share</span>
       </button>
       <p class="viz-only__status" id="share-status" role="status" aria-live="polite"></p>
     </div>
+
+    <section class="viz-sources" aria-labelledby="categories-heading">
+      <h2 class="viz-sources__heading" id="categories-heading">Reading the Map</h2>
+      <ul class="viz-sources__list">
+        <li><strong>Visa-free</strong> &middot; 35 states. Entry on the passport alone, for stays set by each state.</li>
+        <li><strong>Visa on arrival</strong> &middot; 31 states. A visa issued at the port of entry; some of these states also offer it online.</li>
+        <li><strong>Travel authorisation</strong> &middot; five states: Canada, Israel, Kenya, Seychelles and the United Kingdom. No visa, but an online approval before departure, checked by the airline at boarding.</li>
+        <li><strong>eVisa</strong> &middot; 33 states, including Australia. A full visa application, made online before travel.</li>
+        <li><strong>Visa required</strong> &middot; 89 states, including New Zealand, the United States, China, Japan and every Schengen state. An application through an embassy or consulate.</li>
+      </ul>
+      <p class="viz-sources__note">
+        By region, the share of states open visa-free or on arrival runs from 85% in the Pacific to 54% in the Americas, 41% in Africa, 30% in Asia and none in Europe. The Henley score counts visa-free, visa-on-arrival and travel-authorisation access across 227 destinations, territories included, so it differs from the state counts on the map.
+      </p>
+    </section>
+
+    <section class="viz-sources" aria-labelledby="sources-heading">
+      <h2 class="viz-sources__heading" id="sources-heading">Sources</h2>
+      <ol class="viz-sources__list">
+        <li>
+          <a class="subpage__inline-link" href="https://www.henleyglobal.com/passport-index/ranking" target="_blank" rel="noopener noreferrer">Henley Passport Index</a>, Henley &amp; Partners, global ranking of 9 October 2026. Pacific passport scores, and the French, United Kingdom and United States passports held in Pacific territories.
+        </li>
+        <li>
+          <a class="subpage__inline-link" href="https://en.wikipedia.org/wiki/Visa_requirements_for_Papua_New_Guinean_citizens" target="_blank" rel="noopener noreferrer">Visa requirements for Papua New Guinean citizens</a>, Wikipedia, compiled from IATA Timatic. Entry requirement and permitted stay for each destination.
+        </li>
+        <li>
+          <a class="subpage__inline-link" href="https://visalogy.com/passport/Papua-New-Guinea" target="_blank" rel="noopener noreferrer">Papua New Guinea passport</a>, Visalogy. Cross-check of each destination.
+        </li>
+        <li>
+          <a class="subpage__inline-link" href="https://www.gov.uk/guidance/immigration-rules/immigration-rules-appendix-eta-national-list" target="_blank" rel="noopener noreferrer">Immigration Rules Appendix ETA National List</a>, GOV.UK. United Kingdom travel authorisation, required of Papua New Guinea nationals from 8 January 2025.
+        </li>
+        <li>
+          <a class="subpage__inline-link" href="https://www.canada.ca/en/immigration-refugees-citizenship/services/visit-canada/entry-requirements-country.html" target="_blank" rel="noopener noreferrer">What you need to enter Canada</a>, Government of Canada. Papua New Guinea listed as eligible for an electronic travel authorisation.
+        </li>
+        <li>
+          <a class="subpage__inline-link" href="https://immi.homeaffairs.gov.au/visas/getting-a-visa/visa-listing/visitor-600" target="_blank" rel="noopener noreferrer">Visitor visa (subclass 600)</a>, Australian Department of Home Affairs. Online application through ImmiAccount; Papua New Guinea passports are not eligible for the ETA or eVisitor.
+        </li>
+        <li>
+          Zambia, Ministry of Home Affairs and Internal Security. Visa waiver for 53 countries, Papua New Guinea included, from 1 January 2025.
+        </li>
+        <li>
+          Iraq. Visa on arrival replaced by an eVisa for most nationalities from 1 March 2025.
+        </li>
+        <li>
+          Republic of Naoero. Change of name from Nauru, notified to the United Nations on 26 June 2026.
+        </li>
+      </ol>
+      <p class="viz-sources__note">
+        Requirements are for a short tourist visit on an ordinary passport. Counts cover 193 sovereign states: the other 192 United Nations member states and the Holy See. Territories are coloured on the map but not counted; small states are shown as dots. Pacific territories are scored by the passport their residents hold. Distances are great-circle from Port Moresby. Data as of November 2026. Entry rules change often; confirm with the relevant embassy or airline before travel.
+      </p>
+    </section>
+
     <section class="signup" aria-labelledby="signup-heading">
       <h2 class="signup__heading" id="signup-heading">Updates by Email</h2>
       <p class="signup__lead">New charts, tools, and writing, sent by email.</p>
