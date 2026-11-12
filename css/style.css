@@ -1204,6 +1204,13 @@ body::after {
   background: var(--color-accent);
 }
 
+.now__when {
+  margin-left: 0.5em;
+  font-size: 0.8em;
+  color: var(--color-ink-muted);
+  white-space: nowrap;
+}
+
 
 /* ============================================================
    RESPONSIVE — 320px floor, every section

@@ -3,7 +3,8 @@ name: Update Writing Feed
 on:
   workflow_dispatch:
   schedule:
-    - cron: "0 6 * * *"
+    # Weekly: Mondays 06:00 UTC (16:00 Port Moresby). Run by hand from the Actions tab any time.
+    - cron: "0 6 * * 1"
   push:
     branches: [main]
     paths:
