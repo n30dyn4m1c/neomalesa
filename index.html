@@ -629,6 +629,21 @@
         <div class="section__more" data-gsap-reveal>
           <a href="writing/" class="textlink" aria-label="View all writing">All writing <span aria-hidden="true">→</span></a>
         </div>
+        <section class="signup" aria-labelledby="signup-heading" data-gsap-reveal>
+          <h3 class="signup__heading" id="signup-heading">Dispatches by Email</h3>
+          <p class="signup__lead">New charts, tools, and writing, sent by email.</p>
+          <form class="signup__form" action="subscribe/" method="post" data-signup>
+            <div class="signup__fields">
+              <label class="signup__field signup__field--grow">
+                <span class="visually-hidden">Email</span>
+                <input class="signup__input" type="email" name="email_address" autocomplete="email" placeholder="Email address" required />
+              </label>
+              <button type="submit" class="viz-btn signup__submit">Subscribe</button>
+            </div>
+            <p class="signup__note">Confirmation by email. Unsubscribe at any time. <a class="subpage__inline-link" href="subscribe/#privacy-heading">Privacy</a></p>
+            <p class="signup__status" role="status" aria-live="polite"></p>
+          </form>
+        </section>
       </div>
     </section>
     <!-- ===== V · BACKGROUND ===== -->
