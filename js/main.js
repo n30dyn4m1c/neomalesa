@@ -378,3 +378,25 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 });
+
+
+/* ============================================================
+   MAILING LIST SIGNUP
+   Every form[data-signup] posts to Kit. Set KIT_FORM_ID to the
+   numeric id from the Kit form's embed code (app.kit.com/forms/
+   <id>/subscriptions). Until it is set, forms do not submit.
+   ============================================================ */
+
+const KIT_FORM_ID = '';
+
+document.querySelectorAll('form[data-signup]').forEach((form) => {
+  const status = form.querySelector('.signup__status');
+  if (KIT_FORM_ID) {
+    form.action = `https://app.kit.com/forms/${KIT_FORM_ID}/subscriptions`;
+    return;
+  }
+  form.addEventListener('submit', (event) => {
+    event.preventDefault();
+    if (status) status.textContent = 'Signup opens shortly.';
+  });
+});
