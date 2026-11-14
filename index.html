@@ -767,51 +767,35 @@
         </h2>
         <p class="connect__call" data-gsap-reveal>Bring the problem.</p>
         <p class="section__lead" data-gsap-reveal>
-          A role, a system that should exist, a question. A few lines are enough to begin.
+          Pick a topic, add a line if you like, and send.
           <span class="connect__clock" data-clock-long hidden></span>
         </p>
         <div class="connect__grid">
-          <!-- VII.i — Compose -->
+          <!-- VII.i — Email -->
           <div class="subsection">
             <h3 class="subsection__heading" data-gsap-reveal>
               <span class="subsection__index" aria-hidden="true">VII.i</span>
-              Compose
+              Email
             </h3>
             <form class="brief" id="brief" action="mailto:neomalesa@protonmail.com" method="post" enctype="text/plain" data-gsap-reveal>
               <fieldset class="brief__intents">
-                <legend class="brief__label">Writing about</legend>
+                <legend class="brief__label">About</legend>
                 <label class="brief__chip"><input type="radio" name="intent" value="role" /><span>A role</span></label>
                 <label class="brief__chip"><input type="radio" name="intent" value="project" checked /><span>A project</span></label>
                 <label class="brief__chip"><input type="radio" name="intent" value="advice" /><span>Advice or training</span></label>
                 <label class="brief__chip"><input type="radio" name="intent" value="question" /><span>A question</span></label>
                 <label class="brief__chip"><input type="radio" name="intent" value="other" /><span>Something else</span></label>
               </fieldset>
-              <div class="brief__row">
-                <label class="brief__field">
-                  <span class="brief__label">Name</span>
-                  <input type="text" name="name" autocomplete="name" />
-                </label>
-                <label class="brief__field">
-                  <span class="brief__label">Organisation <span class="brief__optional">optional</span></span>
-                  <input type="text" name="organisation" autocomplete="organization" />
-                </label>
-              </div>
               <label class="brief__field">
-                <span class="brief__label">In a few lines</span>
-                <textarea name="message" rows="4" id="brief-message" placeholder="What should exist that does not — and who it is for."></textarea>
+                <span class="brief__label">Note <span class="brief__optional">optional</span></span>
+                <textarea name="message" rows="3" id="brief-message" placeholder="A line or two."></textarea>
               </label>
-              <div class="brief__preview" id="brief-preview" hidden>
-                <p class="brief__label">The message, as it will open</p>
-                <p class="brief__subject" id="brief-subject"></p>
-                <pre class="brief__body" id="brief-body"></pre>
-              </div>
               <div class="brief__actions">
-                <button class="btn btn--primary" type="submit" data-magnetic>Open in email <span aria-hidden="true">→</span></button>
-                <button class="btn btn--ghost" type="button" id="brief-copy">Copy the message</button>
+                <button class="btn btn--primary" type="submit" data-magnetic>Send email <span aria-hidden="true">→</span></button>
                 <span class="brief__status" id="brief-status" role="status" aria-live="polite"></span>
               </div>
               <p class="brief__note">
-                Nothing is sent from this page and nothing is stored. The message opens in your own email, addressed to neomalesa@protonmail.com.
+                Opens your email app, ready to send to neomalesa@protonmail.com.
               </p>
             </form>
           </div>

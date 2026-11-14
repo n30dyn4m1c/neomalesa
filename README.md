@@ -16,7 +16,7 @@ Portfolio with a dark editorial design, built to start conversations — a home 
 
 - Home page in seven numbered sections with indexed subsections: **Start Here**, **Work** (data stories, systems, tools), **Engagements**, **Writing**, **Background**, **Interlude**, **Correspondence**
 - **Start Here** — three tabs (hiring, a project, curious), each with its own case and call to act
-- **Composer** — drafts a message on the page and opens it in the reader's own email; nothing is sent or stored by the site. Any link with `data-intent`, or `index.html?about=role#connect` from another page, presets the subject
+- **Composer** — pick a topic, add an optional note, and one click opens a ready-to-send email in the reader's own app; nothing is sent or stored by the site. Any link with `data-intent`, or `index.html?about=role#connect` from another page, presets the subject
 - **Light the Islands** — a 3D sailing game (three.js) that tells the record through play; fetched only when the reader starts it
 - Top bar with a standing call to contact on every page; each index page closes with its own call
 - Motion: pointer-reactive swell lines in the hero, ticker, scroll-lit conviction, counting figures, tilting work cards, live Port Moresby time

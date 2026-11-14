@@ -777,20 +777,19 @@ function initCopyEmail() {
 
 
 /* ============================================================
-   COMPOSER — a message drafted on the page, sent from the
-   reader's own email. Nothing is transmitted or stored here:
-   the form only assembles a mailto: link.
+   COMPOSER — pick a topic, add an optional note, send. The form
+   only builds a mailto: link; nothing is transmitted or stored.
 
-   Any link carrying data-intent presets the subject before the
+   Any link carrying data-intent presets the topic before the
    page scrolls to the form.
    ============================================================ */
 
 const INTENTS = {
-  role: { subject: 'A role', placeholder: 'The role, the organisation, and where it is based.' },
-  project: { subject: 'A project', placeholder: 'What should exist that does not — and who it is for.' },
-  advice: { subject: 'Advice or training', placeholder: 'The team, the subject, and the timing.' },
-  question: { subject: 'A question', placeholder: 'Ask it plainly.' },
-  other: { subject: 'Something else', placeholder: 'Say what it is.' },
+  role: { subject: 'A role', opening: "I'd like to discuss a role.", placeholder: 'The role and the organisation, if you like.' },
+  project: { subject: 'A project', opening: 'I have a project in mind.', placeholder: 'What it is and who it is for, if you like.' },
+  advice: { subject: 'Advice or training', opening: "I'm looking for advice or training.", placeholder: 'The team and the subject, if you like.' },
+  question: { subject: 'A question', opening: 'I have a question.', placeholder: 'Ask it here, or in the email.' },
+  other: { subject: 'Getting in touch', opening: "I'd like to get in touch.", placeholder: 'A line or two.' },
 };
 
 // Set by the Interlude when all six beacons are lit — noted in the message
@@ -810,81 +809,40 @@ function initBrief() {
   if (!form) return;
 
   const message = form.elements.message;
-  const preview = document.getElementById('brief-preview');
-  const subjectEl = document.getElementById('brief-subject');
-  const bodyEl = document.getElementById('brief-body');
   const status = document.getElementById('brief-status');
-  const copyButton = document.getElementById('brief-copy');
   let statusTimer;
 
-  const say = (text) => {
-    status.textContent = text;
-    clearTimeout(statusTimer);
-    statusTimer = setTimeout(() => {
-      status.textContent = '';
-    }, 2600);
-  };
+  const intentOf = () => INTENTS[form.elements.intent.value] || INTENTS.other;
 
-  const compose = () => {
-    const intent = INTENTS[form.elements.intent.value] || INTENTS.other;
-    const name = form.elements.name.value.trim();
-    const org = form.elements.organisation.value.trim();
-    const text = message.value.trim();
+  form.addEventListener('change', () => {
+    message.placeholder = intentOf().placeholder;
+  });
+  message.placeholder = intentOf().placeholder;
 
-    const subject = intent.subject + (org ? ' — ' + org : name ? ' — ' + name : '');
-    const signature = [name, org].filter(Boolean).join(', ');
+  form.addEventListener('submit', (event) => {
+    event.preventDefault();
+    const intent = intentOf();
+    const note = message.value.trim();
     const body = [
-      text,
-      signature ? '— ' + signature : '',
+      'Hello Neo,',
+      intent.opening,
+      note,
       crossingTime ? '(All six beacons lit in ' + crossingTime + '.)' : '',
     ]
       .filter(Boolean)
       .join('\n\n');
-
-    return { subject, body, empty: !text };
-  };
-
-  const update = () => {
-    const intent = INTENTS[form.elements.intent.value] || INTENTS.other;
-    message.placeholder = intent.placeholder;
-
-    const { subject, body } = compose();
-    const started = Boolean(message.value.trim() || form.elements.name.value.trim());
-    preview.hidden = !started;
-    subjectEl.textContent = 'Subject: ' + subject;
-    bodyEl.textContent = body;
-  };
-
-  form.addEventListener('input', update);
-  form.addEventListener('change', update);
-  update();
-
-  form.addEventListener('submit', (event) => {
-    event.preventDefault();
-    const { subject, body, empty } = compose();
-    if (empty) {
-      say('A line or two first');
-      message.focus();
-      return;
-    }
     window.location.href =
-      'mailto:' + EMAIL + '?subject=' + encodeURIComponent(subject) + '&body=' + encodeURIComponent(body);
-    say('Opening email');
+      'mailto:' + EMAIL +
+      '?subject=' + encodeURIComponent(intent.subject + ' (via neomalesa.com)') +
+      '&body=' + encodeURIComponent(body + '\n\n');
+    status.textContent = 'Opening your email app';
+    clearTimeout(statusTimer);
+    statusTimer = setTimeout(() => {
+      status.textContent = '';
+    }, 2600);
   });
 
-  copyButton.addEventListener('click', () => {
-    const { subject, body, empty } = compose();
-    if (empty) {
-      say('A line or two first');
-      message.focus();
-      return;
-    }
-    copyText('To: ' + EMAIL + '\nSubject: ' + subject + '\n\n' + body)
-      .then(() => say('Copied'))
-      .catch(() => say('Copy unavailable'));
-  });
-
-  // Calls to action elsewhere on the page preset the subject, then the
+  // Calls to action elsewhere on the page preset the topic, then the
   // anchor scrolls here; focus follows once the scroll has settled
   document.querySelectorAll('[data-intent]').forEach((link) => {
     link.addEventListener('click', () => {
@@ -899,7 +857,6 @@ function initBrief() {
 
   document.addEventListener('crossing:complete', (event) => {
     crossingTime = (event.detail && event.detail.time) || '';
-    update();
   });
 }
 
