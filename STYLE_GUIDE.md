@@ -6,64 +6,58 @@ The reference for how this site reads and looks. When in doubt, choose the quiet
 
 ## 1. Voice
 
-The record uses **no first- or third-person pronouns** — neither "I" nor "he". Each line is a statement
-of record, like a dossier or a dispatch: *Leads… Directs… Email:…* This is quiet,
-confident authority at its most self-possessed — fact without a narrator. Measured and
-Presidential, House-of-Cards composed; never loud, never pleading, never LinkedIn-fake.
+The site speaks in the first person. A sentence has a narrator, and the narrator is Neo:
+"I turn data into stories…", "I lead in-house software development…". Labels stay as
+labels (dates, titles, card meta). Machine-read fields — `schema.org` JSON-LD and
+`<meta>` tags — stay in the third person.
 
-The underlying attitude, in one line:
+The reader is a client with a dataset, a report, or a system that should exist. Speak to
+that person plainly, show the work, and end with one next step.
 
-> **This is the record. This is the conviction behind it. Bring the problem.**
-
-State facts plainly, then turn to the reader and say what to do next. Authority comes
-from restraint, not adjectives — and an invitation made once, plainly, carries more
-weight than a pitch. The site exists to start conversations: with an employer, a
-client, or anyone who can use what is here. Every section should leave the reader one
-step from writing in.
+Place is a credential, not a cause. Port Moresby shows through detail: the kicker, the
+live clock, PNG subjects, a line of Tok Pisin where it fits. The belief that Papua New
+Guinea can build its own systems is said once, in the first person, in Background.
 
 ---
 
 ## 2. Principles
 
-1. **Pronoun-free record, declarative.** Lead with the verb: "Leads…", "Directs…", "Work spans…"
-   — never "I lead…" and never "Neo Malesa leads…". Label form for data points: "Email: …".
-   (Exception: machine-read fields — `schema.org` JSON-LD, `<meta>` tags — stay third
-   person for SEO.)
-2. **Invite, never plead.** The reader is addressed directly and told what to do:
-   "Bring the problem.", "Describe the project.", "A few lines are enough to begin."
-   An invitation is an instruction given with confidence — never a request, never an
-   apology, never a list of reasons to hire. "You" and "your" are used where the
-   reader is being spoken to; the record itself stays pronoun-free.
-3. **Every section ends in a next step.** A section that shows work closes with the
-   way to ask for it. The contact is never more than one action away.
-4. **No boasting.** Cut superlatives and status flexes. The facts carry the weight.
-5. **Terse.** For the record, prefer declarative fragments ("Systems built to absorb
-   failure and keep running."). The imperative is kept for the reader's next step.
-6. **Plain words.** Drop filler and jargon that adds nothing ("for organisations",
-   "leverage", "passionate about").
-7. **Gravitas through brevity.** A short, exact sentence reads more serious than a long,
-   qualified one.
+1. **Say "I".** Labels stay as labels (dates, titles, card meta). Sentences get a narrator.
+2. **Open on the reader's trouble, not your title.** The first sentence of each section
+   should be something the reader already thinks.
+3. **One checkable detail per paragraph.** A number, a place, a name. The bar:
+   "Australia, 850 km away, requires one; Peru, 14,600 km away, does not."
+4. **Say it aloud first.** Record an answer to the prompt, transcribe it, then cut a
+   third. This is the fastest way out of the AI register.
+5. **Show the place, state the belief once.** Tok Pisin where it comes naturally, as in
+   the opening of *Told to Resign*. The conviction about PNG appears once, in Background.
+6. **Invite, never plead.** Each section ends with one next step.
+7. **Claim only what the work shows.** "In build" stays "in build". AI assistance is
+   disclosed the way the stories disclose it: direction, judgement, and checking — never
+   a claim of hand-craft.
 
 ---
 
-## 3. Do / Don't
+## 3. Habits to cut
 
-| Don't | Do |
+| Cut | Why |
 |---|---|
-| "Neo Malesa leads digital systems architecture…" / "I lead…" | "Leads in-house digital information systems development…" |
-| "He also has a strong interest in…" | "Interests include the history of Papua New Guinea and the classical world." |
-| "Papua New Guinea's premier academic institution" | "the national university" |
-| "I take on a limited number of projects each year and am available for:" | "Software, infrastructure, applied AI, advisory, and training." |
-| "I'd love to hear from you!" / "Feel free to reach out." | "Bring the problem." / "A few lines are enough to begin." |
-| "Hire me" / "Available for work" | "Discuss a role" / "Describe the project" |
-| "Contact me to learn more about how I can help your organisation." | "A system that should exist, and does not yet." → "Describe the project" |
-| "Make decisions based on data, history, and evidence." | "Decisions grounded in data, history, and evidence." |
-| "Advisory and implementation … for organisations." | "Advisory and delivery of enterprise AI systems, infrastructure, and technical governance." |
+| Sentences with no subject ("Leads in-house…") | Reads as a dossier, not a person |
+| Lists of three for rhythm ("Data stories in public, systems in service, tools free to use.") | Rhythm without information |
+| Closing aphorisms ("That is the work.") | Ends on a pose instead of a next step |
+| "Not this, but that" phrasing ("Nothing off the shelf.") | Defines the work by what it is not |
+| Abstract nouns with no example (systems, institutions, engagements) | Give the example instead |
 
 ### Words and phrases to avoid
 Pleading: *hire me, available for work, I'd love to, feel free to, don't hesitate, let's connect, reach out.*
 Hype: *premier, world-class, cutting-edge, passionate, excited to, thrilled.*
 Filler: *for organisations, leverage, utilise, in order to, very, really.*
+
+### Interim copy
+Copy written as a placeholder until Neo supplies his own carries
+`<!-- INTERIM: Neo to rewrite -->` directly above it. `grep -rn "INTERIM" .` lists
+every line still waiting. When Neo's text arrives, install it verbatim and change only
+mechanics (entities, British spelling).
 
 ---
 
@@ -81,9 +75,9 @@ Filler: *for organisations, leverage, utilise, in order to, very, really.*
 - **Subsections** are indexed from their section: `II.i`, `II.ii`, `II.iii`. Each has
   a `.subsection__heading` with the index, a name, and an optional note.
 - **Calls to act** are short verb phrases, three words at most: "Describe the
-  project", "Discuss a role", "Ask a question". Give a link `data-intent` (`role`,
-  `project`, `advice`, `question`, `other`) to preset the composer's subject; from
-  another page use `index.html?about=role#connect`.
+  project", "Discuss a role", "Ask a question". Give a link `data-intent` (`data`,
+  `project`, `advice`, `question`, `role`, `other`) to preset the composer's subject; from
+  another page use `index.html?about=data#connect`.
 
 ---
 
@@ -127,10 +121,12 @@ The look is dark, restrained, and institutional — a state document more than a
 
 ## 7. Checklist before publishing copy
 
-- [ ] The record pronoun-free and verb-first (except meta/structured data)?
-- [ ] Does the section end in a clear next step for the reader?
+- [ ] Does each sentence have a narrator ("I"), except labels and meta/structured data?
+- [ ] Does the first sentence name something the reader already thinks?
+- [ ] Is there one checkable detail — a number, a place, a name — per paragraph?
+- [ ] Does the section end in one clear next step?
 - [ ] Is the invitation an instruction, not a plea?
-- [ ] No superlatives or hype words?
-- [ ] Could any sentence be shorter without losing meaning?
+- [ ] No superlatives, hype words, aphorisms, or lists of three for rhythm?
+- [ ] Does it claim only what the work shows?
 - [ ] British spelling consistent?
-- [ ] Does it sound like a statement of fact, followed by a plain invitation — not a pitch?
+- [ ] Interim copy marked with `<!-- INTERIM: Neo to rewrite -->`?
