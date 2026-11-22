@@ -786,6 +786,7 @@ function initCopyEmail() {
    ============================================================ */
 
 const INTENTS = {
+  data: { subject: 'A data story', placeholder: 'What the data is, and who needs to understand it.' },
   role: { subject: 'A role', placeholder: 'The role, the organisation, and where it is based.' },
   project: { subject: 'A project', placeholder: 'What should exist that does not — and who it is for.' },
   advice: { subject: 'Advice or training', placeholder: 'The team, the subject, and the timing.' },
